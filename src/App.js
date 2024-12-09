@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/userCharityWrapper" element={<UserCharityWrapper />} />
+          <Route path="/userCharityWrapper" element={<UserCharityWrapper width='1000px' />} />
         </Routes>
       </Router>
     </div>
