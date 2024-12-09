@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
-import About from "./components/About";
+import About from "./components/About/About";
 import ConcertEvent from "./components/ConcertEvent";
 import UserCharityWrapper from "./components/Charity/UserCharityWrapper";
 import { Container, AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
