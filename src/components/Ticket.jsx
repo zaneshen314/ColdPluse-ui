@@ -1,3 +1,7 @@
 export default function Ticket(){
-    return (<></>)
+    return (
+        <>
+            <h1>Ticket</h1>
+        </>
+    )
 }
