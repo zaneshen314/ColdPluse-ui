@@ -13,7 +13,6 @@ import Ticket from './components/Ticket';
 import CharityEventReducer from './components/Charity/CharityEventReducer';
 
 export const AppContext = React.createContext();
-
 function App() {
   const [state, dispatch] = React.useReducer(CharityEventReducer, initialState);
 
@@ -30,8 +29,8 @@ function App() {
             <Route path="/concert-event" element={<ConcertEvent />} />
               <Route path="/userCharityWrapper" element={<UserCharityWrapper />} />
             <Route path="/user-profile" element={<UserProfile />} />
-            <Route path="*" element={<h1>Not Found</h1>} />          
-            <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px" />} />
+            <Route path="*" element={<h1>Not Found</h1>} />
+            <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px" />} /> 
             <Route path="/concert-event" element={<ConcertEvent/>}/>
         </Routes>
         </Router>
