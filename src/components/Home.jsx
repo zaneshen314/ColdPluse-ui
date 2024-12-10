@@ -14,7 +14,7 @@ return (
             <img
                 src="ColdPlayHKConcertPosterjpg.jpg"
                 alt="Poster"
-                style={{ width: "85vw", height: "65vh", borderRadius: "2rem" }}
+                style={{ width: "85vw", height: "65vh", borderRadius: "0.5rem" }}
             />
         </Box>
         <Box sx={buttonWrapperStyle}>
