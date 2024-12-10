@@ -36,6 +36,7 @@ const CharityEventsPage = () => {
     };
 
     const handleModalClose = (claim) => {
+        console.log(claimPoint)
         setClaimPoint(claim);
         setOpenModal(false);
 

@@ -5,12 +5,10 @@ import Home from "./components/Home";
 import ConcertEvent from "./components/ConcertEvent";
 import UserCharityWrapper from "./components/Charity/UserCharityWrapper";
 import NavigationBar from './components/NavigationBar';
-import Events from './components/Events';
 import UserProfile from './components/UserProfile';
 import Ticket from './components/Ticket/Ticket';
 import {initialState, charityEventReducer} from "./reducer/charityEventReducer";
 import OrderHistoryWrapper from "./components/user-order-history/OrderHistoryWrapper";
-import CharityEventList from "./components/Charity/CharityEventList";
 import CharityEventsPage from "./components/Charity/CharityEventsPage";
 
 export const AppContext = React.createContext();

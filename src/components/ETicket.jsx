@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box, Grid } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import QRCode from 'qrcode.react';
 
 const ETicket = ( { ticket } ) => {
