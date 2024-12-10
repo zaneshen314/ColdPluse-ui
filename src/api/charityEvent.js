@@ -1,7 +1,7 @@
 import instance from "./interceptor";
 
-const charityEventPath = "/charity-events";
 const userPath = "/users";
+const charityEventPath = "/charity-events";
 export const getUserEventParticipation = async (userId) => {
     try{
         const response = await instance.get(`${userPath}/${userId}/charity-event-participations`);
@@ -28,5 +28,15 @@ export const registerCharityEvent = async (userId, charityEventId, claimPoint) =
     }
     catch (error){
         console.log("Error: ", error);
+    }
+}
+
+export const getAllCharityEvents = async () => {
+    try {
+        const response = await instance.get(charityEventPath);
+        return response.data; // Adjust based on API response structure
+    } catch (error) {
+        console.error("Error fetching charity events:", error);
+        throw error;
     }
 }

@@ -1,38 +1,26 @@
-import {
-    AppBar,
-    Box,
-    Button,
-    FormControlLabel,
-    FormGroup,
-    IconButton,
-    Menu,
-    MenuItem,
-    Switch,
-    Toolbar,
-    Typography,
-    Container
-} from "@mui/material";
-
+import React, { useState } from 'react';
+import { AppBar, Box, Button, FormControlLabel, FormGroup, IconButton, Menu, MenuItem, Switch, Toolbar } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import * as React from "react";
 import { useNavigate } from "react-router-dom";
+import Login from './Login/Login';
 
 export default function NavigationBar() {
-  const navigate = useNavigate();
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+    const navigate = useNavigate();
+    const [auth, setAuth] = useState(true);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [isLoginModalVisible, setLoginModalVisible] = useState(false);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+    const handleChange = (event) => {
+        setAuth(event.target.checked);
+    };
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    const handleMenu = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
 return (
     <Box sx={{ flexGrow: 1}}>
@@ -56,8 +44,8 @@ return (
                 <Button color="inherit" onClick={() => navigate("/ticket")}>
                     Tickets
                 </Button>          
-                <Button color="inherit" onClick={() => navigate("/events")}>
-                    Events
+                <Button color="inherit" onClick={() => navigate("/charity-event")}>
+                    Charity Events
                 </Button>
                 <Button color="inherit" onClick={() => navigate("/concert-event")}>
                     Concert Event Component
@@ -90,7 +78,7 @@ return (
                             onClose={handleClose}
                         >
                             <MenuItem onClick={()=>{navigate("/user-profile")}}>User Profile</MenuItem>
-                            <MenuItem onClick={()=>{navigate("/user-profile")}}>Order History</MenuItem>
+                            <MenuItem onClick={()=>{navigate("/user-order-history")}}>Order History</MenuItem>
                             <MenuItem onClick={()=>{navigate("/userCharityWrapper")}}>Event History</MenuItem>
                         </Menu>
                     </div>

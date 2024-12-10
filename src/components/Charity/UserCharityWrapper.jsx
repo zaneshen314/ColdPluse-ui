@@ -3,7 +3,6 @@ import {AppBar, Box, Chip, Container, Toolbar, Typography} from '@mui/material';
 import UserCharityList from './UserCharityList';
 import {getUserCurrentPoints, getUserEventParticipation} from "../../api/charityEvent";
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
-import ListIcon from '@mui/icons-material/List';
 
 const UserCharityWrapper = ({width}) => {
     const [userCharityEvents, setUserCharityEvents] = useState([]);

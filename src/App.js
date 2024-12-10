@@ -1,16 +1,15 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import About from "./components/About/About";
 import ConcertEvent from "./components/ConcertEvent";
 import UserCharityWrapper from "./components/Charity/UserCharityWrapper";
-import { Container, AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import NavigationBar from './components/NavigationBar';
 import Events from './components/Events';
 import UserProfile from './components/UserProfile';
 import Ticket from './components/Ticket';
 import { initialState, charityEventReducer } from "./reducer/charityEventReducer";
+import OrderHistoryWrapper from "./components/user-order-history/OrderHistoryWrapper";
 
 export const AppContext = React.createContext();
 function App() {
@@ -29,6 +28,7 @@ function App() {
             <Route path="/concert-event" element={<ConcertEvent />} />
               <Route path="/userCharityWrapper" element={<UserCharityWrapper />} />
             <Route path="/user-profile" element={<UserProfile />} />
+            <Route path="/user-order-history" element={<OrderHistoryWrapper width="1000px" />} />
             <Route path="*" element={<h1>Not Found</h1>} />
             <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px" />} /> 
             <Route path="/concert-event" element={<ConcertEvent/>}/>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Box, Typography } from "@mui/material";
+import { Button, Container, Box } from "@mui/material";
 
 export default function Home() {
 const concertTitle = "Coldplay: Music of Spheres World Tour 2025";
