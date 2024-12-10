@@ -1,50 +1,137 @@
 import React from "react";
-import { Button, Container, Box } from "@mui/material";
+import { Button, Container, Box, Typography } from "@mui/material";
+import EventTable from "./Concert/EventTable";
 
 export default function Home() {
-const concertTitle = "Coldplay: Music of Spheres World Tour 2025";
-const handleBuyTicket = () => {
-    window.location.href = "/ticket";
-};
+    const concertTitle = "Coldplay: Music of Spheres World Tour 2025";
+    const handleBuyTicket = () => {
+        window.location.href = "/ticket";
+    };
 
-return (
-    <Container sx={{width: "100vw", gap: "1rem"}}>
-        <Box sx={posterWrapperStyle}>
-            <h1>{concertTitle}</h1>
-            <img
-                src="ColdPlayHKConcertPosterjpg.jpg"
-                alt="Poster"
-                style={{ width: "85vw", height: "65vh", borderRadius: "0.5rem" }}
-            />
-        </Box>
-        <Box sx={buttonWrapperStyle}>
-            <Button variant="contained" color="primary" size="small" onClick={handleBuyTicket}>
-                Buy Ticket
-            </Button>
-        </Box>
-        <Box class="futureConcertsWrapper">
-            <h2>Upcoming concerts</h2>     
-        </Box>
-        <Box class="futureEventsWrapper">
-            <h2>Upcoming events</h2>
-        </Box>
-    </Container>
-);
-}
+    return (
+        <Box
+            sx={{
+                minHeight: "100vh",
+                background: "linear-gradient(to bottom, #020024, #090979, #00d4ff)", // Cosmic gradient
+                color: "#fff", // White text for readability
+                padding: "2rem 1rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+            }}
+        >
+            {/* Concert Title */}
+            <Typography
+                variant="h2"
+                sx={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginBottom: "2rem",
+                    textShadow: "0px 0px 10px rgba(255, 255, 255, 0.8)",
+                    fontSize: { xs: "2rem", sm: "3rem", md: "4rem" },
+                }}
+            >
+                {concertTitle}
+            </Typography>
 
-const posterWrapperStyle = {
-    margin: "1rem",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-}
+            {/* Poster Section */}
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: "2rem",
+                }}
+            >
+                <img
+                    src="ColdPlayHKConcertPosterjpg.jpg"
+                    alt="Poster"
+                    style={{
+                        width: "85vw",
+                        maxWidth: "600px", // Limit poster size on larger screens
+                        height: "auto",
+                        borderRadius: "0.75rem",
+                        boxShadow: "0 0 20px rgba(0, 0, 0, 0.7)",
+                    }}
+                />
+            </Box>
 
+            {/* Buy Ticket Button */}
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: "4rem",
+                }}
+            >
+                <Button
+                    variant="contained"
+                    size="large"
+                    onClick={handleBuyTicket}
+                    sx={{
+                        background: "linear-gradient(45deg, #ff6ec4, #7873f5)",
+                        color: "#fff",
+                        fontWeight: "bold",
+                        fontSize: "1.2rem",
+                        padding: "0.75rem 2rem",
+                        borderRadius: "2rem",
+                        boxShadow: "0px 0px 15px rgba(255, 255, 255, 0.5)",
+                        "&:hover": {
+                            background: "linear-gradient(45deg, #7873f5, #ff6ec4)",
+                            boxShadow: "0px 0px 25px rgba(255, 255, 255, 0.8)",
+                        },
+                    }}
+                >
+                    Buy Ticket
+                </Button>
+            </Box>
 
-const buttonWrapperStyle = {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-end", // Align buttons at the end of the flex box
-    gap: "0.5rem",
+            {/* Upcoming Concerts Section */}
+            <Box
+                sx={{
+                    width: "100%",
+                    maxWidth: "800px",
+                    textAlign: "center",
+                    marginBottom: "2rem",
+                }}
+            >
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "bold",
+                        marginBottom: "1rem",
+                        textShadow: "0px 0px 10px rgba(255, 255, 255, 0.7)",
+                    }}
+                >
+                    Upcoming Concerts
+                </Typography>
+                <EventTable/>
+            </Box>
+
+            {/* Upcoming Events Section */}
+            <Box
+                sx={{
+                    width: "100%",
+                    maxWidth: "800px",
+                    textAlign: "center",
+                }}
+            >
+                <Typography
+                    variant="h4"
+                    sx={{
+                        fontWeight: "bold",
+                        marginBottom: "1rem",
+                        textShadow: "0px 0px 10px rgba(255, 255, 255, 0.7)",
+                    }}
+                >
+                    Upcoming Events
+                </Typography>
+                <Typography variant="body1" sx={{ fontSize: "1rem" }}>
+                    Join exclusive events and experiences with Coldplay!
+                </Typography>
+            </Box>
+        </Box>
+    );
 }

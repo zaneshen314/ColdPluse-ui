@@ -40,3 +40,12 @@ export const getAllCharityEvents = async () => {
         throw error;
     }
 }
+
+export const getUserCurrentCharityEventIds = async (userId) => {
+    try{
+        const response = await instance.get(`${userPath}/${userId}/charity-events`);
+        return response.data;
+    } catch (error){
+        console.log("Error: ", error);
+    }
+}
