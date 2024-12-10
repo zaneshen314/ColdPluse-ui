@@ -24,7 +24,7 @@ const UserCharityWrapper = ({width}) => {
             padding: 2,
             borderRadius: 2,
         }}>
-            <AppBar position="static" elevation={0} sx={{ backgroundColor: 'transparent', width: '97%', margin: '10px auto', marginBottom: "2px" }}>
+            <AppBar position="static" elevation={0} sx={{ backgroundColor: 'transparent', width: '97%', margin: '10px auto', marginBottom: "20px" }}>
                 <Toolbar>
                     <Typography variant="h4" component="div" sx={{ flexGrow: 1, color: 'black', fontWeight: "bold" }}>
                         Events History

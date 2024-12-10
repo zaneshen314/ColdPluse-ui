@@ -14,9 +14,6 @@ const UserCharityList = ( {userCharityEvents} ) => {
 
     return (
         <Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', marginLeft:1.6, marginBottom: 0.2 }}>
-                <ListIcon sx={{ color: 'gray', fontSize: '2rem', marginRight: 1 }} />
-            </Box>
             <Grid container spacing={2}>
                 {userCharityEvents.map((event, index) => (
                     <Grid item xs={12} key={index}>
