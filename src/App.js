@@ -7,9 +7,9 @@ import UserCharityWrapper from "./components/Charity/UserCharityWrapper";
 import NavigationBar from './components/NavigationBar';
 import Events from './components/Events';
 import UserProfile from './components/UserProfile';
-import Ticket from './components/Ticket';
 import { initialState, charityEventReducer } from "./reducer/charityEventReducer";
 import OrderHistoryWrapper from "./components/user-order-history/OrderHistoryWrapper";
+import Ticket from "./components/Ticket/Ticket";
 
 export const AppContext = React.createContext();
 function App() {
