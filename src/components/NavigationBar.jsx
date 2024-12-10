@@ -49,8 +49,8 @@ export default function NavigationBar() {
                     <Button color="inherit" onClick={() => navigate("/ticket")}>
                         Tickets
                     </Button>
-                    <Button color="inherit" onClick={() => navigate("/charity-event")}>
-                        Charity Events
+                    <Button color="inherit" onClick={() => navigate("/events")}>
+                        Events
                     </Button>
                     <Button color="inherit" onClick={() => navigate("/concert-event")}>
                         Concert Event Component
