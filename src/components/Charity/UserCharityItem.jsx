@@ -1,9 +1,12 @@
 import React from 'react';
-import {Box, Chip, Grid, Paper, Typography} from '@mui/material';
+import { Box, Chip, Grid, Paper, Typography } from '@mui/material';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DescriptionIcon from '@mui/icons-material/Description';
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
+import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 
 const getBackgroundColor = (index) => {
     const colors = ['#E0F7FA', '#FFEBEE', '#FFF3E0'];
@@ -11,101 +14,110 @@ const getBackgroundColor = (index) => {
 };
 
 const images = [
-    '/charity_img/haitun.jpg',
-    '/charity_img/shuita.jpg',
-    '/charity_img/yangtuo.jpg',
+    '/charity_img/garbage.jpg',
+    '/charity_img/garbage2.jpg',
+    '/charity_img/shore.jpg',
 ];
 
-const UserCharityItem = ({event, index}) => {
+const statusColors = {
+    REGISTERED: '#BBDEFB',
+    ENROLLED: '#D1C4E9', // Blue-purple series color
+    COMPLETED: '#C8E6C9',
+    REJECTED: '#E0E0E0', // Swapped with ENROLLED color
+    ABSENT: '#E0E0E0'
+};
+
+const textColors = {
+    REGISTERED: '#1976d2',
+    ENROLLED: '#673ab7', // Darker shade of blue-purple
+    COMPLETED: '#388e3c',
+    REJECTED: '#616161', // Swapped with ENROLLED color
+    ABSENT: '#616161'
+};
+
+const getStatusIcon = (status) => {
+    switch (status) {
+        case 'COMPLETED':
+            return <CheckCircleIcon />;
+        case 'REJECTED':
+        case 'ABSENT':
+            return <CancelIcon />;
+        case 'ENROLLED':
+        case 'REGISTERED':
+            return <CheckCircleIcon />;
+        default:
+            return null;
+    }
+};
+
+const UserCharityItem = ({ event, index }) => {
     return (
-        <Paper elevation={3} sx={{padding: 2, backgroundColor: getBackgroundColor(index)}}>
+        <Paper elevation={3} sx={{ padding: 2 }}>
             <Grid container spacing={2}>
-                <Grid item xs={2} sx={{textAlign: 'center'}}>
-                    <Typography variant="h6" sx={{fontFamily: 'Comic Sans MS, cursive, sans-serif'}}>
-                        {event.title}
-                    </Typography>
+                <Grid item xs={3} sx={{ textAlign: 'center' }}>
                     <Box
                         component="img"
                         src={images[index % images.length]}
-                        alt={event.title}
+                        alt={event.charityEvent.name}
                         sx={{
-                            width: '8rem',
-                            height: '8rem',
+                            width: '12rem',
+                            height: '12rem',
                             borderRadius: '5%',
-                            marginTop: 1
+                            marginTop: 1,
+                            objectFit: 'cover', // This will crop the image to fit the box
+                            objectPosition: 'center' // This will center the image within the box
                         }}
                     />
                 </Grid>
-                <Grid item xs={9}>
-                    <Typography variant="body1" sx={{display: 'flex', alignItems: 'center', marginBottom: 1}}>
-                        <Chip
-                            label={<DateRangeIcon sx={{color: '#6B8EAD', fontSize: '1.3rem', margin: "5px 0px 0px 0px"}}/>}
-                            sx={{marginRight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'}}
-                        />
-                        <span style={{
-                            fontWeight: 'bold',
-                            fontSize: '1rem',
-                            color: '#6B8EAD',
-                            marginRight: '0.5rem',
-                            letterSpacing: "3.1px"
-                        }}>Date: </span> {event.date}
-                    </Typography>
-                    <Typography variant="body1" sx={{display: 'flex', alignItems: 'center', marginBottom: 1}}>
-                        <Chip
-                            label={<LocationOnIcon
-                                sx={{color: '#6B8EAD', fontSize: '1.3rem', margin: "5px 0px 0px 0px"}}/>}
-                            sx={{marginRight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'}}
-                        />
-                        <span style={{
-                            fontWeight: 'bold',
-                            fontSize: '1rem',
-                            color: '#6B8EAD',
-                            marginRight: '0.5rem'
-                        }}>Venue:</span> {event.venue}
+                <Grid item xs={7}>
+                    <Typography variant="h5" sx={{ fontWeight: "bold", marginTop: 1.3, marginBottom: 2 }}>
+                        {event.charityEvent.name}
                     </Typography>
 
-                    <Typography variant="body1" sx={{
-                        display: 'flex',
-                        whiteSpace: 'normal',
-                        overflowWrap: 'break-word',
-                        wordBreak: 'break-all'
-                    }}>
-                        <Chip
-                            label={<DescriptionIcon
-                                sx={{color: '#6B8EAD', fontSize: '1.3rem', margin: "5px 0px 0px 0px"}}/>}
-                            sx={{marginRight: 1, display: 'flex', alignItems: 'center', justifyContent: 'center'}}
-                        />
-
-                        <span style={{
-                            fontWeight: 'bold',
-                            fontSize: '1rem',
-                            color: '#6B8EAD',
-                            marginRight: '0.5rem',
-                            wordBreak: "normal",
-                            letterSpacing: "2.3px"
-                        }}>Desc:</span>
-                        <span>{event.description.substr(0, 300)}</span>
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: '#adafb8' }}>
+                        <DateRangeIcon sx={{ color: '#adafb8', fontSize: '1.3rem', marginRight: 1 }} />
+                        {event.charityEvent.startTime}
+                    </Typography>
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: '#adafb8' }}>
+                        <LocationOnIcon sx={{ color: '#adafb8', fontSize: '1.3rem', marginRight: 1 }} />
+                        <span style={{ fontSize: '1rem', marginRight: '0.5rem' }}>Venue:</span>
+                        {event.charityEvent.location}
+                    </Typography>
+                    <Typography variant="body1" sx={{ display: 'flex', whiteSpace: 'normal', overflowWrap: 'break-word', wordBreak: 'break-all', color: '#adafb8' }}>
+                        <DescriptionIcon sx={{ color: '#adafb8', fontSize: '1.3rem', marginRight: 1 }} />
+                        <span style={{ fontSize: '1rem', marginRight: '0.5rem', wordBreak: 'normal' }}>Description:</span>
+                        <span>{event.charityEvent.description.substr(0, 300)}</span>
                     </Typography>
                 </Grid>
-                <Grid item xs={1}>
-                    <Box
+                <Grid item xs={2}>
+                    <Chip
+                        icon={getStatusIcon(event.charityEventParticipation.status)}
+                        label={event.charityEventParticipation.status === 'REGISTERED' ? 'PENDING' : event.charityEventParticipation.status}
                         sx={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            padding: '5px 0px',
-                            fontSize: '1rem',
+                            backgroundColor: statusColors[event.charityEventParticipation.status],
+                            color: textColors[event.charityEventParticipation.status],
                             fontWeight: 'bold',
-                            color: '#F3F3F3',
-                            backgroundColor: '#1E90FF',
-                            borderRadius: '5px',
-                            whiteSpace: 'normal',
-                            wordBreak: 'break-word',
-                            textAlign: 'center'
+                            marginBottom: 1,
+                            '& .MuiChip-icon': {
+                                color: textColors[event.charityEventParticipation.status],
+                            }
                         }}
-                    >
-                        Points {event.point}
-                    </Box>
-                    <LocalFloristIcon sx={{color: '#1976d2', fontSize: '3rem', marginLeft: "10%", marginTop: '70%'}} />
+                    />
+                    {event.charityEventParticipation.status === 'COMPLETED' && (
+                        <Chip
+                            icon={<MilitaryTechIcon />}
+                            label={`${event.charityEvent.point} Points`}
+                            sx={{
+                                backgroundColor: '#fdf1f5',
+                                color: '#e8628d',
+                                fontWeight: 'bold',
+                                marginTop: 1,
+                                '& .MuiChip-icon': {
+                                    color: '#e8628d',
+                                }
+                            }}
+                        />
+                    )}
                 </Grid>
             </Grid>
         </Paper>
