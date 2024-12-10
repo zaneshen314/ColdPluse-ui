@@ -9,6 +9,8 @@ import {
     MenuItem,
     Switch,
     Toolbar,
+    Typography,
+    Container
 } from "@mui/material";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -33,7 +35,7 @@ export default function NavigationBar() {
   };
 
 return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1}}>
         <FormGroup>
             <FormControlLabel
                 control={
@@ -46,8 +48,11 @@ return (
                 label={auth ? "Logout" : "Login"}
             />
         </FormGroup>
-        <AppBar position="static" color="transparent">
-            <Toolbar sx={{ justifyContent: "flex-end", gap: "1rem" }}>
+        <AppBar position="static" 
+            color= "transparent"
+        // sx={{backgroundColor:"#00274D"}}
+        >
+            <Toolbar sx={{ justifyContent: "flex-end", gap: "1rem"}}>
                 <Button color="inherit" onClick={() => navigate("/ticket")}>
                     Tickets
                 </Button>          
@@ -73,13 +78,13 @@ return (
                             id="menu-appbar"
                             anchorEl={anchorEl}
                             anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
+                                vertical: "bottom",
+                                horizontal: "center",
                             }}
                             keepMounted
                             transformOrigin={{
                                 vertical: "top",
-                                horizontal: "right",
+                                horizontal: "center",
                             }}
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
