@@ -1,20 +1,34 @@
 import React from 'react';
-import { Box, Grid, Typography } from '@mui/material';
-import QRCode from 'qrcode.react';
+import {Box, Divider, Grid} from '@mui/material';
 import ETicket from "../ETicket";
 
 const TicketList = ({ tickets }) => {
     return (
         <Box>
-            <Typography variant="h5" sx={{ marginBottom: 2, marginTop: 2 }}>
-                Tickets
-            </Typography>
+            <Divider
+                sx={{
+                    marginBottom: 1,
+                    marginTop: 2,
+                    fontSize: "1.3rem",
+                    fontWeight: "bold",
+                }}
+            >
+                Ticket Folder
+            </Divider>
+
             <Grid container spacing={2}>
-                {tickets.map((ticket, index) => (
-                    <Grid item xs={12 / tickets.length} key={index}>
-                        <ETicket ticket={ticket}/>
-                    </Grid>
-                ))}
+                {tickets.map((ticket, index) => {
+                    const eticket = {
+                        ticketId: ticket.id,
+                        guestId: ticket.idCardNum,
+                        guestName: ticket.viewerName
+                    };
+                    return (
+                        <Grid item xs={12 / tickets.length} key={index} sx={{ textAlign: 'center' }}>
+                            <ETicket ticket={eticket}/>
+                        </Grid>
+                    );
+                })}
             </Grid>
         </Box>
     );
