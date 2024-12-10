@@ -20,7 +20,7 @@ const ConcertEvent = ({ onBuyTicket }) => {
                 const eventData = await getEventData(1, 1);
                 setEvent({
                     id: eventData.id,
-                    poster: "https://www.allegiantstadium.com/assets/img/Static_Venue_800x500_Coldplay_2025_NA_Regional_AllegiantStadium_0606-05e3ffdf12.jpg",
+                    poster: eventData.imgUrl,
                     title: eventData.name,
                     details: [
                         {
