@@ -12,3 +12,13 @@ export const getEventData = async (concertId, scheduleId) => {
         throw error;
     }
 };
+
+export const getConcertTicketStrategyByClass = async (concertId) => {
+    try {
+        const response = await instance.get(`${API_BASE_URL}/${concertId}/classes`);
+        return response.data.data;
+    } catch (error) {
+        console.error("Error fetching ticket strategy:", error);
+        throw error;
+    }
+}
