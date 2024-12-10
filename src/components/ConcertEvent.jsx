@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { getAllEvents } from "../api/concertSessionEvent";
 import EventCard, { EVENT_DETAILS_TYPE } from "./EventCard";
 
