@@ -22,6 +22,13 @@ export default function NavigationBar() {
         setAnchorEl(null);
     };
 
+    const handleLoginClick = () => {
+        setLoginModalVisible(true);
+    };
+
+    const handleCloseModal = () => {
+        setLoginModalVisible(false);
+    };
 return (
     <Box sx={{ flexGrow: 1}}>
         <FormGroup>
@@ -47,7 +54,7 @@ return (
                 <Button color="inherit" onClick={() => navigate("/ticket")}>
                     Tickets
                 </Button>          
-                <Button color="inherit" onClick={() => navigate("/charity-event")}>
+                <Button color="inherit" onClick={() => navigate("/events")}>
                     Charity Events
                 </Button>
                 <Button color="inherit" onClick={() => navigate("/concert-event")}>
@@ -85,11 +92,12 @@ return (
                             <MenuItem onClick={()=>{navigate("/userCharityWrapper")}}>Event History</MenuItem>
                         </Menu>
                     </div>
-                : 
-                    <Button variant="outlined" onClick={() => navigate("/login")} sx={{ borderRadius: "80rem" }}>Login</Button>
+                :
+                    <Button variant="outlined" onClick={handleLoginClick} sx={{ borderRadius: "80rem" }}>Login</Button>
                 }
             </Toolbar>
         </AppBar>
+        <Login isVisible={isLoginModalVisible} onClose={handleCloseModal} />
     </Box>
 );
 }
