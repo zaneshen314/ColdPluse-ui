@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Divider, Grid} from '@mui/material';
+import {Box, Chip, Divider, Grid} from '@mui/material';
 import ETicket from "../ETicket";
 
 const TicketList = ({ tickets }) => {
@@ -13,7 +13,7 @@ const TicketList = ({ tickets }) => {
                     fontWeight: "bold",
                 }}
             >
-                Ticket Folder
+                <Chip label="Ticket Folder" />
             </Divider>
 
             <Grid container spacing={2}>
