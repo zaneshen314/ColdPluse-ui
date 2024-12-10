@@ -9,8 +9,6 @@ import {
     MenuItem,
     Switch,
     Toolbar,
-    Typography,
-    Container
 } from "@mui/material";
 
 import AccountCircle from "@mui/icons-material/AccountCircle";

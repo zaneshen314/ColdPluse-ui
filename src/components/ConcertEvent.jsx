@@ -4,7 +4,6 @@ import {
 } from "@mui/material";
 import { getEventData } from "../api/concertSessionEvent";
 import EventCard, { EVENT_DETAILS_TYPE } from "./EventCard";
-import { type } from "@testing-library/user-event/dist/type";
 
 const ConcertEvent = ({ onBuyTicket }) => {
     const [event, setEvent] = useState(null);

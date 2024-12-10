@@ -3,15 +3,10 @@ import { Box, Chip, Grid, Paper, Typography } from '@mui/material';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DescriptionIcon from '@mui/icons-material/Description';
-import LocalFloristIcon from '@mui/icons-material/LocalFlorist';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 
-const getBackgroundColor = (index) => {
-    const colors = ['#E0F7FA', '#FFEBEE', '#FFF3E0'];
-    return colors[index % colors.length];
-};
 
 const images = [
     '/charity_img/garbage.jpg',
