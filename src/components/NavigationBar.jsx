@@ -47,7 +47,7 @@ return (
                 <Button color="inherit" onClick={() => navigate("/ticket")}>
                     Tickets
                 </Button>          
-                <Button color="inherit" onClick={() => navigate("/charity-event")}>
+                <Button color="inherit" onClick={() => navigate("/events")}>
                     Charity Events
                 </Button>
                 <Button color="inherit" onClick={() => navigate("/concert-event")}>
