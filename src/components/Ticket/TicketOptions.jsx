@@ -6,9 +6,9 @@ import EventSeatIcon from '@mui/icons-material/EventSeat';
 
 export default function TicketOptions({ concertDetails, selectedTickets, handleTicketChange }) {
     return (
-        <Stack direction="row" spacing={2} flexWrap="wrap">
+        <Box sx={{display:"flex", gap: "1rem"}}  flexWrap="wrap">
             {concertDetails.map((detail) => (
-                <Box key={detail.id} flex={{ xs: '1 1 100%', sm: '1 1 calc(33.33% - 16px)' }} mb={2}>
+                <Box key={detail.id} flex sx={{flexBasis: 'calc(33.33% -5px)'}}>
                     <Card>
                         <CardContent>
                             <Typography variant="h6" align="center" sx={{ fontWeight: 'bold' }}>
@@ -32,7 +32,7 @@ export default function TicketOptions({ concertDetails, selectedTickets, handleT
                                 fullWidth
                                 margin="normal"
                                 min={0}
-                                max={3}        
+                                max={3}
                                 onChange={(e) => handleTicketChange(detail.id, detail.className, detail.price, Math.min(Math.max(parseInt(e.target.value) || 0, 0), 3))}
                                 value={selectedTickets[detail.id]?.quantity || ''}
                             />
@@ -40,6 +40,6 @@ export default function TicketOptions({ concertDetails, selectedTickets, handleT
                     </Card>
                 </Box>
             ))}
-        </Stack>
+        </Box>
     );
 }

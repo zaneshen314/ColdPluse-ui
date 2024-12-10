@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Stack, Divider, Typography, Alert, AppBar, Toolbar, Button } from '@mui/material';
+import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button } from '@mui/material';
 import { getEventData, getConcertTicketStrategyByClass } from '../../api/concertSessionEvent';
 import ConcertMeta from './ConcertMeta';
 import TicketOptions from './TicketOptions';
@@ -46,7 +46,7 @@ export default function Ticket() {
     }, [concert_id]);
 
     return (
-        <Container sx={{ pt: 4 }}>
+        <Container sx={{ pt: 4, height:'120vh'}}>
             <ConcertMeta concertMeta={concertMeta} />
             <Divider style={{ margin: '20px 0' }} />
             <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold'}}>Ticket Option</Typography>
