@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import Signup from './Signup';
-import {login} from "../../api/login";
+import { login } from "../../api/login";
 
 const Login = ({ isVisible, onClose }) => {
     const [email, setEmail] = useState('');
@@ -12,6 +12,7 @@ const Login = ({ isVisible, onClose }) => {
         try {
             const data = await login(email, password);
             localStorage.setItem('token', data.data);
+            alert('Login successful!');
             onClose();
         } catch (error) {
             alert(error.message);

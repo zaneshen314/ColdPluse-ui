@@ -28,73 +28,82 @@ export default function NavigationBar() {
 
     const handleCloseModal = () => {
         setLoginModalVisible(false);
+        setAuth(true);
     };
-return (
-    <Box sx={{ flexGrow: 1}}>
-        <FormGroup>
-            <FormControlLabel
-                control={
-                    <Switch
-                        checked={auth}
-                        onChange={handleChange}
-                        aria-label="login switch"
-                    />
-                }
-                label={auth ? "Logout" : "Login"}
-            />
-        </FormGroup>
-        <AppBar position="static" sx={{backgroundColor:"#020024"}}>
-            <Toolbar sx={{ justifyContent: "flex-end", gap: "1rem"}}>
-                <Button color="inherit" onClick={() => navigate("/")}>
-                    Home
-                </Button>
-                <Button color="inherit" onClick={() => navigate("/ticket")}>
-                    Tickets
-                </Button>          
-                <Button color="inherit" onClick={() => navigate("/events")}>
-                    Charity Events
-                </Button>
-                <Button color="inherit" onClick={() => navigate("/concert-event")}>
-                    Concert Event Component
-                </Button>
-                {auth ? 
-                    <div>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleMenu}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorEl}
-                            anchorOrigin={{
-                                vertical: "bottom",
-                                horizontal: "center",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "center",
-                            }}
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                        >
-                            <MenuItem onClick={()=>{navigate("/user-profile")}}>User Profile</MenuItem>
-                            <MenuItem onClick={()=>{navigate("/user-order-history")}}>Order History</MenuItem>
-                            <MenuItem onClick={()=>{navigate("/userCharityWrapper")}}>Event History</MenuItem>
-                        </Menu>
-                    </div>
-                :
-                    <Button variant="outlined" onClick={handleLoginClick} sx={{ borderRadius: "80rem" }}>Login</Button>
-                }
-            </Toolbar>
-        </AppBar>
-        <Login isVisible={isLoginModalVisible} onClose={handleCloseModal} />
-    </Box>
-);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setAuth(false);
+        alert('Logged out successfully!');
+    };
+
+    return (
+        <Box sx={{ flexGrow: 1 }}>
+            <FormGroup>
+                <FormControlLabel
+                    control={
+                        <Switch
+                            checked={auth}
+                            onChange={handleChange}
+                            aria-label="login switch"
+                        />
+                    }
+                    label={auth ? "Logout" : "Login"}
+                />
+            </FormGroup>
+            <AppBar position="static" sx={{ backgroundColor: "#020024" }}>
+                <Toolbar sx={{ justifyContent: "flex-end", gap: "1rem" }}>
+                    <Button color="inherit" onClick={() => navigate("/")}>
+                        Home
+                    </Button>
+                    <Button color="inherit" onClick={() => navigate("/ticket")}>
+                        Tickets
+                    </Button>
+                    <Button color="inherit" onClick={() => navigate("/events")}>
+                        Charity Events
+                    </Button>
+                    <Button color="inherit" onClick={() => navigate("/concert-event")}>
+                        Concert Event Component
+                    </Button>
+                    {auth ? (
+                        <div>
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: "bottom",
+                                    horizontal: "center",
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: "top",
+                                    horizontal: "center",
+                                }}
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={() => { navigate("/user-profile") }}>User Profile</MenuItem>
+                                <MenuItem onClick={() => { navigate("/user-order-history") }}>Order History</MenuItem>
+                                <MenuItem onClick={() => { navigate("/userCharityWrapper") }}>Event History</MenuItem>
+                                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                            </Menu>
+                        </div>
+                    ) : (
+                        <Button variant="outlined" onClick={handleLoginClick} sx={{ borderRadius: "80rem" }}>Login</Button>
+                    )}
+                </Toolbar>
+            </AppBar>
+            <Login isVisible={isLoginModalVisible} onClose={handleCloseModal} />
+        </Box>
+    );
 }

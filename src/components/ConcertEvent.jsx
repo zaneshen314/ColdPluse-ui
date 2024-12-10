@@ -1,56 +1,64 @@
 import React, { useEffect, useState } from "react";
-import {
-    Typography,
-} from "@mui/material";
-import { getEventData } from "../api/concertSessionEvent";
+import { Typography } from "@mui/material";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { getAllEvents } from "../api/concertSessionEvent";
 import EventCard, { EVENT_DETAILS_TYPE } from "./EventCard";
 
-const ConcertEvent = ({ onBuyTicket }) => {
-    const [event, setEvent] = useState(null);
+const ConcertEvent = () => {
+    const [events, setEvents] = useState([]);
 
     const BUY_TICKET = "Buy Ticket";
+    const onBuyTicket = () => {
+        console.log("Buy ticket clicked");
+    };
+
     const buyTicketProps = {
         text: BUY_TICKET,
-        onclick: onBuyTicket,
-    }
+        onButtonClick: onBuyTicket,
+    };
 
     useEffect(() => {
-        const fetchEventData = async () => {
+        const fetchEvents = async () => {
             try {
-                const eventData = await getEventData(1, 1);
-                setEvent({
-                    id: eventData.id,
-                    poster: eventData.imgUrl,
-                    title: eventData.name,
+                const eventData = await getAllEvents();
+                const transformedEvents = eventData.map(event => ({
+                    id: event.id,
+                    poster: event.imgUrl,
+                    title: event.name,
                     details: [
                         {
-                            text: eventData.start_time,
+                            text: event.start_time,
                             type: EVENT_DETAILS_TYPE.HIGHLIGHTED,
                         },
                         {
-                            text: eventData.venue,
+                            text: event.venue,
                             type: EVENT_DETAILS_TYPE.STANDARD,
                         },
                         {
-                            text: `$${eventData.minPrice} - $${eventData.maxPrice}`,
+                            text: `$${event.minPrice} - $${event.maxPrice}`,
                             type: EVENT_DETAILS_TYPE.BOLD_STANDARD,
                         },
                     ],
-                });
+                }));
+                setEvents(transformedEvents);
             } catch (error) {
                 console.error("Error fetching event data:", error);
             }
         };
 
-        fetchEventData();
+        fetchEvents();
     }, []);
 
-    if (!event) {
+    if (events.length === 0) {
         return <Typography>Loading...</Typography>;
     }
 
     return (
-        <EventCard event={event} buttonProps={buyTicketProps}/>
+       <div>
+            {events.map((event, index) => (
+                <EventCard key={index} event={event} buttonProps={buyTicketProps} />
+            ))}
+       </div>
     );
 };
 
