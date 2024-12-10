@@ -1,41 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EventRow from "./EventRow";
 import EventHeader from "./EventHeader";
-
-const events = [
-    {
-        id: 1,
-        name: "NYC-Coldplay Festival",
-        maxPrice: 1000.0,
-        minPrice: 50.0,
-        start_time: "2024-12-15 19:00:00",
-        venue: "Madison Square Garden, 10001, NYC",
-        duration: 120,
-        imgUrl: "/ColdPlayHKConcertPosterjpg.jpg",
-    },
-    {
-        id: 2,
-        name: "Rock Concert",
-        maxPrice: 200.0,
-        minPrice: 75.0,
-        start_time: "2024-12-05 20:00:00",
-        venue: "Madison Square Garden, 10001, NYC",
-        duration: 10800,
-        imgUrl: "/ColdPlayHKConcertPosterjpg.jpg",
-    },
-    {
-        id: 3,
-        name: "Jazz Night",
-        maxPrice: 180.0,
-        minPrice: 60.0,
-        start_time: "2024-12-10 18:30:00",
-        venue: "Central Park, New York, NY, NY",
-        duration: 9000,
-        imgUrl: "/ColdPlayHKConcertPosterjpg.jpg",
-    },
-];
+import { getAllEvents } from "../../api/concertSessionEvent";
 
 const EventTable = () => {
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            try {
+                const eventData = await getAllEvents();
+                if (eventData) {
+                    const sortedEvents = eventData.sort((a, b) => new Date(b.start_time) - new Date(a.start_time)).slice(0, 3);
+                    setEvents(sortedEvents);
+                } else {
+                    console.error("No event data found");
+                }
+            } catch (error) {
+                console.error("Error fetching event data:", error);
+            }
+        };
+
+        fetchEvents();
+    }, []);
+
     const handleSeeAllClick = () => {
         window.location.href = "/events"; // Navigate to the "Find All" page
     };
@@ -54,7 +42,7 @@ const EventTable = () => {
                 </thead>
                 <tbody>
                 {events.map((event) => (
-                    <EventRow key={event.id} event={event} />
+                    <EventRow key={event.scheduleId} event={event} />
                 ))}
                 </tbody>
             </table>
