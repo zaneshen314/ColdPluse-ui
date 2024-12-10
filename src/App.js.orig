@@ -2,14 +2,19 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
+<<<<<<< HEAD
 import About from "./components/About/About";
 import ConcertEvent from "./components/ConcertEvent";
 import UserCharityWrapper from "./components/Charity/UserCharityWrapper";
 import { Container, AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+=======
+import About from "./components/About";
+import Ticket from "./components/Ticket";
 import NavigationBar from './components/NavigationBar';
 import Events from './components/Events';
 import UserProfile from './components/UserProfile';
 import { Box } from "@mui/material";
+>>>>>>> feat11__add_home_page
 
 function App() {
   const event = {
@@ -27,10 +32,15 @@ function App() {
   };
 
   return (
-    <body>
+<<<<<<< HEAD
       <div className="App">
         <Router>
-          <NavigationBar />
+          <AppBar position="static" sx={{ backgroundColor: "#00274D" }}>
+            <Toolbar>
+              <Box
+                  component="img"
+                  src="https://i.pinimg.com/originals/53/73/d6/5373d62177a78cbd4ab35fb4b9753f3e.png"
+                  alt="Coldplay Logo"
                   sx={{
                     height: 40,
                     width: 40,
@@ -61,23 +71,35 @@ function App() {
             </Toolbar>
           </AppBar>
           <Container sx={{ marginTop: 4 }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-            <Route path="/ticket" element={<Ticket />} />
-            <Route path="/events" element={<Events />} />
+            <Routes>
+              <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
-            <Route path="/user-profile" element={<UserProfile />} />
-            <Route path="*" element={<h1>Not Found</h1>} />          
               <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px" />} />
               <Route
                   path="/concert-event"
                   element={<ConcertEvent event={event} onBuyTicket={handleBuyTicket} />}
               />
-        </Routes>
+            </Routes>
           </Container>
         </Router>
       </div>
+=======
+    <body>
+      <div className="App">
+        <Router>
+          <NavigationBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/ticket" element={<Ticket />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/user-profile" element={<UserProfile />} />
+            <Route path="*" element={<h1>Not Found</h1>} />          
+          </Routes>
+        </Router>
+      </div>
     </body>
+>>>>>>> feat11__add_home_page
   );
 }
 
