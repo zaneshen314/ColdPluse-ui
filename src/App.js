@@ -7,7 +7,7 @@ import UserCharityWrapper from "./components/Charity/UserCharityWrapper";
 import NavigationBar from './components/NavigationBar';
 import Events from './components/Events';
 import UserProfile from './components/UserProfile';
-import Ticket from './components/Ticket';
+import Ticket from './components/Ticket/Ticket';
 import {initialState, charityEventReducer} from "./reducer/charityEventReducer";
 import OrderHistoryWrapper from "./components/user-order-history/OrderHistoryWrapper";
 import CharityEventList from "./components/Charity/CharityEventList";
@@ -21,7 +21,7 @@ function App() {
     return (
         <body>
         <div className="App">
-            <AppContext.Provider value={{state, dispatch}}>v
+            <AppContext.Provider value={{state, dispatch}}>
                 <Router>
                     <NavigationBar/>
                     <Routes>
