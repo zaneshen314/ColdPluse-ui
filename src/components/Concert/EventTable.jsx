@@ -25,7 +25,7 @@ const EventTable = () => {
     }, []);
 
     const handleSeeAllClick = () => {
-        window.location.href = "/events"; // Navigate to the "Find All" page
+        window.location.href = "/concert-event"; // Navigate to the "Find All" page
     };
 
     return (
