@@ -1,34 +1,22 @@
 import React from 'react';
-import { Container, Typography, Box } from '@mui/material';
+import { Typography, Box, Grid } from '@mui/material';
 import QRCode from 'qrcode.react';
 
-const ETicket = ( { ticketId, concertDetails, purchasedTime} ) => {
-//   const concertDetails = {
-//     id: "132131232",
-//     time: '7:00 PM, 25th December 2023',
-//     venue: 'Madison Square Garden, New York',
-//     zone: 'VIP Section',
-//     purchasedTime: new Date().toLocaleString(),
-//   };
+const ETicket = ( { ticket } ) => {
+  const { ticketId, guestId, guestName } = ticket;
 
   return (
-    <Container maxWidth="sm" style={{ textAlign: 'center', marginTop: '50px' }}>
-      <Typography variant="h4" gutterBottom>
-        Purchase Success
-      </Typography>
-      <Box my={4}>
-        <QRCode value={ticketId} size={256} />
-      </Box>
-      <Typography variant="h6" gutterBottom>
-        Purchased Time: {purchasedTime}
-      </Typography>
-      <Box mt={4}>
-        <Typography variant="h6">Concert Details:</Typography>
-        <Typography variant="body1">Time: {concertDetails.time}</Typography>
-        <Typography variant="body1">Venue: {concertDetails.venue}</Typography>
-        <Typography variant="body1">Zone: {concertDetails.zone}</Typography>
-      </Box>
-    </Container>
+    <Box my={1} border={1} borderColor="grey.500" p={2}>
+      <Grid container alignItems="center">
+        <Grid item xs={8}>
+          <Typography variant="h6">Guest ID: {guestId}</Typography>
+          <Typography variant="h6">Guest Name: {guestName}</Typography>
+        </Grid>
+        <Grid item xs={4} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <QRCode value={ticketId} size={128} />
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
