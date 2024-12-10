@@ -12,6 +12,7 @@ import {initialState, charityEventReducer} from "./reducer/charityEventReducer";
 import OrderHistoryWrapper from "./components/user-order-history/OrderHistoryWrapper";
 import CharityEventList from "./components/Charity/CharityEventList";
 import CharityEventsPage from "./components/Charity/CharityEventsPage";
+import Test from "./components/Charity/Test";
 
 export const AppContext = React.createContext();
 
@@ -35,6 +36,7 @@ function App() {
                         <Route path="*" element={<h1>Not Found</h1>}/>
                         <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px"/>}/>
                         <Route path="/concert-event" element={<ConcertEvent/>}/>
+                        <Route path="/test" element={<Test/>}/>
                     </Routes>
                 </Router>
             </AppContext.Provider>

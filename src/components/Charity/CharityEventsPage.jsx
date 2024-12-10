@@ -3,6 +3,7 @@ import { Box, Typography, Modal, Button } from "@mui/material";
 import CharityEventList from "./CharityEventList";
 import {getAllCharityEvents, getUserCurrentCharityEventIds} from "../../api/charityEvent";
 import instance from "../../api/interceptor";
+import Test from "./Test";
 
 const CharityEventsPage = () => {
     const [events, setEvents] = useState([]);
@@ -85,6 +86,7 @@ const CharityEventsPage = () => {
 
     return (
         <>
+            <Test events={events} />
             <CharityEventList events={events} onJoinEvent={handleJoinEvent} joinedIds={ids} setIds={setIds}/>
             <Modal
                 open={openModal}
