@@ -52,7 +52,7 @@ const UserCharityItem = ({ event, index }) => {
                 <Grid item xs={3} sx={{ textAlign: 'center' }}>
                     <Box
                         component="img"
-                        src={images[index % images.length]}
+                        src={event.charityEvent.imgUrl || images[index % images.length]}
                         alt={event.charityEvent.name}
                         sx={{
                             width: '12rem',
