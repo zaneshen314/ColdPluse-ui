@@ -10,25 +10,17 @@ import NavigationBar from './components/NavigationBar';
 import Events from './components/Events';
 import UserProfile from './components/UserProfile';
 import Ticket from './components/Ticket';
+import CharityEventReducer from './components/Charity/CharityEventReducer';
+
+export const AppContext = React.createContext();
 
 function App() {
-  const event = {
-    id: 1,
-    poster:
-        "https://www.allegiantstadium.com/assets/img/Static_Venue_800x500_Coldplay_2025_NA_Regional_AllegiantStadium_0606-05e3ffdf12.jpg",
-    title: "Live Concert: The Rockers",
-    time: "7:00 PM, Dec 15, 2024",
-    venue: "Stadium Arena, NY",
-    priceRange: "$50 - $200",
-  };
-
-  const handleBuyTicket = () => {
-    alert("Redirecting to ticket purchase...");
-  };
+  const [state, dispatch] = React.useReducer(CharityEventReducer, initialState);
 
   return (
     <body>
       <div className="App">
+        <AppContext.Provider value={{ state, dispatch }}>v
         <Router>
           <NavigationBar />
         <Routes>
@@ -40,12 +32,10 @@ function App() {
             <Route path="/user-profile" element={<UserProfile />} />
             <Route path="*" element={<h1>Not Found</h1>} />          
             <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px" />} />
-            <Route
-                path="/concert-event"
-                element={<ConcertEvent event={event} onBuyTicket={handleBuyTicket} />}
-            />
+            <Route path="/concert-event" element={<ConcertEvent/>}/>
         </Routes>
         </Router>
+        </AppContext.Provider>
       </div>
     </body>
   );
