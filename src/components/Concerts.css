@@ -15,6 +15,7 @@
 html {
     background: #151515;
     color: #fff;
+    overflow-x: hidden;
 }
 
 .container-wrapper {

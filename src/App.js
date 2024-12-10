@@ -13,6 +13,7 @@ import CharityEventsPage from "./components/Charity/CharityEventsPage";
 import PrivateRoute from "./route/PrivateRoute";
 import Payment from "./components/Payment";
 import { AuthProvider } from "./context/AuthContext";
+import Concerts from "./components/Concerts";
 
 export const AppContext = React.createContext();
 
@@ -37,6 +38,7 @@ function App() {
                         <Route path="/userCharityWrapper" element={<UserCharityWrapper/>}/>
                         <Route path="/user-profile" element={<UserProfile/>}/>
                         <Route path="/user-order-history" element={<OrderHistoryWrapper width="1000px"/>}/>
+                        <Route path="/show-all-concerts" element={<Concerts/>}/>
                         <Route path="*" element={<h1>Not Found</h1>}/>
                         <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px"/>}/>
                         <Route path="/concert-event" element={<ConcertEvent/>}/>
