@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './Login.css';
 import Signup from './Signup';
 import { login } from "../../api/login";
+import { useAuth } from '../../context/AuthContext';
 
 const Login = ({ isVisible, onClose }) => {
+    const { authenticated } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isSignup, setIsSignup] = useState(false);

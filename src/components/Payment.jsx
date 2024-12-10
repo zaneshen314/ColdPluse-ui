@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { TextField, Button, MenuItem, Select, FormControl, Typography, Box } from '@mui/material';
 import ETicketGroup from './ETicketGroup';
 import { placeOrder } from '../api/placeOrder';
+import { useLocation } from 'react-router-dom';
 
-const Payment = ({ ticket }) => {
-  const { numberOfTickets, time, venue, ticketClass, pricePerTicket, concertClassId, scheduleId, concertName } = ticket;
+const Payment = () => {
+  const location = useLocation();
+  const { numberOfTickets, time, venue, ticketClass, pricePerTicket, concertClassId, scheduleId, concertName } = location.state || {};
   const [guests, setGuests] = useState(Array.from({ length: numberOfTickets }, () => ({ idCardNum: '', name: '' })));
+
   const [paymentMethod, setPaymentMethod] = useState('paypal');
   const [paymentResult, setPaymentResult] = useState(undefined);
 
@@ -52,15 +55,13 @@ const Payment = ({ ticket }) => {
             })
         })
         .catch(error => {
-            console.log(response)
             const response = error.response.data
             if (response.code === 200004) {
                 alert("You have already purchased 3 tickets for this concert")
             } else if (response.code === 200005) {
                 alert("Not enough tickets available")
             }
-        })
-
+        });
   }
 
   return (
