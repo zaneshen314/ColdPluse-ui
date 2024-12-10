@@ -54,6 +54,9 @@ return (
                 <Button color="inherit" onClick={() => navigate("/events")}>
                     Events
                 </Button>
+                <Button color="inherit" onClick={() => navigate("/concert-event")}>
+                    Concert Event Component
+                </Button>
                 {auth ? 
                     <div>
                         <IconButton
@@ -83,7 +86,7 @@ return (
                         >
                             <MenuItem onClick={()=>{navigate("/user-profile")}}>User Profile</MenuItem>
                             <MenuItem onClick={()=>{navigate("/user-profile")}}>Order History</MenuItem>
-                            <MenuItem onClick={()=>{navigate("/user-profile")}}>Event History</MenuItem>
+                            <MenuItem onClick={()=>{navigate("/userCharityWrapper")}}>Event History</MenuItem>
                         </Menu>
                     </div>
                 : 

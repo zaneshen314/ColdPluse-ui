@@ -9,7 +9,7 @@ import { Container, AppBar, Toolbar, Typography, Button, Box } from "@mui/materi
 import NavigationBar from './components/NavigationBar';
 import Events from './components/Events';
 import UserProfile from './components/UserProfile';
-import { Box } from "@mui/material";
+import Ticket from './components/Ticket';
 
 function App() {
   const event = {
@@ -31,50 +31,20 @@ function App() {
       <div className="App">
         <Router>
           <NavigationBar />
-                  sx={{
-                    height: 40,
-                    width: 40,
-                    marginRight: 2,
-                    borderRadius: "50%", // Makes the image circular
-                  }}
-              />
-              {/* Title */}
-              <Typography variant="h6" sx={{ marginRight: 4, fontWeight: "bold" }}>
-                Coldplay Concert
-              </Typography>
-              {/* Buttons aligned to the left */}
-              <Button color="inherit" component={Link} to="/" sx={{ marginRight: 2 }}>
-                Home
-              </Button>
-              <Button color="inherit" component={Link} to="/ticket" sx={{ marginRight: 2 }}>
-                Ticket
-              </Button>
-              <Button color="inherit" component={Link} to="/about" sx={{ marginRight: 2 }}>
-                About
-              </Button>
-              <Button color="inherit" component={Link} to="/userCharityWrapper" sx={{ marginRight: 2 }}>
-                CharityWrapper
-              </Button>
-              <Button color="inherit" component={Link} to="/concert-event" sx={{ marginRight: 2 }}>
-                Concert Event
-              </Button>
-            </Toolbar>
-          </AppBar>
-          <Container sx={{ marginTop: 4 }}>
         <Routes>
           <Route path="/" element={<Home />} />
             <Route path="/ticket" element={<Ticket />} />
             <Route path="/events" element={<Events />} />
-              <Route path="/about" element={<About />} />
+            <Route path="/concert-event" element={<ConcertEvent />} />
+              <Route path="/userCharityWrapper" element={<UserCharityWrapper />} />
             <Route path="/user-profile" element={<UserProfile />} />
             <Route path="*" element={<h1>Not Found</h1>} />          
-              <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px" />} />
-              <Route
-                  path="/concert-event"
-                  element={<ConcertEvent event={event} onBuyTicket={handleBuyTicket} />}
-              />
+            <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px" />} />
+            <Route
+                path="/concert-event"
+                element={<ConcertEvent event={event} onBuyTicket={handleBuyTicket} />}
+            />
         </Routes>
-          </Container>
         </Router>
       </div>
     </body>
