@@ -41,6 +41,9 @@ return (
         // sx={{backgroundColor:"#00274D"}}
         >
             <Toolbar sx={{ justifyContent: "flex-end", gap: "1rem"}}>
+                <Button color="inherit" onClick={() => navigate("/")}>
+                    Home
+                </Button>
                 <Button color="inherit" onClick={() => navigate("/ticket")}>
                     Tickets
                 </Button>          
