@@ -45,6 +45,9 @@ return (
         </FormGroup>
         <AppBar position="static" sx={{backgroundColor:"#020024"}}>
             <Toolbar sx={{ justifyContent: "flex-end", gap: "1rem"}}>
+                <Box sx={{ flexGrow: 1 }}>
+                    <img src={'/ColdPulse.png'} alt="ColdPulse Logo" style={{ height: '22px' }} />
+                </Box>
                 <Button color="inherit" onClick={() => navigate("/")}>
                     Home
                 </Button>
