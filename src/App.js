@@ -21,7 +21,7 @@ function App() {
     return (
         <body>
         <div className="App">
-            <AppContext.Provider value={{state, dispatch}}>v
+            <AppContext.Provider value={{state, dispatch}}>
                 <Router>
                     <NavigationBar/>
                     <Routes>

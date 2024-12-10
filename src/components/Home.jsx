@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Container, Box, Typography } from "@mui/material";
 import EventTable from "./Concert/EventTable";
+import BottomBanner from "../components/Charity/BottomBanner";
 
 export default function Home() {
     const concertTitle = "Coldplay: Music of Spheres World Tour 2025";
@@ -126,11 +127,9 @@ export default function Home() {
                         textShadow: "0px 0px 10px rgba(255, 255, 255, 0.7)",
                     }}
                 >
-                    Upcoming Events
+                    Charity Events with ColdPlay
                 </Typography>
-                <Typography variant="body1" sx={{ fontSize: "1rem" }}>
-                    Join exclusive events and experiences with Coldplay!
-                </Typography>
+                <BottomBanner />
             </Box>
         </Box>
     );
