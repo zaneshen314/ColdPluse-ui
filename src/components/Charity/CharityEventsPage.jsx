@@ -89,7 +89,7 @@ const CharityEventsPage = () => {
 
     return (
         <>
-            <CharityEventList events={events} onJoinEvent={handleJoinEvent} joinedIds={ids}/>
+            <CharityEventList events={events} onJoinEvent={handleJoinEvent} joinedIds={ids} setIds={setIds}/>
             <Modal
                 open={openModal}
                 onClose={() => handleModalClose(false)}

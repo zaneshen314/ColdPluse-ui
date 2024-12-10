@@ -49,3 +49,12 @@ export const getUserCurrentCharityEventIds = async (userId) => {
         console.log("Error: ", error);
     }
 }
+
+export const deleteCharityEventParticipation = async (userId, eventId) => {
+    try {
+        const response = await instance.delete(`${charityEventPath}?eventId=${eventId}&userId=${userId}`);
+        return response.data;
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
