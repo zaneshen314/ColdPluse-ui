@@ -5,6 +5,13 @@ const baseURL = 'http://localhost:7002';
 const instance = axios.create({baseURL});
 
 instance.interceptors.response.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
     (response) => {
         return response;
     },

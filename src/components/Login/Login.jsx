@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import './Login.css';
 import Signup from './Signup';
+import {login} from "../../api/login";
 
 const Login = ({ isVisible, onClose }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isSignup, setIsSignup] = useState(false);
 
-    const handleLogin = () => {
-        // Handle login logic here
-        console.log('Email:', email);
-        console.log('Password:', password);
-        onClose();
+    const handleLogin = async () => {
+        try {
+            const data = await login(email, password);
+            localStorage.setItem('token', data.data);
+            onClose();
+        } catch (error) {
+            alert(error.message);
+        }
     };
 
     const handleSignupClick = () => {
