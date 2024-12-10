@@ -11,7 +11,7 @@ const CharityEventList = ({ events, onJoinEvent }) => {
                     <EventCard
                         event={{
                             id: event.id,
-                            poster: event.poster || "https://www.coldplay.com/wp/wp-content/uploads/2024/11/this-is-going-to-be-huuuuuuge.webp",
+                            poster: event.imgUrl || "https://www.coldplay.com/wp/wp-content/uploads/2024/11/this-is-going-to-be-huuuuuuge.webp",
                             title: event.name || "Untitled Event",
                             details: [
                                 { type: EVENT_DETAILS_TYPE.HIGHLIGHTED, text: `Location: ${event.location || "Not specified"}` },
