@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Modal, Button } from "@mui/material";
 import CharityEventList from "./CharityEventList";
-import { getAllCharityEvents } from "../../api/charityEvent";
+import {getAllCharityEvents, getUserCurrentCharityEventIds} from "../../api/charityEvent";
 import instance from "../../api/interceptor";
 
 const CharityEventsPage = () => {
@@ -11,12 +11,14 @@ const CharityEventsPage = () => {
     const [claimPoint, setClaimPoint] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [selectedEventId, setSelectedEventId] = useState(null);
+    const [ids, setIds] = useState([]);
 
     // Fetch charity events from the API
     useEffect(() => {
         const fetchEvents = async () => {
             try {
                 const data = await getAllCharityEvents();
+                setIds(await getUserCurrentCharityEventIds(1));
                 setEvents(data);
             } catch (err) {
                 setError("Failed to fetch charity events.");
@@ -87,7 +89,7 @@ const CharityEventsPage = () => {
 
     return (
         <>
-            <CharityEventList events={events} onJoinEvent={handleJoinEvent} />
+            <CharityEventList events={events} onJoinEvent={handleJoinEvent} joinedIds={ids}/>
             <Modal
                 open={openModal}
                 onClose={() => handleModalClose(false)}
@@ -105,6 +107,7 @@ const CharityEventsPage = () => {
                         border: '2px solid #000',
                         boxShadow: 24,
                         p: 4,
+                        borderRadius: '10px', // Add this line to make the corners rounded
                     }}
                 >
                     <Typography id="modal-title" variant="h6" component="h2">
