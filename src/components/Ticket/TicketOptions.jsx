@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, CardContent, Stack, TextField, Typography } from '@mui/material';
+import { Box, Card, CardContent, TextField, Typography } from '@mui/material';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PeopleIcon from '@mui/icons-material/People';
 import EventSeatIcon from '@mui/icons-material/EventSeat';

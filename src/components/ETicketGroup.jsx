@@ -13,9 +13,10 @@ const ETicketGroup = ( { tickets, concertDetails, purchasedTime } ) => {
       </Typography>
       <Box mt={4}>
         <Typography variant="h5">Concert Details:</Typography>
+        <Typography variant="body1">Concert Name: {concertDetails.name}</Typography>
         <Typography variant="body1">Time: {concertDetails.time}</Typography>
         <Typography variant="body1">Venue: {concertDetails.venue}</Typography>
-        <Typography variant="body1">Zone: {concertDetails.zone}</Typography>
+        <Typography variant="body1">Class: {concertDetails.ticketClass}</Typography>
       </Box>
       <Box>
         <Typography variant="h5">Ticket(s):</Typography>

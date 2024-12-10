@@ -5,13 +5,6 @@ const baseURL = 'http://localhost:7002';
 const instance = axios.create({baseURL});
 
 instance.interceptors.response.use(
-    (config) => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
     (response) => {
         return response;
     },
@@ -26,5 +19,21 @@ instance.interceptors.response.use(
         return Promise.reject(error);
 }
 );
+
+instance.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
+
+
+
 
 export default instance;

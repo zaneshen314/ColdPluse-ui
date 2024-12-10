@@ -1,12 +1,12 @@
 import React from "react";
-import { Button, Container, Box, Typography } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import EventTable from "./Concert/EventTable";
 import BottomBanner from "../components/Charity/BottomBanner";
 
 export default function Home() {
     const concertTitle = "Coldplay: Music of Spheres World Tour 2025";
     const handleBuyTicket = () => {
-        window.location.href = "/ticket";
+        window.location.href = "/concert-event";
     };
 
     return (

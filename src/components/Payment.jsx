@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import { TextField, Button, MenuItem, Select, FormControl, Typography, Box } from '@mui/material';
 import ETicketGroup from './ETicketGroup';
+import { placeOrder } from '../api/placeOrder';
+import { useLocation } from 'react-router-dom';
 
-const Payment = ({ ticket }) => {
-  const { numberOfTickets, time, venue, ticketClass, pricePerTicket } = ticket;
-  const [idCards, setIdCards] = useState(Array(numberOfTickets).fill(''));
-  const [names, setNames] = useState(Array(numberOfTickets).fill(''));
+const Payment = () => {
+  const location = useLocation();
+  const { numberOfTickets, time, venue, ticketClass, pricePerTicket, concertClassId, scheduleId, concertName } = location.state || {};
+  const [guests, setGuests] = useState(Array.from({ length: numberOfTickets }, () => ({ idCardNum: '', name: '' })));
+
   const [paymentMethod, setPaymentMethod] = useState('paypal');
   const [paymentResult, setPaymentResult] = useState(undefined);
 
-  const handleIdCardChange = (index, value) => {
-    const newIdCards = [...idCards];
-    newIdCards[index] = value;
-    setIdCards(newIdCards);
+  const handleidCardNumChange = (index, value) => {
+    const newGuests = [...guests];
+    newGuests[index].idCardNum = value;
+    setGuests(newGuests);
   };
 
   const handleNameChange = (index, value) => {
-    const newNames = [...names];
-    newNames[index] = value;
-    setNames(newNames);
+    const newGuests = [...guests];
+    newGuests[index].name = value;
+    setGuests(newGuests);
   };
 
   const handlePaymentMethodChange = (event) => {
@@ -27,32 +30,38 @@ const Payment = ({ ticket }) => {
 
   const totalCost = numberOfTickets * pricePerTicket;
 
-  const dataComplete = idCards.every((idCard) => idCard.length > 0) && names.every((name) => name.length > 0);
+  const dataComplete = guests.every(guest => guest.idCardNum.trim() && guest.name.trim());
 
   const onPayButtonClick = () => {
     // calls backend
-    const mock = {
-        concertDetails: {
-            time: '7:00 PM, 25th December 2023',
-            venue: 'Madison Square Garden, New York',
-            zone: 'VIP Section',
-        },
-        purchasedTime: new Date().toLocaleString(),
-        tickets: [
-            {
-                ticketId: '1234567890',
-                guestId: '123456',
-                guestName: 'John Doe',
-            },
-            {
-                ticketId: '0987654321',
-                guestId: '654321',
-                guestName: 'Jane Doe',
+    const trimmedGuests = guests.map(guest => ({
+        idCardNum: guest.idCardNum.trim(),
+        name: guest.name.trim()
+    }));
+
+    placeOrder(concertClassId, scheduleId, trimmedGuests)
+        .then(response => {
+            console.log(response)
+            setPaymentResult({
+                concertDetails: {
+                    name: response.concertName,
+                    time: response.startTime,
+                    // TODO: get from response
+                    venue,
+                    ticketClass: response.concertClassName,
+                },
+                purchasedTime: response.transactionTime,
+                tickets: response.ticketVos
+            })
+        })
+        .catch(error => {
+            const response = error.response.data
+            if (response.code === 200004) {
+                alert("You have already purchased 3 tickets for this concert")
+            } else if (response.code === 200005) {
+                alert("Not enough tickets available")
             }
-        ]
-    }
-    // if success
-    setPaymentResult(mock)
+        });
   }
 
   return (
@@ -65,6 +74,7 @@ const Payment = ({ ticket }) => {
     ) : (
       <Box sx={{ p: 2 }}>
         <Typography variant="h4">Payment for {numberOfTickets} Tickets</Typography>
+        <Typography variant="body1">Concert Name: {concertName}</Typography>
         <Typography variant="body1">Time: {time}</Typography>
         <Typography variant="body1">Venue: {venue}</Typography>
         <Typography variant="body1">Class: {ticketClass}</Typography>
@@ -72,22 +82,22 @@ const Payment = ({ ticket }) => {
   
         <Typography variant="h5">Please complete the real name registration for each ticket</Typography>
         
-        {idCards.map((idCard, index) => (
+        {guests.map((guest, index) => (
           <Box key={index} sx={{ my: 2 }}>
             <Typography variant="h6">Ticket {index + 1}</Typography>
             <TextField
               label={`ID Card Number`}
               variant="outlined"
               fullWidth
-              value={idCard}
-              onChange={(e) => handleIdCardChange(index, e.target.value)}
+              value={guest.idCardNum}
+              onChange={(e) => handleidCardNumChange(index, e.target.value)}
               sx={{ marginBottom: 2 }}
             />
             <TextField
               label={`Guest Name`}
               variant="outlined"
               fullWidth
-              value={names[index]}
+              value={guest.name}
               onChange={(e) => handleNameChange(index, e.target.value)}
             />
           </Box>

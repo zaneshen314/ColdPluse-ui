@@ -106,6 +106,7 @@ const UserCharityItem = ({ event, index }) => {
                                 backgroundColor: '#fdf1f5',
                                 color: '#e8628d',
                                 fontWeight: 'bold',
+                                padding: '0 10px',
                                 marginTop: 1,
                                 '& .MuiChip-icon': {
                                     color: '#e8628d',
