@@ -15,11 +15,10 @@
 html {
     background: #151515;
     color: #fff;
-    overflow: hidden;
 }
 
 .container-wrapper {
-    padding-top: 120px; /* Adjust this value based on the height of your top bar */
+    padding-top: 100px; /* Adjust this value based on the height of your top bar */
 }
 
 .slide-wrapper {
@@ -29,12 +28,14 @@ html {
 }
 
 .slides {
+    cursor: pointer;
     display: grid;
     > .slide {
         grid-area: 1 / -1;
     }
 
     > button {
+        cursor: pointer;
         appearance: none;
         background: transparent;
         border: none;
@@ -69,6 +70,19 @@ html {
 
 }
 
+.slideButton {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #7700ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .slideContent {
     width: 30vw;
     height: 40vw;
@@ -92,27 +106,26 @@ html {
     transition: opacity 0.3s linear;
     text-shadow: 0 0.1rem 1rem #000;
     opacity: 0;
-
-    .slideSubtitle,
-    .slideTitle {
-        font-size: 2rem;
-        font-weight: normal;
-        letter-spacing: 0.2ch;
-        text-transform: uppercase;
-        margin: 0;
-    }
-
-    .slideSubtitle::before {
-        content: "— ";
-    }
-
-    .slideDescription {
-        margin: 0;
-        font-size: 0.8rem;
-        letter-spacing: 0.2ch;
-    }
 }
 
+.slideContentInner .slideSubtitle,
+.slideContentInner .slideTitle {
+    font-size: 2rem;
+    font-weight: normal;
+    letter-spacing: 0.2ch;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.slideContentInner .slideSubtitle::before {
+    content: "— ";
+}
+
+.slideContentInner .slideDescription {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.2ch;
+}
 .slide[data-active] {
     z-index: 2;
     pointer-events: auto;
@@ -140,3 +153,5 @@ html {
         }
     }
 }
+
+

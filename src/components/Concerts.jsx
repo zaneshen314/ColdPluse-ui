@@ -1,5 +1,5 @@
 import React from 'react';
-import './Test.css';
+import './Concerts.css';
 import {Card, Container} from "@mui/material";
 
 const slides = [
@@ -8,36 +8,29 @@ const slides = [
         subtitle: "Peru",
         description: "Adventure is never far away",
         image:
-            "https://images.unsplash.com/photo-1571771019784-3ff35f4f4277?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+            "/poster3.jpg"
     },
     {
         title: "Chamonix",
         subtitle: "France",
         description: "Let your dreams come true",
         image:
-            "https://images.unsplash.com/photo-1581836499506-4a660b39478a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+            "/poster2.jpg"
     },
     {
         title: "Mimisa Rocks",
         subtitle: "Australia",
         description: "A piece of heaven",
         image:
-            "https://images.unsplash.com/photo-1566522650166-bd8b3e3a2b4b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+            "/ColdPlayHKConcertPosterjpg.jpg"
     },
     {
-        title: "Four",
+        title: "Mimisa Rocks",
         subtitle: "Australia",
         description: "A piece of heaven",
         image:
-            "https://images.unsplash.com/flagged/photo-1564918031455-72f4e35ba7a6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
+            "/poster4.jpg"
     },
-    {
-        title: "Five",
-        subtitle: "Australia",
-        description: "A piece of heaven",
-        image:
-            "https://images.unsplash.com/photo-1579130781921-76e18892b57b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ"
-    }
 ];
 
 function useTilt(active) {
@@ -83,7 +76,7 @@ function useTilt(active) {
 }
 
 const initialState = {
-    slideIndex: 0
+    slideIndex: 2
 };
 
 const slidesReducer = (state, event) => {
@@ -102,9 +95,17 @@ const slidesReducer = (state, event) => {
     }
 };
 
-function Slide({ slide, offset }) {
+function handleClick() {
+
+}
+
+function Slide({slide, offset}) {
     const active = offset === 0 ? true : null;
     const ref = useTilt(active);
+
+    const handleClick = () => {
+        console.log('clicked');
+    };
 
     return (
         <div
@@ -115,28 +116,30 @@ function Slide({ slide, offset }) {
                 "--offset": offset,
                 "--dir": offset === 0 ? 0 : offset > 0 ? 1 : -1
             }}
+            onClick={handleClick}
         >
+            <div
+                className="slideBackground"
+                style={{
+                    backgroundImage: `url('${slide.image}')`
+                }}
+            />
+
             <div
                 className="slideContent"
                 style={{
                     backgroundImage: `url('${slide.image}')`
                 }}
             >
-                <div className="slideContentInner">
-                    <h2 className="slideTitle">{slide.title}</h2>
-                    <h3 className="slideSubtitle">{slide.subtitle}</h3>
-                    <p className="slideDescription">{slide.description}</p>
-                </div>
             </div>
         </div>
     );
 }
 
-function Test() {
+function Concerts() {
     const [state, dispatch] = React.useReducer(slidesReducer, initialState);
 
     return (
-
         <div className="container-wrapper">
             <div className="slide-wrapper">
                 <div className="slides">
@@ -150,9 +153,7 @@ function Test() {
                 </div>
             </div>
         </div>
-
-
     );
 }
 
-export default Test;
+export default Concerts;
