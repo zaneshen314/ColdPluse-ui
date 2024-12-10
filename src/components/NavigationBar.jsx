@@ -43,10 +43,7 @@ return (
                 label={auth ? "Logout" : "Login"}
             />
         </FormGroup>
-        <AppBar position="static" 
-            color= "transparent"
-        // sx={{backgroundColor:"#00274D"}}
-        >
+        <AppBar position="static" sx={{backgroundColor:"#020024"}}>
             <Toolbar sx={{ justifyContent: "flex-end", gap: "1rem"}}>
                 <Button color="inherit" onClick={() => navigate("/")}>
                     Home
