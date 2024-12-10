@@ -22,7 +22,7 @@ const slides = [
         subtitle: "Australia",
         description: "A piece of heaven",
         image:
-            "/ColdPlayHKConcertPosterjpg.jpg"
+            "/poster1.jpg"
     },
     {
         title: "Mimisa Rocks",
