@@ -6,23 +6,25 @@ import Ticket from "./components/Ticket";
 import NavigationBar from './components/NavigationBar';
 import Events from './components/Events';
 import UserProfile from './components/UserProfile';
-
+import { Box } from "@mui/material";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <NavigationBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/ticket" element={<Ticket />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/user-profile" element={<UserProfile />} />
-          <Route path="*" element={<h1>Not Found</h1>} />          
-        </Routes>
-      </Router>
-    </div>
+    <body>
+      <div className="App">
+        <Router>
+          <NavigationBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/ticket" element={<Ticket />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/user-profile" element={<UserProfile />} />
+            <Route path="*" element={<h1>Not Found</h1>} />          
+          </Routes>
+        </Router>
+      </div>
+    </body>
   );
 }
 
