@@ -2,19 +2,19 @@
 // ...
 
 // Define initial state
-const initialState = {
+export const initialState = {
     // Define initial state properties
     // ...
 };
 
 // Define action types
-const ActionTypes = {
+export const ActionTypes = {
     // Define action types
     // ...
 };
 
 // Define reducer function
-const charityEventReducer = (state = initialState, action) => {
+export const charityEventReducer = (state = initialState, action) => {
     switch (action.type) {
         // Handle different action types
         // ...
@@ -22,5 +22,3 @@ const charityEventReducer = (state = initialState, action) => {
             return state;
     }
 };
-
-export default charityEventReducer;
