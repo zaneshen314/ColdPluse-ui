@@ -88,7 +88,7 @@ return (
                             onClose={handleClose}
                         >
                             <MenuItem onClick={()=>{navigate("/user-profile")}}>User Profile</MenuItem>
-                            <MenuItem onClick={()=>{navigate("/user-profile")}}>Order History</MenuItem>
+                            <MenuItem onClick={()=>{navigate("/user-order-history")}}>Order History</MenuItem>
                             <MenuItem onClick={()=>{navigate("/userCharityWrapper")}}>Event History</MenuItem>
                         </Menu>
                     </div>
