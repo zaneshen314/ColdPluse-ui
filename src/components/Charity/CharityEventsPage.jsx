@@ -30,10 +30,6 @@ const CharityEventsPage = () => {
         fetchEvents();
     }, []);
 
-    const handleJoinedEvent = (eventId) => {
-
-    }
-
     const handleJoinEvent = (eventId) => {
         setSelectedEventId(eventId);
         setOpenModal(true);
@@ -49,7 +45,7 @@ const CharityEventsPage = () => {
                 charityEventId: selectedEventId,
                 claimPoint: claim,
             });
-            console.log(`Joining event with ID: ${selectedEventId}`);
+            setIds([...ids, selectedEventId]);
         }
     };
 
