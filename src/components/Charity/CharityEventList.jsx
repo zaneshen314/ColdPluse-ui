@@ -16,7 +16,7 @@ const CharityEventList = ({ events, onJoinEvent }) => {
                             details: [
                                 { type: EVENT_DETAILS_TYPE.HIGHLIGHTED, text: `Location: ${event.location || "Not specified"}` },
                                 { type: EVENT_DETAILS_TYPE.BOLD_STANDARD, text: `Time: ${event.startTime ? new Date(event.startTime).toLocaleString() : "N/A"}` },
-                                { type: EVENT_DETAILS_TYPE.STANDARD, text: `Duration: ${event.duration ? `${event.duration / 60} minutes` : "Unknown duration"}` },
+                                { type: EVENT_DETAILS_TYPE.STANDARD, text: `Duration: ${event.duration ? `${event.duration} minutes` : "Unknown duration"}` },
                                 { type: EVENT_DETAILS_TYPE.STANDARD, text: `Points: ${event.point || "0"}` },
                                 { type: EVENT_DETAILS_TYPE.STANDARD, text: `Participants: ${event.currentEnrolled}/${event.suggestedParticipationSize || "N/A"}` },
                                 { type: EVENT_DETAILS_TYPE.STANDARD, text: event.description || "No description available" },

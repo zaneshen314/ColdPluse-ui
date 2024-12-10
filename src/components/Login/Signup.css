@@ -1,0 +1,149 @@
+/* src/components/Signup/Signup.css */
+
+/* Modal Overlay */
+.signup-modal .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Content */
+.signup-modal .modal-content {
+    background-color: #fff;
+    color: #333;
+    padding: 0;
+    border-radius: 15px;
+    width: 400px;
+    height: 450px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    animation: zoomIn 0.3s ease-out;
+}
+
+/* Close Button */
+.signup-modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.signup-modal .close-button:hover {
+    color: #ff4d4f;
+}
+
+/* Modal Header */
+.signup-modal h2 {
+    width: 100%;
+    background: linear-gradient(90deg, #9b59b6, #4fa1d9);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 15px 15px 0 0;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-sizing: border-box;
+}
+
+/* Form Group */
+.signup-modal .form-group {
+    width: 100%;
+    margin: 15px 0;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.signup-modal .form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Input Fields */
+.signup-modal .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Input Focus */
+.signup-modal .form-group input:focus {
+    border-color: #4fa1d9;
+    box-shadow: 0 0 8px rgba(79, 161, 217, 0.3);
+}
+
+/* Button Group */
+.signup-modal .button-group {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 25px;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.signup-modal .button-group button {
+    padding: 12px 25px;
+    background-color: #4fa1d9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Button Hover Effects */
+.signup-modal .button-group button:hover {
+    background-color: #3579b1;
+    transform: translateY(-3px);
+}
+
+/* Button Active Effects */
+.signup-modal .button-group button:active {
+    background-color: #2f6f9f;
+    transform: translateY(1px);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
