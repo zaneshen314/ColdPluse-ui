@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import './Signup.css';
+import {signup} from "../../api/login";
 
 const Signup = ({ isVisible, onClose }) => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSignup = () => {
-        // Handle signup logic here
-        console.log('Email:', email);
-        console.log('Name:', name);
-        console.log('Password:', password);
-        onClose();
+    const onSignup = async () => {
+        try {
+            await signup(email, name, password);
+            alert('Signup successful!');
+            onClose();
+        } catch (error) {
+            alert(error.message);
+        }
     };
 
     if (!isVisible) return null;
@@ -50,7 +53,7 @@ const Signup = ({ isVisible, onClose }) => {
                         />
                     </div>
                     <div className="button-group">
-                        <button onClick={handleSignup}>Signup</button>
+                        <button onClick={onSignup}>Signup</button>
                     </div>
                 </div>
             </div>
