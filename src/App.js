@@ -5,10 +5,10 @@ import Home from "./components/Home";
 import ConcertEvent from "./components/ConcertEvent";
 import UserCharityWrapper from "./components/Charity/UserCharityWrapper";
 import NavigationBar from './components/NavigationBar';
-import Events from './components/Events';
 import UserProfile from './components/UserProfile';
 import Ticket from './components/Ticket';
 import { initialState, charityEventReducer } from "./reducer/charityEventReducer";
+import CharityEventsPage from "./components/Charity/CharityEventsPage";
 
 export const AppContext = React.createContext();
 function App() {
@@ -17,13 +17,13 @@ function App() {
   return (
     <body>
       <div className="App">
-        <AppContext.Provider value={{ state, dispatch }}>v
+        <AppContext.Provider value={{ state, dispatch }}>
         <Router>
           <NavigationBar />
         <Routes>
           <Route path="/" element={<Home />} />
             <Route path="/ticket" element={<Ticket />} />
-            <Route path="/events" element={<Events />} />
+            <Route path="/charity-event" element={<CharityEventsPage />} />
             <Route path="/concert-event" element={<ConcertEvent />} />
               <Route path="/userCharityWrapper" element={<UserCharityWrapper />} />
             <Route path="/user-profile" element={<UserProfile />} />
