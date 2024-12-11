@@ -121,7 +121,7 @@ export default function Ticket() {
                         >
                             {scheduleList.map((schedule) => (
                                 <MenuItem key={schedule.scheduleId} value={schedule.scheduleId}>
-                                    {schedule.name}
+                                    {schedule.name} ({new Date(schedule.start_time).toLocaleString()})
                                 </MenuItem>
                             ))}
                         </Select>

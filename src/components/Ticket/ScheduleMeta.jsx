@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Divider, Stack, Typography } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventIcon from '@mui/icons-material/Event';
@@ -23,7 +23,7 @@ export default function ScheduleMeta({ scheduleMeta }) {
                 </Typography>
                 <Typography variant="body1" sx={typographyStyle}>
                     <AccessTimeIcon sx={iconStyle} />
-                    Concert Start Time: {scheduleMeta.start_time}
+                    Concert Start Time: {new Date(scheduleMeta.start_time).toLocaleString()}
                 </Typography>
                 <Typography variant="body1" sx={typographyStyle}>
                     <EventIcon sx={iconStyle} />
@@ -32,15 +32,16 @@ export default function ScheduleMeta({ scheduleMeta }) {
                 <Typography variant="body1" sx={typographyStyle}>
                     <AttachMoneyIcon sx={iconStyle} />
                     Price Range: ${scheduleMeta.minPrice} - ${scheduleMeta.maxPrice}
-                </Typography>
+                </Typography>                
+                <Divider sx={{ my: 2 }} />
                 <Typography variant="body1" sx={typographyStyle}>
                     <CalendarTodayIcon sx={iconStyle} />
-                    Ticket Sale Start Time: {scheduleMeta.saleStartTime}
+                    Ticket Sale Start Time: {new Date(scheduleMeta.saleStartTime).toLocaleString()}
                 </Typography>
                 {scheduleMeta.nextPresellTime && 
                     <Typography variant="body1" sx={typographyStyle}>
                         <ScheduleIcon sx={iconStyle} />
-                        Next Ticket Sale Time: {scheduleMeta.nextPresellTime}
+                        Next Ticket Sale Time: {new Date(scheduleMeta.nextPresellTime).toLocaleString()}
                     </Typography>
                 }
             </Box>
