@@ -35,10 +35,10 @@ const CharityEventsPage = () => {
     const handleModalClose = (claim) => {
         setOpenModal(false);
 
-        if (selectedEventId !== null) {
+        if (selectedEventId !== null && ids !== null) {
             registerCharityEvent(selectedEventId, claim).then((response) => {
-                setIds([...ids, selectedEventId])
-            })
+                setIds([...ids, selectedEventId]);
+            });
         }
     };
 
