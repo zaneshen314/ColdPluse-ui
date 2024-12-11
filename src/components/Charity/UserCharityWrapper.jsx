@@ -17,7 +17,7 @@ const UserCharityWrapper = ({width}) => {
     }, []);
     return (
         <Box sx={{
-            margin: '1% 20%',
+            margin: '1% auto',
             maxWidth: {width},
             boxShadow: 3,
             padding: 2,
