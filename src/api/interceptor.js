@@ -10,12 +10,6 @@ instance.interceptors.response.use(
     },
     (error)=>{
         console.log("Error: ", error);
-        if (error.response && error.status === 404){
-            window.location.href = "/404";
-        }
-        else if (error.response && error.status === 500){
-            window.location.href = "/500";
-        }
         return Promise.reject(error);
 }
 );
