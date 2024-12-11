@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Signup.css';
-import {signup} from "../../api/login";
+import { signup } from '../../api/login';
 
 const Signup = ({ isVisible, onClose }) => {
     const [email, setEmail] = useState('');
@@ -8,6 +8,17 @@ const Signup = ({ isVisible, onClose }) => {
     const [password, setPassword] = useState('');
 
     const onSignup = async () => {
+        if (!email || !name || !password) {
+            alert('All fields are required.');
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
         try {
             await signup(email, name, password);
             alert('Signup successful!');
@@ -23,8 +34,8 @@ const Signup = ({ isVisible, onClose }) => {
         <div className="signup-modal">
             <div className="modal-overlay">
                 <div className="modal-content">
-                    <button className="close-button" onClick={onClose}>×</button>
                     <h2>Signup</h2>
+                    <button className="close-button" onClick={onClose}>×</button>
                     <div className="form-group">
                         <label>Email</label>
                         <input

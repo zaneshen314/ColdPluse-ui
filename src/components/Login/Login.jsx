@@ -38,8 +38,8 @@ const Login = ({ isVisible, onClose }) => {
         <div className="login-modal">
             <div className="modal-overlay">
                 <div className="modal-content">
-                    <button className="close-button" onClick={handleClose}>×</button>
                     <h2>Login</h2>
+                    <button className="close-button" onClick={handleClose}>×</button>
                     <div className="form-group">
                         <label>Email</label>
                         <input

@@ -12,11 +12,11 @@
     position: relative;
 }
 
-html {
-    background: #151515;
-    color: #fff;
-    overflow-x: hidden;
-}
+/*html {*/
+/*    background: #151515;*/
+/*    color: #fff;*/
+/*    overflow-x: hidden;*/
+/*}*/
 
 .container-wrapper {
     padding-top: 100px; /* Adjust this value based on the height of your top bar */

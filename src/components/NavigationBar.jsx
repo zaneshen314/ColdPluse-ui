@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
-import { AppBar, Box, Button, FormControlLabel, FormGroup, IconButton, Menu, MenuItem, Switch, Toolbar } from "@mui/material";
+import { AppBar, Box, Button, FormGroup, IconButton, Menu, MenuItem, Toolbar } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import Login from './Login/Login';
+import Signup from './Login/Signup'; // Import the Signup component
 
 export default function NavigationBar() {
     const navigate = useNavigate();
-    const [auth, setAuth] = useState(true);
+    const [auth, setAuth] = useState(!!localStorage.getItem('token'));
     const [anchorEl, setAnchorEl] = useState(null);
     const [isLoginModalVisible, setLoginModalVisible] = useState(false);
-
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
+    const [isSignupModalVisible, setSignupModalVisible] = useState(false); // State for signup modal
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -26,30 +24,28 @@ export default function NavigationBar() {
         setLoginModalVisible(true);
     };
 
+    const handleSignupClick = () => {
+        setSignupModalVisible(true);
+    };
+
     const handleCloseModal = () => {
         setLoginModalVisible(false);
-        setAuth(true);
+        setSignupModalVisible(false);
+        setAuth(!!localStorage.getItem('token'));
+        window.location.reload(); // Refresh the page after login
     };
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        setAuth(false);
+        setAuth(!!localStorage.getItem('token'));
         alert('Logged out successfully!');
+        handleClose();
+        window.location.reload(); // Refresh the page after logout
     };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
             <FormGroup>
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={auth}
-                            onChange={handleChange}
-                            aria-label="login switch"
-                        />
-                    }
-                    label={auth ? "Logout" : "Login"}
-                />
             </FormGroup>
             <AppBar position="static" sx={{ backgroundColor: "#020024" }}>
                 <Toolbar sx={{ justifyContent: "flex-end", gap: "1rem" }}>
@@ -99,11 +95,15 @@ export default function NavigationBar() {
                             </Menu>
                         </div>
                     ) : (
-                        <Button variant="outlined" onClick={handleLoginClick} sx={{ borderRadius: "80rem" }}>Login</Button>
+                        <>
+                            <Button variant="contained" onClick={handleLoginClick} sx={{ backgroundColor: "#22222", color: "white", borderRadius: "80rem" }}>Login</Button>
+                            <Button variant="contained" onClick={handleSignupClick} sx={{ backgroundColor: "red", color: "white", borderRadius: "80rem" }}>Signup</Button>
+                        </>
                     )}
                 </Toolbar>
             </AppBar>
             <Login isVisible={isLoginModalVisible} onClose={handleCloseModal} />
+            <Signup isVisible={isSignupModalVisible} onClose={handleCloseModal} /> {/* Add Signup component */}
         </Box>
     );
 }
