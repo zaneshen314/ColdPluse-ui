@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog, FormControl, InputLabel, Select, MenuItem, Box, Paper } from '@mui/material';
 import { getEventData, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId } from '../../api/concertSessionEvent';
 import ScheduleMeta from './ScheduleMeta';
 import TicketOptions from './TicketOptions';
@@ -102,26 +102,28 @@ export default function Ticket() {
     }, [totalSelectedTickets]);
 
     return (
-        <Container sx={{ pt: 4, height: '120vh'}}>
-            <Typography variant="h3" sx={{ mb: 2, fontWeight: 'bold' }}>{concertName}</Typography>
-            {initializedScheduleList && (
-                <FormControl fullWidth sx={{ mb: 2 }}>
-                    <InputLabel id="schedule-select-label">Select Schedule</InputLabel>
-                    <Select
-                        labelId="schedule-select-label"
-                        value={selectedScheduleId}
-                        label="Select Schedule"
-                        onChange={handleScheduleChange}
-                    >
-                        {scheduleList.map((schedule) => (
-                            <MenuItem key={schedule.scheduleId} value={schedule.scheduleId}>
-                                {schedule.name}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-            )}
-            <ScheduleMeta scheduleMeta={scheduleMeta} />
+        <Container sx={{ pt: 4, pb: 10}}>
+            <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
+                <Typography variant="h3" sx={{ mb: 2, fontWeight: 'bold' }}>{concertName}</Typography>
+                {initializedScheduleList && (
+                    <FormControl fullWidth sx={{ mb: 2 }}>
+                        <InputLabel id="schedule-select-label">Select Schedule</InputLabel>
+                        <Select
+                            labelId="schedule-select-label"
+                            value={selectedScheduleId}
+                            label="Select Schedule"
+                            onChange={handleScheduleChange}
+                        >
+                            {scheduleList.map((schedule) => (
+                                <MenuItem key={schedule.scheduleId} value={schedule.scheduleId}>
+                                    {schedule.name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                )}
+                <ScheduleMeta scheduleMeta={scheduleMeta} />
+            </Paper>
             <Divider style={{ margin: '20px 0' }} />
             <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>Ticket Option</Typography>
             {showWarning && (
@@ -139,7 +141,7 @@ export default function Ticket() {
                 selectedTickets={selectedTickets} 
                 handleTicketChange={handleTicketChange} 
             />
-            <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0 }}>
+            <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0, background: 'linear-gradient(90deg, #9b59b6, #4fa1d9)' }}>
                 <Toolbar>
                     <Typography variant="h6" sx={{ flexGrow: 1 }}>
                         Total Tickets: {totalSelectedTickets} | Total Price: USD{totalPrice.toFixed(2)}

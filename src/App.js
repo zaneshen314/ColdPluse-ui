@@ -13,6 +13,7 @@ import PrivateRoute from "./route/PrivateRoute";
 import Payment from "./components/Payment/Payment";
 import { AuthProvider } from "./context/AuthContext";
 import Concerts from "./components/Concerts";
+import { Box } from "@mui/material";
 
 export const AppContext = React.createContext();
 
@@ -20,7 +21,11 @@ function App() {
     const [state, dispatch] = React.useReducer(charityEventReducer, initialState);
 
     return (
-        <div className="App">
+        <Box className="App" sx={{
+            background: "linear-gradient(to bottom, #020024, #090979, #00d4ff)", // Cosmic gradient
+            color: "#fff", // White text for readability
+            minHeight: "100vh",
+            }}>
             <AppContext.Provider value={{state, dispatch}}>
             <AuthProvider>
                 <Router>
@@ -40,7 +45,7 @@ function App() {
                 </Router>
             </AuthProvider>
             </AppContext.Provider>
-        </div>
+        </Box>
     );
 }
 
