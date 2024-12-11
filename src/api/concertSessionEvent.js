@@ -32,3 +32,23 @@ export const getAllEvents = async () => {
         throw error;
     }
 };
+
+export const getConcertScheduleByConcertId = async (concertId) => {
+    try {
+        const response = await instance.get(`${API_BASE_URL}/${concertId}/schedules`);
+        return response.data.data;
+    } catch (error) {
+        console.error("Error fetching concert schedule:", error);
+        throw error;
+    }
+}
+
+export const getConcertScheduleClassByConcertIdAndScheduleId = async (concertId, scheduleId) => {
+    try {
+        const response = await instance.get(`${API_BASE_URL}/${concertId}/schedules/${scheduleId}/classes`);
+        return response.data.data;
+    } catch (error) {
+        console.error("Error fetching concert schedule class:", error);
+        throw error;
+    }
+}
