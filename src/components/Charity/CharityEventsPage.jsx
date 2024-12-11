@@ -39,7 +39,7 @@ const CharityEventsPage = () => {
     const handleModalClose = (claim) => {
         setOpenModal(false);
 
-        if (selectedEventId !== null && ids !== null) {
+        if (selectedEventId !== null && Array.isArray(ids)) {
             registerCharityEvent(selectedEventId, claim).then((response) => {
                 setIds([...ids, selectedEventId]);
             });
