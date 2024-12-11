@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { getEventData, getConcertTicketStrategyByClass, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId } from '../../api/concertSessionEvent';
+import { getEventData, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId } from '../../api/concertSessionEvent';
 import ScheduleMeta from './ScheduleMeta';
 import TicketOptions from './TicketOptions';
 import Login from '../Login/Login';
