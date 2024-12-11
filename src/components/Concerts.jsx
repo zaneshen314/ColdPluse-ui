@@ -75,7 +75,7 @@ function Slide({ slide, offset }) {
     const ref = useTilt(active);
 
     const handleClick = () => {
-        window.location.href = "/ticket";
+        window.location.href = "/ticket/1";
     };
 
     return (
