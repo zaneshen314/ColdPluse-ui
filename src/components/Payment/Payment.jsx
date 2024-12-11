@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, MenuItem, Select, FormControl, Typography, Box, Card, CardContent, Grid, CircularProgress } from '@mui/material';
+import { Container, TextField, Button, MenuItem, Select, FormControl, Typography, Box, Card, CardContent, Grid, CircularProgress } from '@mui/material';
 import ETicketGroup from './ETicketGroup';
 import { placeOrder } from '../../api/placeOrder';
 import { useLocation } from 'react-router-dom';
@@ -73,6 +73,7 @@ const Payment = () => {
   }
 
   return (
+    <Container>
     <Box sx={{ position: 'relative' }}>
         {isLoading && (
             <Box sx={{
@@ -99,64 +100,66 @@ const Payment = () => {
         ) : (
         <Box sx={{ p: 2 }}>
             <Card>
-            <CardContent>
-                <Typography variant="h4" gutterBottom>Paying {numberOfTickets} Ticket(s)</Typography>
-                <Box sx={{ my: 2 }}>
-                <Typography variant="body1">Concert Name: {concertName}</Typography>
-                <Typography variant="body1">Time: {time}</Typography>
-                <Typography variant="body1">Venue: {venue}</Typography>
-                <Typography variant="body1">Class: {ticketClass}</Typography>
-                </Box>
-    
-                <Typography variant="h5" gutterBottom>Please complete the real name registration for each ticket</Typography>
-                
-                {guests.map((guest, index) => (
-                <Box key={index} sx={{ my: 2 }}>
-                    <Typography variant="h6">Ticket {index + 1}</Typography>
-                    <Grid container spacing={2}>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                        label="ID Card Number"
-                        variant="outlined"
-                        fullWidth
-                        value={guest.idCardNum}
-                        onChange={(e) => handleidCardNumChange(index, e.target.value)}
-                        sx={{ marginBottom: 2 }}
-                        />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <TextField
-                        label="Guest Name"
-                        variant="outlined"
-                        fullWidth
-                        value={guest.name}
-                        onChange={(e) => handleNameChange(index, e.target.value)}
-                        />
-                    </Grid>
-                    </Grid>
-                </Box>
-                ))}
-    
-                <Typography variant="h5" gutterBottom>Total Cost: ${totalCost}</Typography>
-                <Typography variant="body1">Price per Ticket: ${pricePerTicket}</Typography>
-    
-                <FormControl fullWidth sx={{ my: 2 }}>
-                <Typography variant="h6">Select Payment Method</Typography>
-                <Select value={paymentMethod} onChange={handlePaymentMethodChange}>
-                    <MenuItem value="paypal">PayPal</MenuItem>
-                    <MenuItem value="alipay">支付寶</MenuItem>
-                    <MenuItem value="weixin">微信支付</MenuItem>
-                </Select>
-                </FormControl>
-    
-                <Button variant="contained" color="primary" onClick={onPayButtonClick} disabled={!dataComplete || isLoading} sx={{ mt: 2 }}>
-                Pay
-                </Button>
-            </CardContent>
-            </Card>
+                <CardContent>
+                    <Typography variant="h4" gutterBottom>Paying {numberOfTickets} Ticket(s)</Typography>
+                    <Box sx={{ my: 2 }}>
+                    <Typography variant="body1">Concert Name: {concertName}</Typography>
+                    <Typography variant="body1">Time: {time}</Typography>
+                    <Typography variant="body1">Venue: {venue}</Typography>
+                    <Typography variant="body1">Class: {ticketClass}</Typography>
+                    </Box>
+        
+                    <Typography variant="h5" gutterBottom>Please complete the real name registration for each ticket</Typography>
+                    
+                    {guests.map((guest, index) => (
+                    <Box key={index} sx={{ my: 2 }}>
+                        <Typography variant="h6">Ticket {index + 1}</Typography>
+                        <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                            label="ID Card Number"
+                            variant="outlined"
+                            fullWidth
+                            value={guest.idCardNum}
+                            onChange={(e) => handleidCardNumChange(index, e.target.value)}
+                            sx={{ marginBottom: 2 }}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <TextField
+                            label="Guest Name"
+                            variant="outlined"
+                            fullWidth
+                            value={guest.name}
+                            onChange={(e) => handleNameChange(index, e.target.value)}
+                            />
+                        </Grid>
+                        </Grid>
+                    </Box>
+                    ))}
+        
+                    <Typography variant="h5" gutterBottom>Total Cost: ${totalCost}</Typography>
+                    <Typography variant="body1">Price per Ticket: ${pricePerTicket}</Typography>
+        
+                    <FormControl fullWidth sx={{ my: 2 }}>
+                    <Typography variant="h6">Select Payment Method</Typography>
+                    <Select value={paymentMethod} onChange={handlePaymentMethodChange}>
+                        <MenuItem value="paypal">PayPal</MenuItem>
+                        <MenuItem value="alipay">支付寶</MenuItem>
+                        <MenuItem value="weixin">微信支付</MenuItem>
+                    </Select>
+                    </FormControl>
+        
+                    <Button variant="contained" color="primary" onClick={onPayButtonClick} disabled={!dataComplete || isLoading} sx={{ mt: 2 }}>
+                    Pay
+                    </Button>
+                </CardContent>
+                </Card>
+            </Box>
+            )}
         </Box>
-        )}
-    </Box>
+    </Container>
+
   );
 };
 
