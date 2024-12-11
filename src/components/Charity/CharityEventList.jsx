@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Grid, Modal, Box, Typography, Button } from "@mui/material";
 import EventCard, { EVENT_DETAILS_TYPE } from "../EventCard";
 import { deleteCharityEventParticipation } from "../../api/charityEvent";
+import Carousel from "./Carousel";
 
 const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
     const JOIN_EVENT = "Join Event";
@@ -19,7 +20,6 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
         setOpenQuitModal(false);
         if (confirm && selectedEventId !== null) {
             deleteCharityEventParticipation(1, selectedEventId).then((response) => {
-                // Handle the response or update the state as needed
                 setIds(joinedIds.filter((id) => id !== selectedEventId));
             });
         }
@@ -27,7 +27,7 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
 
     return (
         <>
-            <Grid container spacing={3}>
+            <Carousel>
                 {events.map((event) => (
                     <EventCard
                         key={event.id}
@@ -62,7 +62,7 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
                         }}
                     />
                 ))}
-            </Grid>
+            </Carousel>
             <Modal
                 open={openQuitModal}
                 onClose={() => handleQuitModalClose(false)}
