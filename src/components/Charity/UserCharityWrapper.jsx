@@ -31,13 +31,16 @@ const UserCharityWrapper = ({width}) => {
                     <Chip
                         label={
                             <>
-                                Total Heartbeats: {currentPoint} <span className="jump">❤️</span>
+                                Total Heartbeats: {currentPoint}
+                                <span className={currentPoint !== 0 ? "jump" : ""} style={{ color: currentPoint === 0 ? 'blue' : 'inherit' }}>
+                {currentPoint === 0 ? '🩵' : '❤️'}
+            </span>
                             </>
                         }
                         variant="outlined"
                         sx={{
-                            backgroundColor: '#fdf1f5',
-                            color: '#e8628d',
+                            backgroundColor: currentPoint === 0 ? '#98F5F9' : '#EF405B',
+                            color: currentPoint === 0 ? '#0C64A7' : '#fdf1f5',
                             fontWeight: "bold",
                             fontSize: '1.1rem',
                             padding: '0 10px',

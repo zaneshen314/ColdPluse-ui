@@ -121,8 +121,7 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
                     />
                     {event.charityEventParticipation.status === 'COMPLETED' && (
                         <Chip
-                            icon={<MilitaryTechIcon />}
-                            label={`${event.charityEvent.point} Points`}
+                            label={`${event.charityEvent.point} Heartbeats`}
                             sx={{
                                 backgroundColor: '#fdf1f5',
                                 color: '#e8628d',
