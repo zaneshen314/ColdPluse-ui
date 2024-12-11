@@ -11,7 +11,7 @@ import {initialState, charityEventReducer} from "./reducer/charityEventReducer";
 import OrderHistoryWrapper from "./components/user-order-history/OrderHistoryWrapper";
 import CharityEventsPage from "./components/Charity/CharityEventsPage";
 import PrivateRoute from "./route/PrivateRoute";
-import Payment from "./components/Payment";
+import Payment from "./components/Payment/Payment";
 import { AuthProvider } from "./context/AuthContext";
 import Concerts from "./components/Concerts";
 
