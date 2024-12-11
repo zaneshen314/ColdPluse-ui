@@ -28,8 +28,12 @@ const CharityEventsPage = () => {
     }, []);
 
     const handleJoinEvent = (eventId) => {
-        setSelectedEventId(eventId);
-        setOpenModal(true);
+        if (localStorage.getItem("token") !== null) {
+            setSelectedEventId(eventId);
+            setOpenModal(true);
+        } else {
+            alert("Please login");
+        }
     };
 
     const handleModalClose = (claim) => {
