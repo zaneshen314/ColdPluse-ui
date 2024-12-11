@@ -6,6 +6,8 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { deleteCharityEventParticipation } from "../../api/charityEvent";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { keyframes } from '@mui/system';
 
 const images = [
     '/charity_img/garbage.jpg',
@@ -28,6 +30,15 @@ const textColors = {
     REJECTED: '#616161',
     ABSENT: '#616161'
 };
+
+const bounce = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+`;
 
 const getStatusIcon = (status) => {
     switch (status) {
@@ -67,7 +78,7 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
     };
 
     return (
-        <Paper elevation={3} sx={{ padding: 2 }}>
+        <Paper elevation={3} sx={{ padding: 2, backgroundColor: " #e6f8fe"  }}>
             <Grid container spacing={2}>
                 <Grid item xs={3} sx={{ textAlign: 'center' }}>
                     <Box
@@ -89,17 +100,17 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
                         {event.charityEvent.name}
                     </Typography>
 
-                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: '#adafb8' }}>
-                        <DateRangeIcon sx={{ color: '#adafb8', fontSize: '1.3rem', marginRight: 1 }} />
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: ' #6b6d76' }}>
+                        <DateRangeIcon sx={{ color: ' #6b6d76', fontSize: '1.3rem', marginRight: 1 }} />
                         {event.charityEvent.startTime}
                     </Typography>
-                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: '#adafb8' }}>
-                        <LocationOnIcon sx={{ color: '#adafb8', fontSize: '1.3rem', marginRight: 1 }} />
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: ' #6b6d76' }}>
+                        <LocationOnIcon sx={{ color: ' #6b6d76', fontSize: '1.3rem', marginRight: 1 }} />
                         <span style={{ fontSize: '1rem', marginRight: '0.5rem' }}>Venue:</span>
                         {event.charityEvent.location}
                     </Typography>
-                    <Typography variant="body1" sx={{ display: 'flex', whiteSpace: 'normal', overflowWrap: 'break-word', wordBreak: 'break-all', color: '#adafb8' }}>
-                        <DescriptionIcon sx={{ color: '#adafb8', fontSize: '1.3rem', marginRight: 1 }} />
+                    <Typography variant="body1" sx={{ display: 'flex', whiteSpace: 'normal', overflowWrap: 'break-word', wordBreak: 'break-all', color: ' #6b6d76' }}>
+                        <DescriptionIcon sx={{ color: ' #6b6d76', fontSize: '1.3rem', marginRight: 1 }} />
                         <span style={{ fontSize: '1rem', marginRight: '0.5rem', wordBreak: 'normal' }}>Description:</span>
                         <span>{event.charityEvent.description.substr(0, 300)}</span>
                     </Typography>
@@ -112,6 +123,7 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
                             backgroundColor: statusColors[event.charityEventParticipation.status],
                             color: textColors[event.charityEventParticipation.status],
                             fontWeight: 'bold',
+                            padding: "0 4px",
                             marginBottom: 1,
                             '& .MuiChip-icon': {
                                 color: textColors[event.charityEventParticipation.status],
@@ -120,12 +132,13 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
                     />
                     {event.charityEventParticipation.status === 'COMPLETED' && (
                         <Chip
+                            icon={<FavoriteIcon sx={{ color: '#e8628d', animation: `${bounce} 1s infinite` }} />}
                             label={`${event.charityEvent.point} Heartbeats`}
                             sx={{
                                 backgroundColor: '#fdf1f5',
                                 color: '#e8628d',
                                 fontWeight: 'bold',
-                                padding: '0 10px',
+                                padding: '0 0px',
                                 marginTop: 1,
                                 '& .MuiChip-icon': {
                                     color: '#e8628d',
@@ -134,7 +147,7 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
                         />
                     )}
                 </Grid>
-                <Grid item xs={12} sx={{ textAlign: 'left', marginTop: 2 }}>
+                <Grid item xs={12} sx={{ textAlign: 'left', marginTop: 2, marginLeft: "84%" }}>
                     <Button variant="contained" color="primary" sx={{ textTransform: 'none', backgroundColor: "#CF484A" }} onClick={handleClick}>
                         Leave Event
                     </Button>
