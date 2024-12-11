@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
-import {Box, Typography, Modal, Button} from "@mui/material";
+import {Box, Typography, Modal, Button, IconButton} from "@mui/material";
 import CharityEventList from "./CharityEventList";
 import {getAllCharityEvents, getUserCurrentCharityEventIds, registerCharityEvent} from "../../api/charityEvent";
+import CloseIcon from '@mui/icons-material/Close';
 
 const CharityEventsPage = () => {
     const [events, setEvents] = useState([]);
@@ -39,12 +40,16 @@ const CharityEventsPage = () => {
     const handleModalClose = (claim) => {
         setOpenModal(false);
 
-        if (selectedEventId !== null && ids !== null) {
+        if (selectedEventId !== null && Array.isArray(ids)) {
             registerCharityEvent(selectedEventId, claim).then((response) => {
                 setIds([...ids, selectedEventId]);
             });
         }
     };
+
+    const handleClose = () => {
+        setOpenModal(false);
+    }
 
     if (loading) {
         return (
@@ -103,19 +108,32 @@ const CharityEventsPage = () => {
                         borderRadius: '10px',
                     }}
                 >
+                    <IconButton
+                        aria-label="close"
+                        onClick={handleClose}
+                        sx={{
+                            position: 'absolute',
+                            right: 8,
+                            top: 8,
+                        }}
+                    >
+                        <CloseIcon />
+                    </IconButton>
                     <Typography id="modal-title" variant="h6" component="h2">
                         Claim Points
                     </Typography>
-                    <Typography id="modal-description" sx={{mt: 2}}>
+                    <Typography id="modal-description" sx={{ mt: 2 }}>
                         Do you want to claim points for this event?
                     </Typography>
-                    <Box sx={{mt: 2, display: 'flex', justifyContent: 'space-between'}}>
-                        <Button variant="contained" color="primary" onClick={() => handleModalClose(true)}>
-                            Yes
-                        </Button>
-                        <Button variant="contained" color="secondary" onClick={() => handleModalClose(false)}>
-                            No
-                        </Button>
+                    <Box>
+                        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
+                            <Button variant="contained" color="primary" onClick={() => handleModalClose(true)}>
+                                Yes
+                            </Button>
+                            <Button variant="contained" color="secondary" onClick={() => handleModalClose(false)}>
+                                No
+                            </Button>
+                        </Box>
                     </Box>
                 </Box>
             </Modal>

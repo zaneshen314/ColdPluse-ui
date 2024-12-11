@@ -12,20 +12,21 @@ const UserCharityWrapper = ({width}) => {
             setUserCharityEvents(response);
         });
         getUserCurrentPoints().then((response) => {
-           setCurrentPoint(response);
+            setCurrentPoint(response);
         });
     }, []);
     return (
         <Box sx={{
-            margin: '1% 23.3%',
+            margin: '1% 23.7%',
             maxWidth: {width},
-            boxShadow: 3,
+            boxShadow: '0 0 10px white',
             padding: 2,
             borderRadius: 2,
+            border: '1px solid white',
         }}>
             <AppBar position="static" elevation={0} sx={{ backgroundColor: 'transparent', width: '97%', margin: '10px auto', marginBottom: "20px" }}>
                 <Toolbar>
-                    <Typography variant="h4" component="div" sx={{ flexGrow: 1, color: 'black', fontWeight: "bold" }}>
+                    <Typography variant="h4" component="div" sx={{ flexGrow: 1, color: 'white', fontWeight: "bold" }}>
                         Events History
                     </Typography>
                     <Chip

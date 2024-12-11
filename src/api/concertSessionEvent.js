@@ -62,3 +62,13 @@ export const getConcertByConcertId = async (concertId) => {
         throw error;
     }
 }
+
+export const getAllConcerts = async () => {
+    try {
+        const response = await instance.get(`${API_BASE_URL}`);
+        return response.data.data;
+    } catch (error) {
+        console.error("Error fetching concerts:", error);
+        throw error;
+    }
+}
