@@ -48,7 +48,15 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
                                     type: EVENT_DETAILS_TYPE.STANDARD,
                                     text: `Duration: ${event.duration ? `${event.duration} minutes` : "Unknown duration"}`
                                 },
-                                { type: EVENT_DETAILS_TYPE.STANDARD, text: `Points: ${event.point || "0"}` },
+                                {
+                                    type: EVENT_DETAILS_TYPE.STANDARD,
+                                    text: (
+                                        <>
+                                            Heartbeats: {event.point || "0"}
+                                            <span className="jump">❤️</span>
+                                        </>
+                                    )
+                                },
                                 {
                                     type: EVENT_DETAILS_TYPE.STANDARD,
                                     text: `Participants: ${event.currentEnrolled}/${event.suggestedParticipationSize || "N/A"}`

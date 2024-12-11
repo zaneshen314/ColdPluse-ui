@@ -3,6 +3,7 @@ import {AppBar, Box, Chip, Container, Toolbar, Typography} from '@mui/material';
 import UserCharityList from './UserCharityList';
 import {getUserCurrentPoints, getUserEventParticipation} from "../../api/charityEvent";
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
+import "./Carousel.css"
 
 const UserCharityWrapper = ({width}) => {
     const [userCharityEvents, setUserCharityEvents] = useState([]);
@@ -29,9 +30,12 @@ const UserCharityWrapper = ({width}) => {
                         Events History
                     </Typography>
                     <Chip
-                        label={"Total Points: " + currentPoint + " Points"}
+                        label={
+                            <>
+                                Total Heartbeats: {currentPoint} <span className="jump">❤️</span>
+                            </>
+                        }
                         variant="outlined"
-                        icon={<MilitaryTechIcon />}
                         sx={{
                             backgroundColor: '#fdf1f5',
                             color: '#e8628d',

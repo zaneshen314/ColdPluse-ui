@@ -2,3 +2,18 @@
     font-size: 30px; /* Adjust the size as needed */
     color: white; /* Adjust the color as needed */
 }
+
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.jump {
+    display: inline-block;
+    animation: jump 0.5s infinite;
+    margin-left: 2px;
+}
