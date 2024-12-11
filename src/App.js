@@ -14,6 +14,7 @@ import Payment from "./components/Payment/Payment";
 import { AuthProvider } from "./context/AuthContext";
 import Concerts from "./components/Concerts";
 import { Box } from "@mui/material";
+import NotFound from "./components/NotFound";
 
 export const AppContext = React.createContext();
 
@@ -40,7 +41,7 @@ function App() {
                         <Route path="/show-all-concerts" element={<Concerts/>}/>
                         <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px"/>}/>
                         <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>}/>
-                        <Route path="*" element={<h1>Not Found</h1>}/>
+                        <Route path="*" element={<NotFound/>}/>
                     </Routes>
                 </Router>
             </AuthProvider>
