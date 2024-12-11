@@ -2,7 +2,7 @@ import React from "react";
 
 const EventRow = ({ event }) => {
     const handleBuyClick = () => {
-        window.location.href = `/buy/${event.id}`; // Navigate to the buying page
+        window.location.href = `/ticket/${event.concertId}`;
     };
 
     return (

@@ -52,3 +52,13 @@ export const getConcertScheduleClassByConcertIdAndScheduleId = async (concertId,
         throw error;
     }
 }
+
+export const getConcertByConcertId = async (concertId) => {
+    try{
+        const response = await instance.get(`${API_BASE_URL}/${concertId}`);
+        return response.data.data;
+    }catch(error){
+        console.error("Error fetching concert data:", error);
+        throw error;
+    }
+}

@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog } from '@mui/material';
-import { getEventData, getConcertTicketStrategyByClass } from '../../api/concertSessionEvent';
-import ConcertMeta from './ConcertMeta';
+import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { getEventData, getConcertTicketStrategyByClass, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId } from '../../api/concertSessionEvent';
+import ScheduleMeta from './ScheduleMeta';
 import TicketOptions from './TicketOptions';
 import Login from '../Login/Login';
 import { useAuth } from '../../context/AuthContext';
 
 export default function Ticket() {
-    const { authenticated } = useAuth();
-    const { concert_id } = useParams();
     const navigate = useNavigate();
-    const [concertDetails, setConcertDetails] = useState([]);
-    const [concertMeta, setConcertMeta] = useState({});
+    const { authenticated } = useAuth();
+    const { concertId } = useParams();  
+    const [ticketOptions, setTicketOptions] = useState([]);
+    const [scheduleMeta, setScheduleMeta] = useState({});
     const [selectedTickets, setSelectedTickets] = useState({});
     const [showWarning, setShowWarning] = useState(false);
     const [classWarning, setClassWarning] = useState(false);
     const [selectedClass, setSelectedClass] = useState(null);
     const [loginOpen, setLoginOpen] = useState(false);
     const [disableBuy, setDisableBuy] = useState(true);
+    const [selectedScheduleId, setSelectedScheduleId] = useState('');
+    const [concertName, setConcertName] = useState("");
+    const [scheduleList, setScheduleList] = useState([]);
+    const [initializedScheduleList, setInitializedScheduleList] = useState(false);
 
     const totalPrice = Object.values(selectedTickets).reduce((acc, ticket) => acc + (ticket.price * ticket.quantity), 0);
     const totalSelectedTickets = Object.values(selectedTickets).reduce((acc, ticket) => acc + ticket.quantity, 0);
@@ -50,28 +54,48 @@ export default function Ticket() {
             authenticated();
             const ticket = {
                 numberOfTickets: totalSelectedTickets,
-                time: concertMeta.start_time,
-                venue: concertMeta.venue,
+                time: scheduleMeta.start_time,
+                venue: scheduleMeta.venue,
                 ticketClass: selectedClass,
-                pricePerTicket: concertDetails.find((detail) => detail.className === selectedClass).price,
-                concertClassId: concertDetails.find((detail) => detail.className === selectedClass).id,
-                scheduleId: concertMeta.scheduleId,
-                concertName: concertMeta.name}
-            navigate('/payment', { state: ticket});                
+                pricePerTicket: ticketOptions.find((detail) => detail.className === selectedClass).price,
+                concertClassId: ticketOptions.find((detail) => detail.className === selectedClass).id,
+                scheduleId: scheduleMeta.scheduleId,
+                concertName: scheduleMeta.name
+            };
+            navigate('/payment', { state: ticket });                
         }
     };
 
-    useEffect(() => {
-        getEventData(1,1).then((data) => {
-            setConcertMeta(data);
-        });
-        getConcertTicketStrategyByClass(1).then((data) => {
-            setConcertDetails(data);
-        });
-    }, [concert_id]);
+    const handleScheduleChange = (event) => {
+        setSelectedScheduleId(event.target.value);
+    };
 
     useEffect(() => {
-        console.log(totalSelectedTickets);
+        getConcertByConcertId(concertId).then((data) => {
+            setConcertName(data.name);
+        });
+        getConcertScheduleByConcertId(concertId).then((data) => {
+            setScheduleList(data);
+            setSelectedScheduleId(data[0].scheduleId);            
+            setInitializedScheduleList(true);
+        });
+    }, [concertId]);
+
+    useEffect(() => {
+        if (!selectedScheduleId) {
+            return;
+        }
+        console.log(selectedScheduleId)
+        getEventData(concertId, selectedScheduleId).then((data) => {
+            setScheduleMeta(data);
+        });
+        getConcertScheduleClassByConcertIdAndScheduleId(concertId, selectedScheduleId).then((data) => {
+            setTicketOptions(data);
+        });
+    }, [selectedScheduleId]);
+
+
+    useEffect(() => {
         if (totalSelectedTickets > 0 && totalSelectedTickets <= 3) {
             setDisableBuy(false);
         } else {
@@ -81,9 +105,10 @@ export default function Ticket() {
 
     return (
         <Container sx={{ pt: 4 }}>
-            <ConcertMeta concertMeta={concertMeta} />
+            <Typography variant="h3" sx={{ mb: 2, fontWeight: 'bold' }}>{concertName}</Typography>
+            <ScheduleMeta scheduleMeta={scheduleMeta} />
             <Divider style={{ margin: '20px 0' }} />
-            <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold'}}>Ticket Option</Typography>
+            <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>Ticket Option</Typography>
             {showWarning && (
                 <Alert severity="warning" sx={{ mb: 2 }}>
                     Each user can only purchase at most 3 tickets per concert.
@@ -95,7 +120,7 @@ export default function Ticket() {
                 </Alert>
             )}
             <TicketOptions 
-                concertDetails={concertDetails} 
+                ticketOptions={ticketOptions} 
                 selectedTickets={selectedTickets} 
                 handleTicketChange={handleTicketChange} 
             />
@@ -110,7 +135,7 @@ export default function Ticket() {
                 </Toolbar>
             </AppBar>
             <Dialog open={loginOpen} onClose={() => setLoginOpen(false)}>
-                <Login isVisible={loginOpen} onClose={()=>{setLoginOpen(false)}} />
+                <Login isVisible={loginOpen} onClose={() => setLoginOpen(false)} />
             </Dialog>
         </Container>
     );

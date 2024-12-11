@@ -28,16 +28,16 @@ function App() {
                     <NavigationBar/>
                     <Routes>
                         <Route path="/" element={<Home/>}/>
-                        <Route path="/ticket" element={<Ticket/>}/>
+                        <Route path="/ticket/:concertId" element={<Ticket/>}/>
                         <Route path="/events" element={<CharityEventsPage/>}/>
                         <Route path="/concert-event" element={<ConcertEvent/>}/>
                         <Route path="/userCharityWrapper" element={<UserCharityWrapper/>}/>
                         <Route path="/user-profile" element={<UserProfile/>}/>
                         <Route path="/user-order-history" element={<OrderHistoryWrapper width="1000px"/>}/>
                         <Route path="/show-all-concerts" element={<Concerts/>}/>
-                        <Route path="*" element={<h1>Not Found</h1>}/>
                         <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px"/>}/>
                         <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>}/>
+                        <Route path="*" element={<h1>Not Found</h1>}/>
                     </Routes>
                 </Router>
             </AuthProvider>
