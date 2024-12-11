@@ -2,31 +2,33 @@ import instance from "./interceptor";
 
 const userPath = "/users";
 const charityEventPath = "/charity-events";
-export const getUserEventParticipation = async (userId) => {
-    try{
-        const response = await instance.get(`${userPath}/${userId}/charity-event-participations`);
+export const getUserEventParticipation = async () => {
+    try {
+        const response = await instance.get(`${userPath}/charity-event-participations`);
         return response.data;
-    } catch (error){
+    } catch (error) {
         console.log("Error: ", error);
     }
 }
 
-export const getUserCurrentPoints = async (userId) => {
-    try{
-        const response = await instance.get(`${userPath}/${userId}/cumulatedPoint`);
+export const getUserCurrentPoints = async () => {
+    try {
+        const response = await instance.get(`${userPath}/cumulatedPoint`);
         return response.data;
-    } catch (error){
+    } catch (error) {
         console.log("Error: ", error);
     }
 }
 
 //register in charity event
-export const registerCharityEvent = async (userId, charityEventId, claimPoint) => {
+export const registerCharityEvent = async (charityEventId, claimPoint) => {
     try {
-        const response = await instance.post(`${charityEventPath}/register?userId=${userId}&charityEventId=${charityEventId}&claimPoint=${claimPoint}`);
+        const response = await instance.post(`${charityEventPath}`, {
+            charityEventId: charityEventId,
+            claimPoint: claimPoint
+        });
         return response.data;
-    }
-    catch (error){
+    } catch (error) {
         console.log("Error: ", error);
     }
 }
@@ -41,18 +43,18 @@ export const getAllCharityEvents = async () => {
     }
 }
 
-export const getUserCurrentCharityEventIds = async (userId) => {
-    try{
-        const response = await instance.get(`${userPath}/${userId}/charity-events`);
+export const getUserCurrentCharityEventIds = async () => {
+    try {
+        const response = await instance.get(`${userPath}/charity-events`);
         return response.data;
-    } catch (error){
+    } catch (error) {
         console.log("Error: ", error);
     }
 }
 
-export const deleteCharityEventParticipation = async (userId, eventId) => {
+export const deleteCharityEventParticipation = async (eventId) => {
     try {
-        const response = await instance.delete(`${charityEventPath}?eventId=${eventId}&userId=${userId}`);
+        const response = await instance.delete(`${charityEventPath}?eventId=${eventId}`);
         return response.data;
     } catch (error) {
         console.log("Error: ", error);

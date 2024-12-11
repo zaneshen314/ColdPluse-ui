@@ -2,16 +2,16 @@ import React, {useEffect, useState} from 'react';
 import {AppBar, Box, Chip, Container, Toolbar, Typography} from '@mui/material';
 import UserCharityList from './UserCharityList';
 import {getUserCurrentPoints, getUserEventParticipation} from "../../api/charityEvent";
-import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
+import "./Carousel.css"
 
 const UserCharityWrapper = ({width}) => {
     const [userCharityEvents, setUserCharityEvents] = useState([]);
     const [currentPoint, setCurrentPoint] = useState(0)
     useEffect(() => {
-        getUserEventParticipation(1).then((response) => {
+        getUserEventParticipation().then((response) => {
             setUserCharityEvents(response);
         });
-        getUserCurrentPoints(1).then((response) => {
+        getUserCurrentPoints().then((response) => {
            setCurrentPoint(response);
         });
     }, []);
@@ -29,9 +29,12 @@ const UserCharityWrapper = ({width}) => {
                         Events History
                     </Typography>
                     <Chip
-                        label={"Total Points: " + currentPoint + " Points"}
+                        label={
+                            <>
+                                Total Heartbeats: {currentPoint} <span className="jump">❤️</span>
+                            </>
+                        }
                         variant="outlined"
-                        icon={<MilitaryTechIcon />}
                         sx={{
                             backgroundColor: '#fdf1f5',
                             color: '#e8628d',

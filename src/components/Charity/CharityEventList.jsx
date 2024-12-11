@@ -19,7 +19,7 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
     const handleQuitModalClose = (confirm) => {
         setOpenQuitModal(false);
         if (confirm && selectedEventId !== null) {
-            deleteCharityEventParticipation(1, selectedEventId).then((response) => {
+            deleteCharityEventParticipation(selectedEventId).then((response) => {
                 setIds(joinedIds.filter((id) => id !== selectedEventId));
             });
         }
@@ -48,7 +48,15 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
                                     type: EVENT_DETAILS_TYPE.STANDARD,
                                     text: `Duration: ${event.duration ? `${event.duration} minutes` : "Unknown duration"}`
                                 },
-                                { type: EVENT_DETAILS_TYPE.STANDARD, text: `Points: ${event.point || "0"}` },
+                                {
+                                    type: EVENT_DETAILS_TYPE.STANDARD,
+                                    text: (
+                                        <>
+                                            Heartbeats: {event.point || "0"}
+                                            <span className="jump">❤️</span>
+                                        </>
+                                    )
+                                },
                                 {
                                     type: EVENT_DETAILS_TYPE.STANDARD,
                                     text: `Participants: ${event.currentEnrolled}/${event.suggestedParticipationSize || "N/A"}`
@@ -57,8 +65,11 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
                             ],
                         }}
                         buttonProps={{
-                            text: joinedIds && joinedIds.includes(event.id) ? JOINED : JOIN_EVENT,
-                            onButtonClick: joinedIds && joinedIds.includes(event.id) ? () => handleQuitCharityEvent(event.id) : () => onJoinEvent && onJoinEvent(event.id),
+                            text: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? JOINED : JOIN_EVENT,
+                            onButtonClick: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? () => handleQuitCharityEvent(event.id) : () => onJoinEvent && onJoinEvent(event.id),
+                            sx: {
+                                backgroundColor: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? 'green' : 'purple',
+                            },
                         }}
                     />
                 ))}

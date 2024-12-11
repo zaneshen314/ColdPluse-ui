@@ -110,6 +110,7 @@ const EventCard = ({ event, buttonProps }) => {
                         size="large"
                         onClick={buttonProps.onButtonClick}
                         sx={{
+                            backgroundColor: buttonProps.sx && buttonProps.sx.backgroundColor ? buttonProps.sx.backgroundColor : "initial",
                             color: "#fff",
                             fontSize: "1rem", // Reduced button text size for better fit
                             padding: "0.625rem 1.25rem",
