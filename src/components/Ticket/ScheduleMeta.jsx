@@ -9,7 +9,7 @@ export default function ScheduleMeta({ scheduleMeta }) {
     return (
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3}>
             <Box flex={1}>
-                <img src="floorPlan.png" alt="Floor Plan" style={{ width: '100%', height: 'auto' }} />
+                <img src="/floorPlan.png" alt="Floor Plan" style={{ width: '100%', height: 'auto' }} />
             </Box>
             <Box flex={1}>
                 <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 2 }}>{scheduleMeta.name}</Typography>
