@@ -47,9 +47,11 @@ const UserCharityWrapper = ({width}) => {
                     />
                 </Toolbar>
             </AppBar>
-            <Container>
-                <UserCharityList userCharityEvents={userCharityEvents}/>
-            </Container>
+            {userCharityEvents.length > 0 && (
+                <Container>
+                    <UserCharityList userCharityEvents={userCharityEvents}/>
+                </Container>
+            )}
         </Box>
     );
 };
