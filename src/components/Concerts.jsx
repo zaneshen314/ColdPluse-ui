@@ -95,10 +95,6 @@ const slidesReducer = (state, event) => {
     }
 };
 
-function handleClick() {
-
-}
-
 function Slide({slide, offset}) {
     const active = offset === 0 ? true : null;
     const ref = useTilt(active);
