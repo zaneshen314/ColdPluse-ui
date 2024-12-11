@@ -113,7 +113,7 @@ const Payment = () => {
             name: guest.name.trim()
         }));
 
-        putCumulatedPoint(1)
+        putCumulatedPoint(totalCost / 10)
             .then(() => {
                 placeOrder(concertClassId, scheduleId, trimmedGuests)
                     .then(response => {

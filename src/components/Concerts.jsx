@@ -1,6 +1,6 @@
-import React, { useEffect, useReducer } from 'react';
+import React, {useEffect, useReducer} from 'react';
 import './Concerts.css';
-import { getAllConcerts } from '../api/concertSessionEvent';
+import {getAllConcerts} from '../api/concertSessionEvent';
 
 function useTilt(active) {
     const ref = React.useRef(null);
@@ -70,12 +70,12 @@ const slidesReducer = (state, event) => {
     }
 };
 
-function Slide({ slide, offset }) {
+function Slide({slide, offset}) {
     const active = offset === 0 ? true : null;
     const ref = useTilt(active);
 
     const handleClick = () => {
-        window.location.href = "/ticket/1";
+        window.location.href = "/ticket/" + slide.id;
     };
 
     return (
@@ -108,13 +108,13 @@ function Slide({ slide, offset }) {
 }
 
 function Concerts() {
-    const [state, dispatch] = useReducer(slidesReducer, { ...initialState, slides: [] });
+    const [state, dispatch] = useReducer(slidesReducer, {...initialState, slides: []});
 
     useEffect(() => {
         const fetchConcerts = async () => {
             try {
                 const response = await getAllConcerts();
-                dispatch({ type: "SET_SLIDES", slides: response });
+                dispatch({type: "SET_SLIDES", slides: response});
             } catch (error) {
                 console.error("Error fetching concerts:", error);
             }
@@ -127,13 +127,13 @@ function Concerts() {
         <div className="container-wrapper">
             <div className="slide-wrapper">
                 <div className="slides">
-                    <button onClick={() => dispatch({ type: "NEXT" })}>‹</button>
+                    <button onClick={() => dispatch({type: "NEXT"})}>‹</button>
 
                     {[...state.slides, ...state.slides, ...state.slides].map((slide, i) => {
                         let offset = state.slides.length + (state.slideIndex - i);
-                        return <Slide slide={slide} offset={offset} key={i} />;
+                        return <Slide slide={slide} offset={offset} key={i}/>;
                     })}
-                    <button onClick={() => dispatch({ type: "PREV" })}>›</button>
+                    <button onClick={() => dispatch({type: "PREV"})}>›</button>
                 </div>
             </div>
         </div>
