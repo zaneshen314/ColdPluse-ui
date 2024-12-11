@@ -78,7 +78,7 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
     };
 
     return (
-        <Paper elevation={3} sx={{ padding: 2, backgroundColor: " #e6f8fe"  }}>
+        <Paper elevation={3} sx={{ padding: 2, backgroundColor: "white", boxShadow: "0 0 20px #3a5f7a" }}>
             <Grid container spacing={2}>
                 <Grid item xs={3} sx={{ textAlign: 'center' }}>
                     <Box
@@ -146,9 +146,7 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
                             }}
                         />
                     )}
-                </Grid>
-                <Grid item xs={12} sx={{ textAlign: 'left', marginTop: 2, marginLeft: "84%" }}>
-                    <Button variant="contained" color="primary" sx={{ textTransform: 'none', backgroundColor: "#CF484A" }} onClick={handleClick}>
+                    <Button variant="contained" color="primary" sx={{ marginLeft: "5%", marginTop: "80%", textTransform: 'none', backgroundColor: "#CF484A" }} onClick={handleClick}>
                         Leave Event
                     </Button>
                 </Grid>
