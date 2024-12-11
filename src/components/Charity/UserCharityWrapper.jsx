@@ -39,7 +39,7 @@ const UserCharityWrapper = ({width}) => {
                         }
                         variant="outlined"
                         sx={{
-                            backgroundColor: currentPoint === 0 ? '#98F5F9' : '#EF405B',
+                            backgroundColor: currentPoint === 0 ? '#98F5F9' : '#ED7D8D',
                             color: currentPoint === 0 ? '#0C64A7' : '#fdf1f5',
                             fontWeight: "bold",
                             fontSize: '1.1rem',
