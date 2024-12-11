@@ -1,12 +1,12 @@
-import React from 'react';
-import { Box, Chip, Grid, Paper, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Button, Chip, Grid, Modal, Paper, Typography } from '@mui/material';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
-
+import { deleteCharityEventParticipation } from "../../api/charityEvent";
 
 const images = [
     '/charity_img/garbage.jpg',
@@ -16,17 +16,17 @@ const images = [
 
 const statusColors = {
     REGISTERED: '#BBDEFB',
-    ENROLLED: '#D1C4E9', // Blue-purple series color
+    ENROLLED: '#D1C4E9',
     COMPLETED: '#C8E6C9',
-    REJECTED: '#E0E0E0', // Swapped with ENROLLED color
+    REJECTED: '#E0E0E0',
     ABSENT: '#E0E0E0'
 };
 
 const textColors = {
     REGISTERED: '#1976d2',
-    ENROLLED: '#673ab7', // Darker shade of blue-purple
+    ENROLLED: '#673ab7',
     COMPLETED: '#388e3c',
-    REJECTED: '#616161', // Swapped with ENROLLED color
+    REJECTED: '#616161',
     ABSENT: '#616161'
 };
 
@@ -45,7 +45,28 @@ const getStatusIcon = (status) => {
     }
 };
 
-const UserCharityItem = ({ event, index }) => {
+const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
+    const [openQuitModal, setOpenQuitModal] = useState(false);
+    const [selectedEventId, setSelectedEventId] = useState(null);
+
+    const handleQuitCharityEvent = (eventId) => {
+        setSelectedEventId(eventId);
+        setOpenQuitModal(true);
+    };
+
+    const handleQuitModalClose = (confirm) => {
+        setOpenQuitModal(false);
+        if (confirm && selectedEventId !== null) {
+            deleteCharityEventParticipation(selectedEventId).then((response) => {
+                setUserCharityEvents((prevEvents) => prevEvents.filter((event) => event.charityEvent.id !== selectedEventId));
+            });
+        }
+    };
+
+    const handleClick = () => {
+        handleQuitCharityEvent(event.charityEvent.id);
+    };
+
     return (
         <Paper elevation={3} sx={{ padding: 2 }}>
             <Grid container spacing={2}>
@@ -59,8 +80,8 @@ const UserCharityItem = ({ event, index }) => {
                             height: '12rem',
                             borderRadius: '5%',
                             marginTop: 1,
-                            objectFit: 'cover', // This will crop the image to fit the box
-                            objectPosition: 'center' // This will center the image within the box
+                            objectFit: 'cover',
+                            objectPosition: 'center'
                         }}
                     />
                 </Grid>
@@ -115,7 +136,48 @@ const UserCharityItem = ({ event, index }) => {
                         />
                     )}
                 </Grid>
+                <Grid item xs={12} sx={{ textAlign: 'left', marginTop: 2 }}>
+                    <Button variant="contained" color="primary" sx={{ textTransform: 'none', backgroundColor: "#CF484A" }} onClick={handleClick}>
+                        Leave Event
+                    </Button>
+                </Grid>
             </Grid>
+            <Modal
+                open={openQuitModal}
+                onClose={() => handleQuitModalClose(false)}
+                aria-labelledby="quit-modal-title"
+                aria-describedby="quit-modal-description"
+            >
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: 300,
+                        bgcolor: 'background.paper',
+                        border: '2px solid #000',
+                        boxShadow: 24,
+                        p: 4,
+                        borderRadius: '10px',
+                    }}
+                >
+                    <Typography id="quit-modal-title" variant="h6" component="h2">
+                        Quit Event
+                    </Typography>
+                    <Typography id="quit-modal-description" sx={{ mt: 2 }}>
+                        Are you sure you want to quit this event?
+                    </Typography>
+                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
+                        <Button variant="contained" color="primary" onClick={() => handleQuitModalClose(true)}>
+                            Yes
+                        </Button>
+                        <Button variant="contained" color="secondary" onClick={() => handleQuitModalClose(false)}>
+                            No
+                        </Button>
+                    </Box>
+                </Box>
+            </Modal>
         </Paper>
     );
 };

@@ -8,22 +8,9 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
     const JOIN_EVENT = "Join Event";
     const JOINED = "Joined";
 
-    const [openQuitModal, setOpenQuitModal] = useState(false);
-    const [selectedEventId, setSelectedEventId] = useState(null);
-
-    const handleQuitCharityEvent = (eventId) => {
-        setSelectedEventId(eventId);
-        setOpenQuitModal(true);
-    };
-
-    const handleQuitModalClose = (confirm) => {
-        setOpenQuitModal(false);
-        if (confirm && selectedEventId !== null) {
-            deleteCharityEventParticipation(selectedEventId).then((response) => {
-                setIds(joinedIds.filter((id) => id !== selectedEventId));
-            });
-        }
-    };
+    const handleGoToHistory = () =>{
+        window.location.href = '/userCharityWrapper'
+    }
 
     return (
         <>
@@ -66,7 +53,7 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
                         }}
                         buttonProps={{
                             text: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? JOINED : JOIN_EVENT,
-                            onButtonClick: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? () => handleQuitCharityEvent(event.id) : () => onJoinEvent && onJoinEvent(event.id),
+                            onButtonClick: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? () => handleGoToHistory() : () => onJoinEvent && onJoinEvent(event.id),
                             sx: {
                                 backgroundColor: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? 'green' : 'purple',
                             },
@@ -74,42 +61,7 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
                     />
                 ))}
             </Carousel>
-            <Modal
-                open={openQuitModal}
-                onClose={() => handleQuitModalClose(false)}
-                aria-labelledby="quit-modal-title"
-                aria-describedby="quit-modal-description"
-            >
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: 300,
-                        bgcolor: 'background.paper',
-                        border: '2px solid #000',
-                        boxShadow: 24,
-                        p: 4,
-                        borderRadius: '10px',
-                    }}
-                >
-                    <Typography id="quit-modal-title" variant="h6" component="h2">
-                        Quit Event
-                    </Typography>
-                    <Typography id="quit-modal-description" sx={{ mt: 2 }}>
-                        Are you sure you want to quit this event?
-                    </Typography>
-                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
-                        <Button variant="contained" color="primary" onClick={() => handleQuitModalClose(true)}>
-                            Yes
-                        </Button>
-                        <Button variant="contained" color="secondary" onClick={() => handleQuitModalClose(false)}>
-                            No
-                        </Button>
-                    </Box>
-                </Box>
-            </Modal>
+
         </>
     );
 };
