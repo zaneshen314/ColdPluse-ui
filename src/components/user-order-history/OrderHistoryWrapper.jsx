@@ -18,6 +18,7 @@ const OrderHistoryWrapper = ({width}) => {
             padding: 2,
             paddingTop: 5,
             borderRadius: 2,
+            backgroundColor: "#4e81ad",
             border: '1px solid white'
         }}>
             <Typography variant="h4" sx={{fontWeight: 'bold', marginBottom: 3.5, marginLeft: "35px"}}>
