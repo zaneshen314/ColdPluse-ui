@@ -1,6 +1,5 @@
 import React from 'react';
 import './Concerts.css';
-import {Card, Container} from "@mui/material";
 
 const slides = [
     {
