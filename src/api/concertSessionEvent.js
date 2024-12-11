@@ -1,4 +1,3 @@
-
 import instance from "./interceptor";
 
 const API_BASE_URL = "/concerts";
@@ -54,10 +53,10 @@ export const getConcertScheduleClassByConcertIdAndScheduleId = async (concertId,
 }
 
 export const getConcertByConcertId = async (concertId) => {
-    try{
+    try {
         const response = await instance.get(`${API_BASE_URL}/${concertId}`);
         return response.data.data;
-    }catch(error){
+    } catch (error) {
         console.error("Error fetching concert data:", error);
         throw error;
     }
@@ -69,6 +68,16 @@ export const getAllConcerts = async () => {
         return response.data.data;
     } catch (error) {
         console.error("Error fetching concerts:", error);
+        throw error;
+    }
+}
+
+export const putCumulatedPoint = async (cumulatedPoint) => {
+    try {
+        const response = await instance.put(`/users/cumulatedPoint?cumulatedPointCharged=` + cumulatedPoint);
+        return response.data.data;
+    } catch (error) {
+        console.error("Error updating cumulated point of user:", error);
         throw error;
     }
 }
