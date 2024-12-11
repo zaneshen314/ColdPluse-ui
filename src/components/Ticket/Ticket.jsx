@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog, FormControl, InputLabel, Select, MenuItem, Box, Paper } from '@mui/material';
-import { getEventData, getConcertTicketStrategyByClass, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId } from '../../api/concertSessionEvent';
+import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog, FormControl, InputLabel, Select, MenuItem , Paper } from '@mui/material';
+import { getEventData, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId } from '../../api/concertSessionEvent';
 import ScheduleMeta from './ScheduleMeta';
 import TicketOptions from './TicketOptions';
 import Login from '../Login/Login';
@@ -121,7 +121,7 @@ export default function Ticket() {
                         >
                             {scheduleList.map((schedule) => (
                                 <MenuItem key={schedule.scheduleId} value={schedule.scheduleId}>
-                                    {schedule.name}
+                                    {schedule.name} ({new Date(schedule.start_time).toLocaleString()})
                                 </MenuItem>
                             ))}
                         </Select>
