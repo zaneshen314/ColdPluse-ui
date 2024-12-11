@@ -20,8 +20,8 @@ const TicketList = ({ tickets }) => {
                 {tickets.map((ticket, index) => {
                     const eticket = {
                         ticketId: ticket.id,
-                        guestId: ticket.idCardNum,
-                        guestName: ticket.viewerName
+                        idCardNum: ticket.idCardNum,
+                        viewerName: ticket.viewerName
                     };
                     return (
                         <Grid item xs={12 / tickets.length} key={index} sx={{ textAlign: 'center' }}>
