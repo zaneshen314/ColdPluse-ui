@@ -16,9 +16,10 @@ const OrderHistoryWrapper = ({width}) => {
             maxWidth: {width},
             boxShadow: 3,
             padding: 2,
+            paddingTop: 5,
             borderRadius: 2,
         }}>
-            <Typography variant="h4" sx={{fontWeight: 'bold', marginBottom: 2, marginLeft: "20px"}}>
+            <Typography variant="h4" sx={{fontWeight: 'bold', marginBottom: 3.5, marginLeft: "35px"}}>
                 Order History
             </Typography>
             <OrderRecordsList orders={transactionWithTickets}/>

@@ -10,7 +10,7 @@ const OrderRecordsList = ({orders}) => {
     };
 
     return (
-        <Box>
+        <Box sx={{margin: "0 20px"}}>
             {orders.map((order) => (
                 <OrderRecord
                     key={order.id}
