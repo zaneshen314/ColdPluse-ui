@@ -18,13 +18,12 @@ const Signup = ({ isVisible, onClose }) => {
             alert('Please enter a valid email address.');
             return;
         }
-
-        try {
-            await signup(email, name, password);
+        const response = await signup(email, name, password);
+        if(response.code === 200){
             alert('Signup successful!');
             onClose();
-        } catch (error) {
-            alert(error.message);
+        }else{
+            alert(response.message);
         }
     };
 
