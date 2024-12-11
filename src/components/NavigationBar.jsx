@@ -40,7 +40,7 @@ export default function NavigationBar() {
         setAuth(!!localStorage.getItem('token'));
         alert('Logged out successfully!');
         handleClose();
-        window.location.reload(); // Refresh the page after logout
+        navigate('/');
     };
 
     return (
