@@ -8,7 +8,6 @@ const CharityEventsPage = () => {
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [claimPoint, setClaimPoint] = useState(false);
     const [openModal, setOpenModal] = useState(false);
     const [selectedEventId, setSelectedEventId] = useState(null);
     const [ids, setIds] = useState([]);
@@ -36,7 +35,6 @@ const CharityEventsPage = () => {
 
     const handleModalClose = (claim) => {
         console.log(claimPoint)
-        setClaimPoint(claim);
         setOpenModal(false);
 
         if (selectedEventId !== null) {

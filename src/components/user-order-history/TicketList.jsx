@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Chip, Divider, Grid} from '@mui/material';
-import ETicket from "../ETicket";
+import ETicket from "../Payment/ETicket";
 
 const TicketList = ({ tickets }) => {
     return (
