@@ -17,9 +17,6 @@ import Concerts from "./components/Concerts";
 
 export const AppContext = React.createContext();
 
-
-
-
 function App() {
     const [state, dispatch] = React.useReducer(charityEventReducer, initialState);
 
@@ -35,15 +32,12 @@ function App() {
                         <Route path="/ticket" element={<Ticket/>}/>
                         <Route path="/events" element={<CharityEventsPage/>}/>
                         <Route path="/concert-event" element={<ConcertEvent/>}/>
-                        <Route path="/userCharityWrapper" element={<UserCharityWrapper/>}/>
                         <Route path="/user-profile" element={<UserProfile/>}/>
                         <Route path="/user-order-history" element={<OrderHistoryWrapper width="1000px"/>}/>
                         <Route path="/show-all-concerts" element={<Concerts/>}/>
                         <Route path="*" element={<h1>Not Found</h1>}/>
                         <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px"/>}/>
-                        <Route path="/concert-event" element={<ConcertEvent/>}/>
-                        <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>}
-                        />
+                        <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>}/>
                     </Routes>
                 </Router>
             </AuthProvider>
