@@ -14,10 +14,11 @@ const OrderHistoryWrapper = ({width}) => {
         <Box sx={{
             margin: '1% auto',
             maxWidth: {width},
-            boxShadow: 3,
+            boxShadow: '0 0 10px white',
             padding: 2,
             paddingTop: 5,
             borderRadius: 2,
+            border: '1px solid white'
         }}>
             <Typography variant="h4" sx={{fontWeight: 'bold', marginBottom: 3.5, marginLeft: "35px"}}>
                 Order History
