@@ -6,8 +6,9 @@ import EventIcon from '@mui/icons-material/Event';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import ScheduleIcon from '@mui/icons-material/Schedule';
+import EventSeatIcon from '@mui/icons-material/EventSeat';
 
-export default function ScheduleMeta({ scheduleMeta }) {
+export default function ScheduleMeta({ scheduleMeta, remainingCapacity }) {
     const typographyStyle = { mb: 1, display: 'flex', alignItems: 'center' };
     const iconStyle = { verticalAlign: 'middle', mr: 1 };
     return (
@@ -44,6 +45,10 @@ export default function ScheduleMeta({ scheduleMeta }) {
                         Next Ticket Sale Time: {new Date(scheduleMeta.nextPresellTime).toLocaleString()}
                     </Typography>
                 }
+                <Typography variant="body1" sx={typographyStyle}>
+                    <EventSeatIcon sx={iconStyle} />
+                    Remaining Available Seats: {remainingCapacity}
+                </Typography>
             </Box>
         </Stack>
     );
