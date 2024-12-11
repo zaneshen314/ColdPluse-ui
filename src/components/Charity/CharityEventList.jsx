@@ -57,8 +57,8 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
                             ],
                         }}
                         buttonProps={{
-                            text: joinedIds && joinedIds.includes(event.id) ? JOINED : JOIN_EVENT,
-                            onButtonClick: joinedIds && joinedIds.includes(event.id) ? () => handleQuitCharityEvent(event.id) : () => onJoinEvent && onJoinEvent(event.id),
+                            text: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? JOINED : JOIN_EVENT,
+                            onButtonClick: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? () => handleQuitCharityEvent(event.id) : () => onJoinEvent && onJoinEvent(event.id),
                         }}
                     />
                 ))}
