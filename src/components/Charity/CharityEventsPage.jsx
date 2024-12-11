@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react";
 import {Box, Typography, Modal, Button} from "@mui/material";
 import CharityEventList from "./CharityEventList";
 import {getAllCharityEvents, getUserCurrentCharityEventIds, registerCharityEvent} from "../../api/charityEvent";
-import instance from "../../api/interceptor";
 
 const CharityEventsPage = () => {
     const [events, setEvents] = useState([]);
