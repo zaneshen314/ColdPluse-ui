@@ -48,12 +48,16 @@ export default function Ticket() {
             setLoginOpen(true);
         } else {
             authenticated();
-            navigate('/payment', { state: {
+            const ticket = {
                 numberOfTickets: totalSelectedTickets,
-                time: concertMeta.time,
+                time: concertMeta.start_time,
                 venue: concertMeta.venue,
                 ticketClass: selectedClass,
-                pricePerTicket: concertDetails.find((detail) => detail.className === selectedClass).price}});                
+                pricePerTicket: concertDetails.find((detail) => detail.className === selectedClass).price,
+                concertClassId: concertDetails.find((detail) => detail.className === selectedClass).id,
+                scheduleId: concertMeta.scheduleId,
+                concertName: concertMeta.name}
+            navigate('/payment', { state: ticket});                
         }
     };
 
