@@ -76,7 +76,7 @@ export default function Ticket() {
         });
         getConcertScheduleByConcertId(concertId).then((data) => {
             setScheduleList(data);
-            setSelectedScheduleId(data[0].scheduleId);            
+            setSelectedScheduleId(data[0].scheduleId || '');
             setInitializedScheduleList(true);
         });
     }, [concertId]);
@@ -85,7 +85,6 @@ export default function Ticket() {
         if (!selectedScheduleId) {
             return;
         }
-        console.log(selectedScheduleId)
         getEventData(concertId, selectedScheduleId).then((data) => {
             setScheduleMeta(data);
         });
@@ -93,7 +92,6 @@ export default function Ticket() {
             setTicketOptions(data);
         });
     }, [selectedScheduleId]);
-
 
     useEffect(() => {
         if (totalSelectedTickets > 0 && totalSelectedTickets <= 3) {
@@ -104,8 +102,25 @@ export default function Ticket() {
     }, [totalSelectedTickets]);
 
     return (
-        <Container sx={{ pt: 4 }}>
+        <Container sx={{ pt: 4, height: '120vh'}}>
             <Typography variant="h3" sx={{ mb: 2, fontWeight: 'bold' }}>{concertName}</Typography>
+            {initializedScheduleList && (
+                <FormControl fullWidth sx={{ mb: 2 }}>
+                    <InputLabel id="schedule-select-label">Select Schedule</InputLabel>
+                    <Select
+                        labelId="schedule-select-label"
+                        value={selectedScheduleId}
+                        label="Select Schedule"
+                        onChange={handleScheduleChange}
+                    >
+                        {scheduleList.map((schedule) => (
+                            <MenuItem key={schedule.scheduleId} value={schedule.scheduleId}>
+                                {schedule.name}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+            )}
             <ScheduleMeta scheduleMeta={scheduleMeta} />
             <Divider style={{ margin: '20px 0' }} />
             <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>Ticket Option</Typography>
