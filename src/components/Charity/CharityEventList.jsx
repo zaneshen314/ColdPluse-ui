@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { Modal, Box, Typography, Button } from "@mui/material";
+import React from "react";
 import EventCard, { EVENT_DETAILS_TYPE } from "../EventCard";
-import { deleteCharityEventParticipation } from "../../api/charityEvent";
 import Carousel from "./Carousel";
 
 const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
