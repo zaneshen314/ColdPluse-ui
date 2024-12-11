@@ -37,7 +37,7 @@ const OrderRecord = ({order, expanded, onToggle}) => {
                                 sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#adafb8'}}>
                         <LocationOnIcon sx={{color: '#adafb8', fontSize: '1.3rem', marginRight: 1}}/>
                         <span style={{fontSize: '1rem', marginRight: '0.5rem'}}>Venue:</span>
-                        {"Beach Park"}
+                        {order.venue}
                     </Typography>
                     <Typography variant="body1"
                                 sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#adafb8'}}>
