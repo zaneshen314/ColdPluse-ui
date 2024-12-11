@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog, FormControl, InputLabel, Select, MenuItem, Paper } from '@mui/material';
-import { getEventData, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId } from '../../api/concertSessionEvent';
+import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog, FormControl, InputLabel, Select, MenuItem, Box, Paper } from '@mui/material';
+import { getEventData, getConcertTicketStrategyByClass, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId } from '../../api/concertSessionEvent';
 import ScheduleMeta from './ScheduleMeta';
 import TicketOptions from './TicketOptions';
 import Login from '../Login/Login';
+import CountdownTimer from '../CountdownTimer';
 import { useAuth } from '../../context/AuthContext';
 
 export default function Ticket() {
@@ -23,6 +24,7 @@ export default function Ticket() {
     const [concertName, setConcertName] = useState("");
     const [scheduleList, setScheduleList] = useState([]);
     const [initializedScheduleList, setInitializedScheduleList] = useState(false);
+    const [saleStartTime, setSaleStartTime] = useState(null);
 
     const totalPrice = Object.values(selectedTickets).reduce((acc, ticket) => acc + (ticket.price * ticket.quantity), 0);
     const totalSelectedTickets = Object.values(selectedTickets).reduce((acc, ticket) => acc + ticket.quantity, 0);
@@ -87,11 +89,12 @@ export default function Ticket() {
         }
         getEventData(concertId, selectedScheduleId).then((data) => {
             setScheduleMeta(data);
+            setSaleStartTime(new Date(data.saleStartTime));
         });
         getConcertScheduleClassByConcertIdAndScheduleId(concertId, selectedScheduleId).then((data) => {
             setTicketOptions(data);
         });
-    }, [concertId, selectedScheduleId]);
+    }, [selectedScheduleId, concertId]);
 
     useEffect(() => {
         if (totalSelectedTickets > 0 && totalSelectedTickets <= 3) {
@@ -101,8 +104,10 @@ export default function Ticket() {
         }
     }, [totalSelectedTickets]);
 
+    const isSaleStarted = saleStartTime && new Date() >= saleStartTime;
+
     return (
-        <Container sx={{ pt: 4, pb: 10}}>
+        <Container sx={{ pt: 4, pb: 10 }}>
             <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
                 <Typography variant="h3" sx={{ mb: 2, fontWeight: 'bold' }}>{concertName}</Typography>
                 {initializedScheduleList && (
@@ -124,7 +129,7 @@ export default function Ticket() {
                 )}
                 <ScheduleMeta scheduleMeta={scheduleMeta} />
             </Paper>
-            <Divider style={{ margin: '20px 0' }} />
+            <Divider style={{ margin: '20px 0'}} />
             <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>Ticket Option</Typography>
             {showWarning && (
                 <Alert severity="warning" sx={{ mb: 2 }}>
@@ -141,14 +146,28 @@ export default function Ticket() {
                 selectedTickets={selectedTickets} 
                 handleTicketChange={handleTicketChange} 
             />
-            <AppBar position="fixed" color="primary" sx={{ top: 'auto', bottom: 0, background: 'linear-gradient(90deg, #9b59b6, #4fa1d9)' }}>
-                <Toolbar>
+            <AppBar position="fixed" color="primary" sx={{ 
+                background: 'linear-gradient(90deg, #9b59b6, #4fa1d9)', top: 'auto', bottom: 0 }}>
+                <Toolbar>          
+  
+                    {isSaleStarted ? (
+                        console.log("sale started"),
+                        <>
                     <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                        Total Tickets: {totalSelectedTickets} | Total Price: USD{totalPrice.toFixed(2)}
-                    </Typography>
-                    <Button disabled={disableBuy} variant="contained" color="secondary" onClick={handleBuyClick}>
-                        Buy
-                    </Button>
+                                Total Tickets: {totalSelectedTickets} | Total Price: USD{totalPrice.toFixed(2)}
+                            </Typography>
+                            <Button disabled={disableBuy} variant="contained" color="secondary" onClick={handleBuyClick}>
+                                Buy
+                            </Button>
+                        </>
+                        
+                    ) : (
+                        <>
+                        <Typography sx={{flexGrow:1}}></Typography>
+                        <CountdownTimer targetDate={saleStartTime}/>
+
+                        </>
+                    )}
                 </Toolbar>
             </AppBar>
             <Dialog open={loginOpen} onClose={() => setLoginOpen(false)}>
