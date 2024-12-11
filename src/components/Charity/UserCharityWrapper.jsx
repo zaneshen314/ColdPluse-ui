@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {AppBar, Box, Chip, Container, Toolbar, Typography} from '@mui/material';
 import UserCharityList from './UserCharityList';
 import {getUserCurrentPoints, getUserEventParticipation} from "../../api/charityEvent";
-import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import "./Carousel.css"
 
 const UserCharityWrapper = ({width}) => {

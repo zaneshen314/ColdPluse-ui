@@ -4,10 +4,10 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PeopleIcon from '@mui/icons-material/People';
 import EventSeatIcon from '@mui/icons-material/EventSeat';
 
-export default function TicketOptions({ concertDetails, selectedTickets, handleTicketChange }) {
+export default function TicketOptions({ ticketOptions, selectedTickets, handleTicketChange }) {
     return (
         <Box sx={{display:"flex", gap: "1rem"}}  flexWrap="wrap">
-            {concertDetails.map((detail) => (
+            {ticketOptions.map((detail) => (
                 <Box key={detail.id} flex sx={{flexBasis: 'calc(33.33% -5px)'}}>
                     <Card>
                         <CardContent>
