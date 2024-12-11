@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Modal, Box, Typography, Button } from "@mui/material";
+import { Modal, Box, Typography, Button } from "@mui/material";
 import EventCard, { EVENT_DETAILS_TYPE } from "../EventCard";
 import { deleteCharityEventParticipation } from "../../api/charityEvent";
 import Carousel from "./Carousel";

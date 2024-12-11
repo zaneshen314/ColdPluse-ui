@@ -22,7 +22,9 @@ const OrderHistoryWrapper = ({width}) => {
             <Typography variant="h4" sx={{fontWeight: 'bold', marginBottom: 3.5, marginLeft: "35px"}}>
                 Order History
             </Typography>
-            <OrderRecordsList orders={transactionWithTickets}/>
+            {transactionWithTickets.length > 0 && (
+                <OrderRecordsList orders={transactionWithTickets}/>
+            )}
         </Box>
     );
 };

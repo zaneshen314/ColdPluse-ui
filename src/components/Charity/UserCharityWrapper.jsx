@@ -17,7 +17,7 @@ const UserCharityWrapper = ({width}) => {
     }, []);
     return (
         <Box sx={{
-            margin: '1% auto',
+            margin: '1% 23.3%',
             maxWidth: {width},
             boxShadow: 3,
             padding: 2,
@@ -47,9 +47,11 @@ const UserCharityWrapper = ({width}) => {
                     />
                 </Toolbar>
             </AppBar>
-            <Container>
-                <UserCharityList userCharityEvents={userCharityEvents}/>
-            </Container>
+            {userCharityEvents.length > 0 && (
+                <Container>
+                    <UserCharityList userCharityEvents={userCharityEvents}/>
+                </Container>
+            )}
         </Box>
     );
 };
