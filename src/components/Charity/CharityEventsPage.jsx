@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Modal, Button } from "@mui/material";
 import CharityEventList from "./CharityEventList";
-import {getAllCharityEvents, getUserCurrentCharityEventIds} from "../../api/charityEvent";
+import { getAllCharityEvents, getUserCurrentCharityEventIds } from "../../api/charityEvent";
 import instance from "../../api/interceptor";
-import Test from "../Concerts";
 
 const CharityEventsPage = () => {
     const [events, setEvents] = useState([]);
@@ -14,7 +13,6 @@ const CharityEventsPage = () => {
     const [selectedEventId, setSelectedEventId] = useState(null);
     const [ids, setIds] = useState([]);
 
-    // Fetch charity events from the API
     useEffect(() => {
         const fetchEvents = async () => {
             try {
@@ -37,7 +35,6 @@ const CharityEventsPage = () => {
     };
 
     const handleModalClose = (claim) => {
-        console.log(claimPoint)
         setClaimPoint(claim);
         setOpenModal(false);
 
@@ -86,8 +83,8 @@ const CharityEventsPage = () => {
     }
 
     return (
-        <>
-            <CharityEventList events={events} onJoinEvent={handleJoinEvent} joinedIds={ids} setIds={setIds}/>
+        <Box sx={{ overflowX: "hidden" }}>
+            <CharityEventList events={events} onJoinEvent={handleJoinEvent} joinedIds={ids} setIds={setIds} />
             <Modal
                 open={openModal}
                 onClose={() => handleModalClose(false)}
@@ -105,7 +102,7 @@ const CharityEventsPage = () => {
                         border: '2px solid #000',
                         boxShadow: 24,
                         p: 4,
-                        borderRadius: '10px', // Add this line to make the corners rounded
+                        borderRadius: '10px',
                     }}
                 >
                     <Typography id="modal-title" variant="h6" component="h2">
@@ -124,7 +121,7 @@ const CharityEventsPage = () => {
                     </Box>
                 </Box>
             </Modal>
-        </>
+        </Box>
     );
 };
 
