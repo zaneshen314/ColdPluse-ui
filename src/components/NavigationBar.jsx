@@ -52,9 +52,6 @@ export default function NavigationBar() {
                     <Button color="inherit" onClick={() => navigate("/")}>
                         Home
                     </Button>
-                    <Button color="inherit" onClick={() => navigate("/ticket")}>
-                        Tickets
-                    </Button>
                     <Button color="inherit" onClick={() => navigate("/events")}>
                         Charity Events
                     </Button>

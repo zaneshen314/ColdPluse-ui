@@ -91,7 +91,7 @@ export default function Ticket() {
         getConcertScheduleClassByConcertIdAndScheduleId(concertId, selectedScheduleId).then((data) => {
             setTicketOptions(data);
         });
-    }, [selectedScheduleId]);
+    }, [concertId, selectedScheduleId]);
 
     useEffect(() => {
         if (totalSelectedTickets > 0 && totalSelectedTickets <= 3) {
