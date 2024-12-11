@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Login from './Login/Login';
 import Signup from './Login/Signup'; // Import the Signup component
 
+
 export default function NavigationBar() {
     const navigate = useNavigate();
     const [auth, setAuth] = useState(!!localStorage.getItem('token'));
@@ -49,6 +50,9 @@ export default function NavigationBar() {
             </FormGroup>
             <AppBar position="static" sx={{ backgroundColor: "#020024" }}>
                 <Toolbar sx={{ justifyContent: "flex-end", gap: "1rem" }}>
+                    <Box sx={{flexGrow: 1}}>
+                        <img src="/ColdPulse.png" alt="ColdPulse" style={{ height: '1rem'}} />
+                    </Box>
                     <Button color="inherit" onClick={() => navigate("/")}>
                         Home
                     </Button>
