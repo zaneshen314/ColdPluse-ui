@@ -1,6 +1,5 @@
 import React from 'react';
 import './Concerts.css';
-import {Card, Container} from "@mui/material";
 
 const slides = [
     {
@@ -94,10 +93,6 @@ const slidesReducer = (state, event) => {
         };
     }
 };
-
-function handleClick() {
-
-}
 
 function Slide({slide, offset}) {
     const active = offset === 0 ? true : null;
