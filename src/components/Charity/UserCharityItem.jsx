@@ -78,7 +78,7 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
     };
 
     return (
-        <Paper elevation={3} sx={{ padding: 2, backgroundColor: "white"  }}>
+        <Paper elevation={3} sx={{ padding: 2, backgroundColor: "white", boxShadow: "0 0 20px #3a5f7a" }}>
             <Grid container spacing={2}>
                 <Grid item xs={3} sx={{ textAlign: 'center' }}>
                     <Box
