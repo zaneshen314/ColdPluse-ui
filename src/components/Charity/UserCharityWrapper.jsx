@@ -22,7 +22,8 @@ const UserCharityWrapper = ({width}) => {
             boxShadow: '0 0 10px white',
             padding: 2,
             borderRadius: 2,
-            border: '1px solid white',
+            backgroundColor: "#4e81ad",
+            border: '1px solid #4e81ad',
         }}>
             <AppBar position="static" elevation={0} sx={{ backgroundColor: 'transparent', width: '97%', margin: '10px auto', marginBottom: "20px" }}>
                 <Toolbar>
