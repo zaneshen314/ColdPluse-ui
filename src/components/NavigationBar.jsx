@@ -88,7 +88,6 @@ export default function NavigationBar() {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={() => { navigate("/user-profile") }}>User Profile</MenuItem>
                                 <MenuItem onClick={() => { navigate("/user-order-history") }}>Order History</MenuItem>
                                 <MenuItem onClick={() => { navigate("/userCharityWrapper") }}>Event History</MenuItem>
                                 <MenuItem onClick={handleLogout}>Logout</MenuItem>

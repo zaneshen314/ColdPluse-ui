@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import ConcertEvent from "./components/ConcertEvent";
 import UserCharityWrapper from "./components/Charity/UserCharityWrapper";
 import NavigationBar from './components/NavigationBar';
-import UserProfile from './components/UserProfile';
 import Ticket from './components/Ticket/Ticket';
 import {initialState, charityEventReducer} from "./reducer/charityEventReducer";
 import OrderHistoryWrapper from "./components/user-order-history/OrderHistoryWrapper";
@@ -32,7 +31,6 @@ function App() {
                         <Route path="/events" element={<CharityEventsPage/>}/>
                         <Route path="/concert-event" element={<ConcertEvent/>}/>
                         <Route path="/userCharityWrapper" element={<UserCharityWrapper/>}/>
-                        <Route path="/user-profile" element={<UserProfile/>}/>
                         <Route path="/user-order-history" element={<OrderHistoryWrapper width="1000px"/>}/>
                         <Route path="/show-all-concerts" element={<Concerts/>}/>
                         <Route path="/userCharityWrapper" element={<UserCharityWrapper width="1000px"/>}/>
