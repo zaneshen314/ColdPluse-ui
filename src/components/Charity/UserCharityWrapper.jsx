@@ -8,10 +8,10 @@ const UserCharityWrapper = ({width}) => {
     const [userCharityEvents, setUserCharityEvents] = useState([]);
     const [currentPoint, setCurrentPoint] = useState(0)
     useEffect(() => {
-        getUserEventParticipation(1).then((response) => {
+        getUserEventParticipation().then((response) => {
             setUserCharityEvents(response);
         });
-        getUserCurrentPoints(1).then((response) => {
+        getUserCurrentPoints().then((response) => {
            setCurrentPoint(response);
         });
     }, []);

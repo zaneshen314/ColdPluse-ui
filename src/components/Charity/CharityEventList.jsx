@@ -19,7 +19,7 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
     const handleQuitModalClose = (confirm) => {
         setOpenQuitModal(false);
         if (confirm && selectedEventId !== null) {
-            deleteCharityEventParticipation(1, selectedEventId).then((response) => {
+            deleteCharityEventParticipation(selectedEventId).then((response) => {
                 setIds(joinedIds.filter((id) => id !== selectedEventId));
             });
         }

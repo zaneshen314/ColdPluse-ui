@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Box, Typography, Modal, Button } from "@mui/material";
+import React, {useState, useEffect} from "react";
+import {Box, Typography, Modal, Button} from "@mui/material";
 import CharityEventList from "./CharityEventList";
-import { getAllCharityEvents, getUserCurrentCharityEventIds } from "../../api/charityEvent";
+import {getAllCharityEvents, getUserCurrentCharityEventIds, registerCharityEvent} from "../../api/charityEvent";
 import instance from "../../api/interceptor";
 
 const CharityEventsPage = () => {
@@ -16,7 +16,7 @@ const CharityEventsPage = () => {
         const fetchEvents = async () => {
             try {
                 const data = await getAllCharityEvents();
-                setIds(await getUserCurrentCharityEventIds(1));
+                setIds(await getUserCurrentCharityEventIds());
                 setEvents(data);
             } catch (err) {
                 setError("Failed to fetch charity events.");
@@ -37,12 +37,9 @@ const CharityEventsPage = () => {
         setOpenModal(false);
 
         if (selectedEventId !== null) {
-            instance.post(`/charity-events`, {
-                userId: 1,
-                charityEventId: selectedEventId,
-                claimPoint: claim,
-            });
-            setIds([...ids, selectedEventId]);
+            registerCharityEvent(selectedEventId, claim).then((response) => {
+                setIds([...ids, selectedEventId])
+            })
         }
     };
 
@@ -81,8 +78,8 @@ const CharityEventsPage = () => {
     }
 
     return (
-        <Box sx={{ overflowX: "hidden" }}>
-            <CharityEventList events={events} onJoinEvent={handleJoinEvent} joinedIds={ids} setIds={setIds} />
+        <Box sx={{overflowX: "hidden"}}>
+            <CharityEventList events={events} onJoinEvent={handleJoinEvent} joinedIds={ids} setIds={setIds}/>
             <Modal
                 open={openModal}
                 onClose={() => handleModalClose(false)}
@@ -106,10 +103,10 @@ const CharityEventsPage = () => {
                     <Typography id="modal-title" variant="h6" component="h2">
                         Claim Points
                     </Typography>
-                    <Typography id="modal-description" sx={{ mt: 2 }}>
+                    <Typography id="modal-description" sx={{mt: 2}}>
                         Do you want to claim points for this event?
                     </Typography>
-                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
+                    <Box sx={{mt: 2, display: 'flex', justifyContent: 'space-between'}}>
                         <Button variant="contained" color="primary" onClick={() => handleModalClose(true)}>
                             Yes
                         </Button>
