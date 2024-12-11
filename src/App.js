@@ -21,7 +21,6 @@ function App() {
     const [state, dispatch] = React.useReducer(charityEventReducer, initialState);
 
     return (
-        <body>
         <div className="App">
             <AppContext.Provider value={{state, dispatch}}>
             <AuthProvider>
@@ -32,6 +31,7 @@ function App() {
                         <Route path="/ticket" element={<Ticket/>}/>
                         <Route path="/events" element={<CharityEventsPage/>}/>
                         <Route path="/concert-event" element={<ConcertEvent/>}/>
+                        <Route path="/userCharityWrapper" element={<UserCharityWrapper/>}/>
                         <Route path="/user-profile" element={<UserProfile/>}/>
                         <Route path="/user-order-history" element={<OrderHistoryWrapper width="1000px"/>}/>
                         <Route path="/show-all-concerts" element={<Concerts/>}/>
@@ -43,7 +43,6 @@ function App() {
             </AuthProvider>
             </AppContext.Provider>
         </div>
-        </body>
     );
 }
 
