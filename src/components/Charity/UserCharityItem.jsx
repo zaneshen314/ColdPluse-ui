@@ -5,7 +5,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 import { deleteCharityEventParticipation } from "../../api/charityEvent";
 
 const images = [
@@ -121,8 +120,7 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
                     />
                     {event.charityEventParticipation.status === 'COMPLETED' && (
                         <Chip
-                            icon={<MilitaryTechIcon />}
-                            label={`${event.charityEvent.point} Points`}
+                            label={`${event.charityEvent.point} Heartbeats`}
                             sx={{
                                 backgroundColor: '#fdf1f5',
                                 color: '#e8628d',
