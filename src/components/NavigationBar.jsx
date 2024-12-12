@@ -11,7 +11,7 @@ export default function NavigationBar() {
     const navigate = useNavigate();
     const [auth, setAuth] = useState(!!localStorage.getItem('token'));
     const name = localStorage.getItem('name');
-    const [anchorEl, setAnchorEl] = useState(!!localStorage.getItem('token'));
+    const [anchorEl, setAnchorEl] = useState(false);
     const [isLoginModalVisible, setLoginModalVisible] = useState(false);
     const [isSignupModalVisible, setSignupModalVisible] = useState(false); // State for signup modal
 
