@@ -5,6 +5,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import EventSeatIcon from '@mui/icons-material/EventSeat';
 
 export default function TicketOptions({ ticketOptions, selectedTickets, handleTicketChange }) {
+    const maxPurchaseTicket = 3;
     return (
         <Box sx={{display:"flex", gap: "1rem"}}  flexWrap="wrap">
             {ticketOptions.map((detail) => (
@@ -32,8 +33,8 @@ export default function TicketOptions({ ticketOptions, selectedTickets, handleTi
                                 fullWidth
                                 margin="normal"
                                 min={0}
-                                max={3}
-                                onChange={(e) => handleTicketChange(detail.id, detail.className, detail.price, Math.min(Math.max(parseInt(e.target.value) || 0, 0), 3))}
+                                max={detail.availableSeats > maxPurchaseTicket ? maxPurchaseTicket : detail.availableSeats}
+                                onChange={(e) => handleTicketChange(detail.id, detail.className, detail.price, Math.min(Math.max(parseInt(e.target.value) || 0, 0), detail.availableSeats > maxPurchaseTicket ? maxPurchaseTicket : detail.availableSeats))}
                                 value={selectedTickets[detail.id]?.quantity || ''}
                             />
                         </CardContent>
