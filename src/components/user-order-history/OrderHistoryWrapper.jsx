@@ -15,7 +15,7 @@ const OrderHistoryWrapper = ({width}) => {
             margin: '1% auto',
             maxWidth: {width},
             boxShadow: '0 0 10px white',
-            backgroundColor: "#b3dcff63",
+            backgroundColor: "rgba(29, 29, 29, 0.3)",
             padding: 2,
             paddingTop: 5,
             borderRadius: 2,
