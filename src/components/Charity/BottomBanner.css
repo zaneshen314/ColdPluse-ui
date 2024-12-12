@@ -1,0 +1,46 @@
+.bottom-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff4d4d, #ff947b);
+    color: white;
+    padding: 40px 20px;
+    margin-top: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bottom-banner-content {
+    text-align: center;
+    max-width: 800px;
+}
+
+.bottom-banner-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+    font-family: "Arial, sans-serif";
+}
+
+.bottom-banner-subtitle {
+    font-size: 18px;
+    margin: 10px 0 30px;
+    font-family: "Arial, sans-serif";
+}
+
+.bottom-banner-button {
+    background-color: white;
+    color: #ff4d4d;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bottom-banner-button:hover {
+    background-color: #ff4d4d;
+    color: white;
+}

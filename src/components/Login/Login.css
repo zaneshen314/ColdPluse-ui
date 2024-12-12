@@ -1,0 +1,151 @@
+/* src/components/Login/Login.css */
+
+/* Modal Overlay */
+.login-modal .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Darker transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out; /* Fade-in effect */
+}
+
+/* Modal Content */
+.login-modal .modal-content {
+    background-color: #fff;
+    color: #333;
+    padding: 0; /* Remove padding to ensure title fills the width */
+    border-radius: 15px;
+    width: 400px;
+    height: 350px; /* Increase the height */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Deeper shadow */
+    animation: zoomIn 0.3s ease-out; /* Zoom-in effect */
+}
+
+/* Close Button */
+.login-modal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.login-modal .close-button:hover {
+    color: #ff4d4f; /* Color change on hover */
+}
+
+/* Modal Header */
+.login-modal h2 {
+    width: 100%; /* Make the title cover the entire modal */
+    background: linear-gradient(90deg, #9b59b6, #4fa1d9); /* Gradient background */
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 15px 15px 0 0; /* Match the border radius of the modal */
+    margin: 0;
+    font-size: 24px; /* Larger font size */
+    font-weight: 600;
+    text-transform: uppercase; /* Uppercase title for visual impact */
+    box-sizing: border-box; /* Ensure padding and borders are included in width calculation */
+}
+
+/* Form Group */
+.login-modal .form-group {
+    width: 100%;
+    margin: 15px 0;
+    padding: 0 30px; /* Add padding to the form group */
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+
+.login-modal .form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Input Fields */
+.login-modal .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+/* Input Focus */
+.login-modal .form-group input:focus {
+    border-color: #4fa1d9; /* Border color on focus */
+    box-shadow: 0 0 8px rgba(79, 161, 217, 0.3); /* Shadow on focus */
+}
+
+/* Button Group */
+.login-modal .button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 25px;
+    padding: 0 30px; /* Add padding to the button group */
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
+
+.login-modal .button-group button {
+    padding: 12px 25px;
+    background-color: #4fa1d9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Button Hover Effects */
+.login-modal .button-group button:hover {
+    background-color: #3579b1;
+    transform: translateY(-3px); /* Button rise effect */
+}
+
+/* Button Active Effects */
+.login-modal .button-group button:active {
+    background-color: #2f6f9f;
+    transform: translateY(1px); /* Button sink effect */
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
+}
