@@ -39,7 +39,7 @@ const Payment = () => {
     const [paymentMethod, setPaymentMethod] = useState('paypal');
     const [paymentResult, setPaymentResult] = useState(undefined);
     const [isLoading, setIsLoading] = useState(false);
-    const [currentPoint, setCurrentPoint] = useState(10);
+    const [currentPoint, setCurrentPoint] = useState(0);
     const [useHeartbeats, setUseHeartbeats] = useState(false);
 
     useEffect(() => {
@@ -267,11 +267,13 @@ const Payment = () => {
                                     Pay
                                 </Button>
 
-                                <FormControlLabel
+                                {currentPoint > 0 ? <FormControlLabel
                                     control={<Switch checked={useHeartbeats} onChange={handleUseHeartbeatsChange}/>}
                                     label="Pay by Heartbeats"
                                     sx={{ml: 2, mt: 2}}
-                                />
+                                /> : null
+                                }
+
                             </CardContent>
                         </Card>
                     </Box>
