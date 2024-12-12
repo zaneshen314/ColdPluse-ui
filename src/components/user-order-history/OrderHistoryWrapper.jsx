@@ -15,11 +15,11 @@ const OrderHistoryWrapper = ({width}) => {
             margin: '1% auto',
             maxWidth: {width},
             boxShadow: '0 0 10px white',
+            backgroundColor: "#4e81ad",
             padding: 2,
             paddingTop: 5,
             borderRadius: 2,
-            backgroundColor: "#4e81ad",
-            border: '1px solid white'
+            border: '1px solid #4e81ad',
         }}>
             <Typography variant="h4" sx={{fontWeight: 'bold', marginBottom: 3.5, marginLeft: "35px"}}>
                 Order History
