@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
 import Signup from './Signup';
-import { login } from "../../api/login";
-import Swal from 'sweetalert2';
+import {getUserInfo, login} from "../../api/login";
+import { message } from 'antd'
 
 const Login = ({ isVisible, onClose }) => {
     const [email, setEmail] = useState('');
@@ -13,16 +13,15 @@ const Login = ({ isVisible, onClose }) => {
         try {
             const data = await login(email, password);
             localStorage.setItem('token', data.data);
-            await Swal.fire({
-                icon: 'success',
-                title: 'Login successful!',
-            });
-            onClose();
+            const userinfo = await getUserInfo();
+            localStorage.setItem('name', userinfo.data.name);
+            message.success('Login Success');
+            // 延迟半秒
+            setTimeout(() => {
+                onClose();
+            }, 500);
         } catch (error) {
-            await Swal.fire({
-                icon: 'error',
-                title: 'Invalid email or password!'
-            });
+            message.error('Invalid email or password!');
         }
     };
 
