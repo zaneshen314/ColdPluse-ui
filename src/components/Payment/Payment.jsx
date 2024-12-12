@@ -14,7 +14,8 @@ import {
     CircularProgress,
     Chip,
     Switch,
-    FormControlLabel
+    FormControlLabel,
+    Modal
 } from '@mui/material';
 import ETicketGroup from './ETicketGroup';
 import {placeOrder} from '../../api/placeOrder';
@@ -41,6 +42,7 @@ const Payment = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [currentPoint, setCurrentPoint] = useState(0);
     const [useHeartbeats, setUseHeartbeats] = useState(false);
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
     useEffect(() => {
         getUserCurrentPoints().then((response) => {
@@ -107,6 +109,11 @@ const Payment = () => {
     };
 
     const onPayByHeartbeats = () => {
+        setShowConfirmModal(true);
+    };
+
+    const handleConfirm = () => {
+        setShowConfirmModal(false);
         setIsLoading(true);
         const trimmedGuests = guests.map(guest => ({
             idCardNum: guest.idCardNum.trim(),
@@ -137,7 +144,7 @@ const Payment = () => {
                         } else {
                             alert("An error occurred while placing the order");
                         }
-                        putCumulatedPoint(-1)
+                        putCumulatedPoint(-1);
                     })
                     .finally(() => {
                         setIsLoading(false);
@@ -147,7 +154,7 @@ const Payment = () => {
                 alert("You don't have enough heartbeats to pay for the tickets");
                 setIsLoading(false);
             });
-    }
+    };
 
     return (
         <Container>
@@ -279,6 +286,43 @@ const Payment = () => {
                     </Box>
                 )}
             </Box>
+
+            <Modal
+                open={showConfirmModal}
+                onClose={() => setShowConfirmModal(false)}
+                aria-labelledby="confirm-modal-title"
+                aria-describedby="confirm-modal-description"
+            >
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: 300,
+                        bgcolor: 'background.paper',
+                        border: '2px solid #000',
+                        boxShadow: 24,
+                        p: 4,
+                        borderRadius: '10px',
+                    }}
+                >
+                    <Typography id="confirm-modal-title" variant="h6" component="h2">
+                        Confirm Transaction
+                    </Typography>
+                    <Typography id="confirm-modal-description" sx={{ mt: 2 }}>
+                        This transaction will consume {(totalCost / 10).toFixed(0)} heartbeats. Do you want to proceed?
+                    </Typography>
+                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
+                        <Button variant="contained" color="primary" onClick={handleConfirm}>
+                            Yes
+                        </Button>
+                        <Button variant="contained" color="secondary" onClick={() => setShowConfirmModal(false)}>
+                            No
+                        </Button>
+                    </Box>
+                </Box>
+            </Modal>
         </Container>
     );
 };
