@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Divider, Typography, Alert, AppBar, Toolbar, Button, Dialog, FormControl, InputLabel, Select, MenuItem , Paper } from '@mui/material';
-import { getEventData, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId } from '../../api/concertSessionEvent';
+import { getEventData, getConcertScheduleByConcertId, getConcertScheduleClassByConcertIdAndScheduleId, getConcertByConcertId, getConcertClassByConcertId } from '../../api/concertSessionEvent';
 import ScheduleMeta from './ScheduleMeta';
 import TicketOptions from './TicketOptions';
 import Login from '../Login/Login';
@@ -15,24 +15,27 @@ export default function Ticket() {
     const [ticketOptions, setTicketOptions] = useState([]);
     const [scheduleMeta, setScheduleMeta] = useState({});
     const [selectedTickets, setSelectedTickets] = useState({});
-    const [showWarning, setShowWarning] = useState(false);
-    const [classWarning, setClassWarning] = useState(false);
     const [selectedClass, setSelectedClass] = useState(null);
+    const [selectedScheduleId, setSelectedScheduleId] = useState('');
     const [loginOpen, setLoginOpen] = useState(false);
     const [disableBuy, setDisableBuy] = useState(true);
-    const [selectedScheduleId, setSelectedScheduleId] = useState('');
     const [concertName, setConcertName] = useState("");
     const [scheduleList, setScheduleList] = useState([]);
     const [initializedScheduleList, setInitializedScheduleList] = useState(false);
     const [saleStartTime, setSaleStartTime] = useState(null);
     const [remainingTotalCapacity, setRemainingTotalCapacity] = useState(0);
+    const [seatWarning, setSeatWarning] = useState(false);
+    const [showWarning, setShowWarning] = useState(false);
+    const [classWarning, setClassWarning] = useState(false);
 
     const totalPrice = Object.values(selectedTickets).reduce((acc, ticket) => acc + (ticket.price * ticket.quantity), 0);
     const totalSelectedTickets = Object.values(selectedTickets).reduce((acc, ticket) => acc + ticket.quantity, 0);
 
     const handleTicketChange = (id, className, price, value) => {
         const newTotalSelectedTickets = totalSelectedTickets + value - (selectedTickets[id]?.quantity || 0);
-        if (newTotalSelectedTickets <= 3) {
+        const selectedOption = ticketOptions.find(option => option.id === id);
+
+        if (newTotalSelectedTickets <= 3 && newTotalSelectedTickets <= remainingTotalCapacity && value <= selectedOption.availableSeats) {
             if (selectedClass === null || selectedClass === className) {
                 setSelectedTickets((prev) => ({
                     ...prev,
@@ -41,11 +44,16 @@ export default function Ticket() {
                 setSelectedClass(className);
                 setShowWarning(false);
                 setClassWarning(false);
+                setSeatWarning(false);
             } else {
                 setClassWarning(true);
             }
         } else {
-            setShowWarning(true);
+            if (newTotalSelectedTickets > remainingTotalCapacity || value > selectedOption.availableSeats) {
+                setSeatWarning(true);
+            } else {
+                setShowWarning(true);
+            }
         }
     };
 
@@ -92,9 +100,19 @@ export default function Ticket() {
             setScheduleMeta(data);
             setSaleStartTime(new Date(data.saleStartTime));
         });
-        getConcertScheduleClassByConcertIdAndScheduleId(concertId, selectedScheduleId).then((data) => {
-            setTicketOptions(data);
-            setRemainingTotalCapacity(data.reduce((acc, detail) => acc + detail.availableSeats, 0));
+        getConcertScheduleClassByConcertIdAndScheduleId(concertId, selectedScheduleId).then((scheduleClassData) => {
+            getConcertClassByConcertId(concertId).then((classData) => {
+                const updatedClassData = classData.map(classItem => {
+                    const scheduleClassItem = scheduleClassData.find(scheduleItem => scheduleItem.concertClassId === classItem.id);
+                    if (scheduleClassItem) {
+                        return { ...classItem, availableSeats: scheduleClassItem.availableSeats };
+                    }
+                    return classItem;
+                });
+                console.log(updatedClassData)
+                setRemainingTotalCapacity(scheduleClassData.reduce((acc, detail) => acc + detail.availableSeats, 0));
+                setTicketOptions(updatedClassData);
+            });
         });
     }, [selectedScheduleId, concertId]);
 
@@ -142,6 +160,11 @@ export default function Ticket() {
             {classWarning && (
                 <Alert severity="warning" sx={{ mb: 2 }}>
                     You can only buy tickets from the same class in one order. Each user can only purchase at most 3 tickets per concert.
+                </Alert>
+            )}
+            {seatWarning && (
+                <Alert severity="warning" sx={{ mb: 2 }}>
+                    The total number of selected tickets must be smaller than the available seats in that ticket option and the total remaining available seats.
                 </Alert>
             )}
             <TicketOptions 

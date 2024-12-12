@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Signup.css';
 import { signup } from '../../api/login';
+import Swal from "sweetalert2";
 
 const Signup = ({ isVisible, onClose }) => {
     const [email, setEmail] = useState('');
@@ -20,7 +21,11 @@ const Signup = ({ isVisible, onClose }) => {
         }
         const response = await signup(email, name, password);
         if(response.code === 200){
-            alert('Signup successful!');
+            await Swal.fire({
+                icon: 'success',
+                title: 'Signup successful!',
+                timer: 1000
+            });
             onClose();
         }else{
             alert(response.message);

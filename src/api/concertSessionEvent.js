@@ -12,16 +12,6 @@ export const getEventData = async (concertId, scheduleId) => {
     }
 };
 
-export const getConcertTicketStrategyByClass = async (concertId) => {
-    try {
-        const response = await instance.get(`${API_BASE_URL}/${concertId}/classes`);
-        return response.data.data;
-    } catch (error) {
-        console.error("Error fetching ticket strategy:", error);
-        throw error;
-    }
-}
-
 export const getAllEvents = async () => {
     try {
         const response = await instance.get(`${API_BASE_URL}/schedules`);
@@ -42,9 +32,9 @@ export const getConcertScheduleByConcertId = async (concertId) => {
     }
 }
 
-export const getConcertScheduleClassByConcertIdAndScheduleId = async (concertId, scheduleId) => {
+export const getConcertClassByConcertId = async (concertId) => {
     try {
-        const response = await instance.get(`${API_BASE_URL}/${concertId}/schedules/${scheduleId}/classes`);
+        const response = await instance.get(`${API_BASE_URL}/${concertId}/classes`);
         return response.data.data;
     } catch (error) {
         console.error("Error fetching concert schedule class:", error);
@@ -78,6 +68,16 @@ export const putCumulatedPoint = async (cumulatedPoint) => {
         return response.data.data;
     } catch (error) {
         console.error("Error updating cumulated point of user:", error);
+        throw error;
+    }
+}
+
+export const getConcertScheduleClassByConcertIdAndScheduleId = async (concertId, scheduleId) => {
+    try {
+        const response = await instance.get(`${API_BASE_URL}/${concertId}/schedules/${scheduleId}/concert_schedule_classes`);
+        return response.data.data;
+    } catch (error) {
+        console.error("Error fetching concert schedule class:", error);
         throw error;
     }
 }
