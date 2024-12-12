@@ -112,7 +112,7 @@ export default function NavigationBar() {
                     ) : (
                         <>
                             <Button variant="contained" onClick={handleLoginClick} sx={{ backgroundColor: "#22222", color: "white", borderRadius: "80rem" }}>Login</Button>
-                            <Button variant="contained" onClick={handleSignupClick} sx={{ backgroundColor: "red", color: "white", borderRadius: "80rem" }}>Signup</Button>
+                            <Button variant="contained" onClick={handleSignupClick} sx={{ backgroundColor: "blueviolet", color: "white", borderRadius: "80rem" }}>Signup</Button>
                         </>
                     )}
                 </Toolbar>

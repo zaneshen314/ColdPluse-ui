@@ -53,7 +53,7 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
                             text: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? JOINED : JOIN_EVENT,
                             onButtonClick: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? () => handleGoToHistory() : () => onJoinEvent && onJoinEvent(event.id),
                             sx: {
-                                backgroundColor: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? 'green' : 'purple',
+                                backgroundColor: Array.isArray(joinedIds) && joinedIds.includes(event.id) ? 'green' : 'blueviolet',
                             },
                         }}
                     />
