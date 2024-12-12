@@ -12,9 +12,6 @@ instance.interceptors.response.use(
     },
     (error) => {
         console.log("Error: ", error);
-        if (error.response && error.response.status === 401) {
-            message.warning('Session Expired. Please log in again.').then(() => {window.location.href = "/login"});
-        }
         return Promise.reject(error);
     }
 );
