@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Signup.css';
 import { signup } from '../../api/login';
-import Swal from "sweetalert2";
+import { message } from 'antd'
 
 const Signup = ({ isVisible, onClose }) => {
     const [email, setEmail] = useState('');
@@ -10,23 +10,22 @@ const Signup = ({ isVisible, onClose }) => {
 
     const onSignup = async () => {
         if (!email || !name || !password) {
-            alert('All fields are required.');
+            message.warning('All fields are required.');
             return;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            alert('Please enter a valid email address.');
+            message.warning('Please enter a valid email address.');
             return;
         }
         const response = await signup(email, name, password);
         if(response.code === 200){
-            await Swal.fire({
-                icon: 'success',
-                title: 'Signup successful!',
-                timer: 1000
-            });
-            onClose();
+            message.success('Signup successful');
+            // 延迟半秒
+            setTimeout(() => {
+                onClose();
+            }, 500);
         }else{
             alert(response.message);
         }
