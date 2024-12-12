@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Login.css';
 import Signup from './Signup';
 import { login } from "../../api/login";
+import Swal from 'sweetalert2';
 
 const Login = ({ isVisible, onClose }) => {
     const [email, setEmail] = useState('');
@@ -12,10 +13,16 @@ const Login = ({ isVisible, onClose }) => {
         try {
             const data = await login(email, password);
             localStorage.setItem('token', data.data);
-            alert('Login successful!');
+            await Swal.fire({
+                icon: 'success',
+                title: 'Login successful!',
+            });
             onClose();
         } catch (error) {
-            alert(error.message);
+            await Swal.fire({
+                icon: 'error',
+                title: 'Invalid email or password!'
+            });
         }
     };
 
