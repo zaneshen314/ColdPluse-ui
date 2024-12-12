@@ -5,12 +5,12 @@ import "slick-carousel/slick/slick-theme.css";
 import './Carousel.css'; // Import the custom CSS file
 import { PrevArrow, NextArrow } from './CustomArrows'; // Import custom arrows
 
-const Carousel = ({ children }) => {
+const Carousel = ({ children, slidesToShow }) => {
     const settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: slidesToShow ?? 3,
         slidesToScroll: 1,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,

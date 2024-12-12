@@ -1,29 +1,33 @@
-import React from 'react';
-import { Container, Typography, Box } from '@mui/material';
+import React, {useState} from 'react';
+import { Container, Typography, Box, Grid } from '@mui/material';
 import ETicket from './ETicket';
+import Carousel from '../Charity/Carousel';
 
 const ETicketGroup = ( { tickets, concertDetails, purchasedTime } ) => {
+
   return (
-    <Container maxWidth="sm" style={{ textAlign: 'center', marginTop: '3rem' }}>
-      <Typography variant="h4" gutterBottom>
+    <Container maxWidth="md" style={{ marginTop: '10rem' }}>
+      <Typography variant="h3" gutterBottom  align="left">
         Purchase Success
       </Typography>
-      <Typography variant="h5" gutterBottom>
-        Purchased Time: {purchasedTime}
-      </Typography>
-      <Box mt={3}>
-        <Typography variant="h5">Concert Details:</Typography>
-        <Typography variant="body1">Concert Name: {concertDetails.name}</Typography>
-        <Typography variant="body1">Time: {concertDetails.time}</Typography>
-        <Typography variant="body1">Venue: {concertDetails.venue}</Typography>
-        <Typography variant="body1">Class: {concertDetails.ticketClass}</Typography>
-      </Box>
-      <Box mt={3}>
-        <Typography variant="h5">Ticket(s):</Typography>
-        {tickets.map((ticket, index) => 
-          <ETicket key={index} ticket={ticket} size={192}/>
-        )}
-      </Box>
+      <Grid container spacing={3}>
+      <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
+        <Typography variant="h4" gutterBottom align="left">
+          Purchased Time: {purchasedTime}
+        </Typography>
+        <Box mt={3}>
+          <Typography variant="h4" align="left">Concert Details:</Typography>
+          <Typography variant="h5" align="left">Concert Name: {concertDetails.name}</Typography>
+          <Typography variant="h5" align="left">Time: {concertDetails.time}</Typography>
+          <Typography variant="h5" align="left">Venue: {concertDetails.venue}</Typography>
+          <Typography variant="h5" align="left">Class: {concertDetails.ticketClass}</Typography>
+        </Box>
+      </Grid>
+        <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
+          <Typography variant="h4">Ticket(s):</Typography>
+          <Carousel slidesToShow={1} children={tickets.map(ticket => <ETicket ticket={ticket} large />)}/>
+        </Grid>
+      </Grid>
     </Container>
   );
 };
