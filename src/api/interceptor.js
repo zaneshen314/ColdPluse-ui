@@ -8,9 +8,6 @@ const instance = axios.create({ baseURL });
 
 instance.interceptors.response.use(
     (response) => {
-        if (response.data && response.data.code() === 401) {
-            message.warning('Session Expired. Please log in again.').then(() => {window.location.href = "/login"});
-        }
         return response;
     },
     (error) => {
