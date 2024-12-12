@@ -29,24 +29,24 @@ const OrderRecord = ({order, expanded, onToggle}) => {
                         {order.concertName}
                     </Typography>
                     <Typography variant="body1"
-                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#adafb8'}}>
-                        <DateRangeIcon sx={{color: '#adafb8', fontSize: '1.3rem', marginRight: 1}}/>
+                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#6b6d76'}}>
+                        <DateRangeIcon sx={{color: '#6b6d76', fontSize: '1.3rem', marginRight: 1}}/>
                         {order.startTime}
                     </Typography>
                     <Typography variant="body1"
-                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#adafb8'}}>
-                        <LocationOnIcon sx={{color: '#adafb8', fontSize: '1.3rem', marginRight: 1}}/>
+                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#6b6d76'}}>
+                        <LocationOnIcon sx={{color: '#6b6d76', fontSize: '1.3rem', marginRight: 1}}/>
                         <span style={{fontSize: '1rem', marginRight: '0.5rem'}}>Venue:</span>
                         {order.venue}
                     </Typography>
                     <Typography variant="body1"
-                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#adafb8'}}>
-                        <GridOnRoundedIcon sx={{color: '#adafb8', fontSize: '1.3rem', marginRight: 1}}/>
+                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#6b6d76'}}>
+                        <GridOnRoundedIcon sx={{color: '#6b6d76', fontSize: '1.3rem', marginRight: 1}}/>
                         <span style={{fontSize: '1rem', marginRight: '0.5rem'}}>Region:</span>
                         {order.concertClassName}
                     </Typography>
-                    <Typography variant="body1" sx={{display: 'flex', alignItems: 'center', color: '#adafb8'}}>
-                        <DescriptionIcon sx={{color: '#adafb8', fontSize: '1.3rem', marginRight: 1}}/>
+                    <Typography variant="body1" sx={{display: 'flex', alignItems: 'center', color: '#6b6d76'}}>
+                        <DescriptionIcon sx={{color: '#6b6d76', fontSize: '1.3rem', marginRight: 1}}/>
                         <span style={{fontSize: '1rem', marginRight: '0.5rem'}}>Purchased on:</span>
                         {order.transactionTime}
                     </Typography>
@@ -66,7 +66,7 @@ const OrderRecord = ({order, expanded, onToggle}) => {
                             icon={<AssignmentIcon/>}
                             label={`${order.ticketVos.length} tickets`}
                             sx={{
-                                padding: "0 18%",
+                                padding: "0 19.5%",
                                 backgroundColor: '#fdf1f5',
                                 color: '#e8628d',
                                 fontSize: '1rem',

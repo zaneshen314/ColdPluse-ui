@@ -15,15 +15,16 @@ const OrderHistoryWrapper = ({width}) => {
             margin: '1% auto',
             maxWidth: {width},
             boxShadow: '0 0 10px white',
+            backgroundColor: "#b3dcff63",
             padding: 2,
             paddingTop: 5,
             borderRadius: 2,
-            border: '1px solid white'
+            border: '1px solid #4e81ad',
         }}>
             <Typography variant="h4" sx={{fontWeight: 'bold', marginBottom: 3.5, marginLeft: "35px"}}>
                 Order History
             </Typography>
-            {transactionWithTickets.length > 0 && (
+            {transactionWithTickets && transactionWithTickets.length > 0 && (
                 <OrderRecordsList orders={transactionWithTickets}/>
             )}
         </Box>

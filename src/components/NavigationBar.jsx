@@ -3,7 +3,8 @@ import { AppBar, Box, Button, FormGroup, IconButton, Menu, MenuItem, Toolbar } f
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import Login from './Login/Login';
-import Signup from './Login/Signup'; // Import the Signup component
+import Signup from './Login/Signup';
+import Swal from "sweetalert2"; // Import the Signup component
 
 
 export default function NavigationBar() {
@@ -39,9 +40,14 @@ export default function NavigationBar() {
     const handleLogout = () => {
         localStorage.removeItem('token');
         setAuth(!!localStorage.getItem('token'));
-        alert('Logged out successfully!');
-        handleClose();
-        navigate('/');
+        Swal.fire({
+            icon: 'success',
+            title: 'Logged out successfully!',
+            showConfirmButton: false,
+            timer: 600
+        }).then(() => {
+            navigate('/');
+        });
     };
 
     return (
