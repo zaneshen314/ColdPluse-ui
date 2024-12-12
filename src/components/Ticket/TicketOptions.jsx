@@ -35,10 +35,10 @@ export default function TicketOptions({ ticketOptions, selectedTickets, handleTi
                 <Box key={detail.id} flex sx={{flexBasis: 'calc(33.33% -5px)'}}>
                     <Card elevation={3} sx={{ p: 3, mb: 4, gap: 1, backgroundColor:'rgba(29, 29, 29, 0.3)', color: '#EEEEEE'}}>
                         <CardContent>
-                            <Typography variant="h6" align="center" sx={{ fontWeight: 'bold' }}>
-                                {detail.className}
-                            </Typography>
                             <Typography gutterBottom sx={{ backgroundColor: detail.className==='VIP'? '#D85A54':'#67B253', width:'100%', height:'1rem'}}>
+                            </Typography>
+                            <Typography variant="h6" align="center" sx={{ fontWeight: 'bold', margin: '1rem' }}>
+                                {detail.className}
                             </Typography>
                             <Typography variant="body1">
                                 <AttachMoneyIcon sx={{ verticalAlign: 'middle', mr: 1 }} />
