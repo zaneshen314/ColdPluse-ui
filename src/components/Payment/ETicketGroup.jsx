@@ -8,16 +8,15 @@ import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { Divider } from 'antd';
 const ETicketGroup = ( { tickets, concertDetails, purchasedTime } ) => {
-  // borderColor: 'rgba(228, 219, 233, 0.25)'
   const typographyStyle = { mb: 1, display: 'flex', alignItems: 'center' };
   const iconStyle = { verticalAlign: 'middle', mr: 1 };
 
   return (
-    <Container maxWidth="md" style={{ marginTop: '10rem' }}>
-      <Card elevation={3} sx={{ backgroundColor: 'rgba(29, 29, 29, 0.3)', color: 'white' }}>
+    <Container maxWidth="md" style={{ marginTop: '8rem' }}>
+      <Card elevation={3} sx={{ backgroundColor: 'rgba(29, 29, 29, 0.3)', color: 'white', padding: '1rem'}}>
         <CardContent>
-          <Typography variant="h3" gutterBottom  align="center">
-            Transaction Successful
+          <Typography variant="h3" sx={{fontWeight:'bold', color:'#9DFF89'}} gutterBottom  align="center">
+            ✓ Transaction Successful
           </Typography>
           <Typography variant="body1" align="center">
               <AccessTimeIcon sx={iconStyle} />
