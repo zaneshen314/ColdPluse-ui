@@ -6,7 +6,7 @@ import BottomBanner from "../components/Charity/BottomBanner";
 export default function Home() {
     const concertTitle = "Coldplay: Music of Spheres World Tour 2025";
     const handleBuyTicket = () => {
-        window.location.href = "/show-all-concerts";
+        window.location.href = "/ticket/3";
     };
 
     return (
