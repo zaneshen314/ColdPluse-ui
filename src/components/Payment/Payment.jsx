@@ -22,7 +22,7 @@ import {placeOrder} from '../../api/placeOrder';
 import {useLocation} from 'react-router-dom';
 import {getUserCurrentPoints} from "../../api/charityEvent";
 import {putCumulatedPoint} from "../../api/concertSessionEvent";
-import { message } from 'antd'
+import {message} from 'antd'
 
 const Payment = () => {
     const location = useLocation();
@@ -90,16 +90,10 @@ const Payment = () => {
             })
             .catch(error => {
                 const response = error.response.data;
-                console.log(response)
-                if (response.code === 200004) {
-                    message.error('You have already purchased 3 tickets for this concert').then(r => null)
-                } else if (response.code === 200005) {
-                    message.error('Not enough tickets available').then(r => null)
-
-                } else if (response.code === 200003) {
-                    message.error('Concert is in progress').then(r => null)
+                if (response.code !== 200007) {
+                    message.error(response.message).then(r => null)
                 } else {
-                    message.error('An error occurred while placing the order').then(r => null)
+                    message.error("Unknown error, please contact support").then(r => null)
                 }
                 if (byHeartbeats) {
                     putCumulatedPoint(-(totalCost / 10).toFixed(0));
