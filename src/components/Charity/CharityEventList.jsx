@@ -31,7 +31,7 @@ const CharityEventList = ({ events, onJoinEvent, joinedIds, setIds }) => {
                                 },
                                 {
                                     type: EVENT_DETAILS_TYPE.STANDARD,
-                                    text: `Duration: ${event.duration ? `${event.duration} minutes` : "Unknown duration"}`
+                                    text: `Duration: ${event.duration ? `${Math.floor(event.duration / 60)} hours${event.duration % 60 ? ` ${event.duration % 60} mins` : ""}` : "Unknown duration"}`
                                 },
                                 {
                                     type: EVENT_DETAILS_TYPE.STANDARD,

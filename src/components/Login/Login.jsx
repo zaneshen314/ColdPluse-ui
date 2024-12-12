@@ -15,7 +15,11 @@ const Login = ({ isVisible, onClose }) => {
             localStorage.setItem('token', data.data);
             const userinfo = await getUserInfo();
             localStorage.setItem('name', userinfo.data.name);
-            onClose();
+            message.success('Login Success');
+            // 延迟半秒
+            setTimeout(() => {
+                onClose();
+            }, 400);
         } catch (error) {
             message.error('Invalid email or password!');
         }
