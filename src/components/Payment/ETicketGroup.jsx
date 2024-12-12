@@ -25,7 +25,13 @@ const ETicketGroup = ( { tickets, concertDetails, purchasedTime } ) => {
       </Grid>
         <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
           <Typography variant="h4">Ticket(s):</Typography>
-          <Carousel slidesToShow={1} children={tickets.map(ticket => <ETicket ticket={ticket} large />)}/>
+          {
+            tickets.length > 1 ?(
+              <Carousel slidesToShow={1} children={tickets.map((ticket, index)=> <ETicket key={index} ticket={ticket} large />)}/>
+            ):(
+              <ETicket ticket={tickets[0]} large />
+           )
+          }   
         </Grid>
       </Grid>
     </Container>
