@@ -78,7 +78,7 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
     };
 
     return (
-        <Paper elevation={3} sx={{ padding: 2, backgroundColor: "white", boxShadow: "0 0 20px #3a5f7a" }}>
+        <Paper elevation={3} sx={{ padding: 2, backgroundColor:'rgba(205, 250, 255, 0.2)', boxShadow: "0 0 20px #3a5f7a", color:'white' }}>
             <Grid container spacing={2}>
                 <Grid item xs={3} sx={{ textAlign: 'center' }}>
                     <Box
@@ -100,17 +100,17 @@ const UserCharityItem = ({ event, index, setUserCharityEvents }) => {
                         {event.charityEvent.name}
                     </Typography>
 
-                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: ' #6b6d76' }}>
-                        <DateRangeIcon sx={{ color: ' #6b6d76', fontSize: '1.3rem', marginRight: 1 }} />
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: 'rgba(228, 219, 233, 0.9)' }}>
+                        <DateRangeIcon sx={{ color: 'rgba(228, 219, 233, 0.9)', fontSize: '1.3rem', marginRight: 1 }} />
                         {event.charityEvent.startTime}
                     </Typography>
-                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: ' #6b6d76' }}>
-                        <LocationOnIcon sx={{ color: ' #6b6d76', fontSize: '1.3rem', marginRight: 1 }} />
+                    <Typography variant="body1" sx={{ display: 'flex', alignItems: 'center', marginBottom: 2, color: 'rgba(228, 219, 233, 0.9)' }}>
+                        <LocationOnIcon sx={{ color: 'rgba(228, 219, 233, 0.9)', fontSize: '1.3rem', marginRight: 1 }} />
                         <span style={{ fontSize: '1rem', marginRight: '0.5rem' }}>Venue:</span>
                         {event.charityEvent.location}
                     </Typography>
-                    <Typography variant="body1" sx={{ display: 'flex', whiteSpace: 'normal', overflowWrap: 'break-word', wordBreak: 'break-all', color: ' #6b6d76' }}>
-                        <DescriptionIcon sx={{ color: ' #6b6d76', fontSize: '1.3rem', marginRight: 1 }} />
+                    <Typography variant="body1" sx={{ display: 'flex', whiteSpace: 'normal', overflowWrap: 'break-word', wordBreak: 'break-all', color: 'rgba(228, 219, 233, 0.9)' }}>
+                        <DescriptionIcon sx={{ color: 'rgba(228, 219, 233, 0.9)', fontSize: '1.3rem', marginRight: 1 }} />
                         <span style={{ fontSize: '1rem', marginRight: '0.5rem', wordBreak: 'normal' }}>Description:</span>
                         <span>{event.charityEvent.description.substr(0, 300)}</span>
                     </Typography>

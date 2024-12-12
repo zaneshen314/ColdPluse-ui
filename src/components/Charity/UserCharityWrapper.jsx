@@ -23,7 +23,7 @@ const UserCharityWrapper = ({width}) => {
             boxShadow: '0 0 10px white',
             padding: 2,
             borderRadius: 2,
-            backgroundColor: "#b3dcff63",
+            backgroundColor: "rgba(29, 29, 29, 0.3)",
             border: '1px solid #4e81ad',
         }}>
             <AppBar position="static" elevation={0} sx={{ backgroundColor: 'transparent', width: '97%', margin: '10px auto', marginBottom: "20px" }}>
@@ -35,15 +35,17 @@ const UserCharityWrapper = ({width}) => {
                         label={
                             <>
                                 Total Heartbeats: {currentPoint}
-                                <span className={currentPoint !== 0 ? "jump" : ""} style={{ color: currentPoint === 0 ? 'blue' : 'inherit' }}>
-                {currentPoint === 0 ? '🩵' : '❤️'}
-            </span>
+                                <span className={currentPoint !== 0 ? "jump" : ""} 
+                                style={{ color: currentPoint === 0 ? 'blue' : 'inherit' }}>
+                                {currentPoint === 0 ? '🩵' : '❤️'}
+                            </span>
                             </>
                         }
                         variant="outlined"
                         sx={{
-                            backgroundColor: currentPoint === 0 ? '#98F5F9' : '#ED7D8D',
-                            color: currentPoint === 0 ? '#0C64A7' : '#fdf1f5',
+                            backgroundImage: currentPoint === 0 ? 'linear-gradient(to right, #62cff4 0%, #2c67f2 100%)' : 
+                            'linear-gradient(to right, #fe5f75 0%, #ED7D8D 100%)',
+                            color: currentPoint === 0 ? '#ffff' : '#fdf1f5',
                             fontWeight: "bold",
                             fontSize: '1.1rem',
                             padding: '0 10px',
