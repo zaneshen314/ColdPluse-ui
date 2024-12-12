@@ -56,7 +56,7 @@ const EventCard = ({ event, buttonProps }) => {
                 sx={{
                     width: "100%", // Full width by default
                     maxWidth: "40rem", // Responsive max width for desktop
-                    backgroundColor: "#02254a", // Dark blue card background
+                    background:'rgba(29, 29, 29, 0.8)',
                     color: "#fff",
                     boxShadow: "0 0.5rem 1rem rgba(0, 0, 0, 0.4)",
                     borderRadius: "1rem",
@@ -70,7 +70,6 @@ const EventCard = ({ event, buttonProps }) => {
                         height: "20rem", // Adjusted height for better card proportions
                         borderRadius: "1rem 1rem 0 0",
                         objectFit: "contain", // Ensures the whole image is visible
-                        backgroundColor: "#02254a", // Optionally add a background color for padding
                     }}
                 />
 

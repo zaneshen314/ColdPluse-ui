@@ -9,7 +9,10 @@ import GridOnRoundedIcon from '@mui/icons-material/GridOnRounded';
 
 const OrderRecord = ({order, expanded, onToggle}) => {
     return (
-        <Paper elevation={3} sx={{padding: 2, marginBottom: 2, cursor: 'pointer'}} onClick={onToggle}>
+        <Paper elevation={3} sx={{padding: 2, marginBottom: 2, cursor: 'pointer',
+            backgroundColor:'rgba(205, 250, 255, 0.2)',
+            color: 'white'
+        }} onClick={onToggle}>
             <Grid container spacing={2}>
                 <Grid item xs={3} sx={{textAlign: 'center'}}>
                     <Box
@@ -29,24 +32,24 @@ const OrderRecord = ({order, expanded, onToggle}) => {
                         {order.concertName}
                     </Typography>
                     <Typography variant="body1"
-                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#6b6d76'}}>
-                        <DateRangeIcon sx={{color: '#6b6d76', fontSize: '1.3rem', marginRight: 1}}/>
+                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: 'rgba(228, 219, 233, 0.9)'}}>
+                        <DateRangeIcon sx={{color: 'white', fontSize: '1.3rem', marginRight: 1}}/>
                         {order.startTime}
                     </Typography>
                     <Typography variant="body1"
-                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#6b6d76'}}>
-                        <LocationOnIcon sx={{color: '#6b6d76', fontSize: '1.3rem', marginRight: 1}}/>
+                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: 'rgba(228, 219, 233, 0.9)'}}>
+                        <LocationOnIcon sx={{color: 'white', fontSize: '1.3rem', marginRight: 1}}/>
                         <span style={{fontSize: '1rem', marginRight: '0.5rem'}}>Venue:</span>
                         {order.venue}
                     </Typography>
                     <Typography variant="body1"
-                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: '#6b6d76'}}>
-                        <GridOnRoundedIcon sx={{color: '#6b6d76', fontSize: '1.3rem', marginRight: 1}}/>
+                                sx={{display: 'flex', alignItems: 'center', marginBottom: 1.3, color: 'rgba(228, 219, 233, 0.9)'}}>
+                        <GridOnRoundedIcon sx={{color: 'white', fontSize: '1.3rem', marginRight: 1}}/>
                         <span style={{fontSize: '1rem', marginRight: '0.5rem'}}>Region:</span>
                         {order.concertClassName}
                     </Typography>
-                    <Typography variant="body1" sx={{display: 'flex', alignItems: 'center', color: '#6b6d76'}}>
-                        <DescriptionIcon sx={{color: '#6b6d76', fontSize: '1.3rem', marginRight: 1}}/>
+                    <Typography variant="body1" sx={{display: 'flex', alignItems: 'center', color: 'rgba(228, 219, 233, 0.9)'}}>
+                        <DescriptionIcon sx={{color: 'white', fontSize: '1.3rem', marginRight: 1}}/>
                         <span style={{fontSize: '1rem', marginRight: '0.5rem'}}>Purchased on:</span>
                         {order.transactionTime}
                     </Typography>
@@ -56,9 +59,9 @@ const OrderRecord = ({order, expanded, onToggle}) => {
                         <Chip
                             label={'Transaction Successful'}
                             sx={{
-                                backgroundColor: '#C8E6C9',
+                                backgroundImage: 'linear-gradient(90deg, #0ba360 0%, #3cba92 100%)',
                                 fontSize: '1rem',
-                                color: '#388e3c',
+                                color: 'white',
                                 fontWeight: 'bold',
                             }}
                         />
@@ -67,28 +70,31 @@ const OrderRecord = ({order, expanded, onToggle}) => {
                             label={`${order.ticketVos.length} tickets`}
                             sx={{
                                 padding: "0 19.5%",
-                                backgroundColor: '#fdf1f5',
-                                color: '#e8628d',
+                                backgroundImage: 'linear-gradient(120deg, #f9ce34 0%, #e8628d 100%)',
+                                color: 'white',
                                 fontSize: '1rem',
                                 fontWeight: 'bold',
                                 marginTop: 1,
                                 '& .MuiChip-icon': {
-                                    color: '#e8628d',
+                                    color: 'white',
                                     fontSize: '1.2rem',
                                     marginLeft: 1.5
                                 }
                             }}
                         />
-                        <Box sx={{marginTop: 11, marginRight: 7}}>
-                            <Typography variant="body1" sx={{fontWeight: 'bold', color: 'black', display: 'inline'}}>
+                        <Box sx={{
+                            marginTop: 10, 
+                            marginRight: 6, 
+                            }}>
+                            <Typography variant="body1" sx={{fontWeight: 'bold', display: 'inline'}}>
                                 Total
                             </Typography>
                             <Typography variant="body1" sx={{
                                 fontSize: "1.1rem",
                                 fontWeight: 'bold',
-                                color: 'blueviolet',
+                                color: 'white',
                                 display: 'inline',
-                                marginLeft: 1
+                                marginLeft: 1,
                             }}>
                                 ${order.amountInUsd}
                             </Typography>
