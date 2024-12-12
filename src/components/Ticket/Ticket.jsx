@@ -27,6 +27,8 @@ export default function Ticket() {
     const [seatWarning, setSeatWarning] = useState(false);
     const [showWarning, setShowWarning] = useState(false);
     const [classWarning, setClassWarning] = useState(false);
+    const [notConcertStarted, setNotConcertStarted] = useState(true);
+    const [isSaleStarted, setIsSaleStarted] = useState(false);
 
     const totalPrice = Object.values(selectedTickets).reduce((acc, ticket) => acc + (ticket.price * ticket.quantity), 0);
     const totalSelectedTickets = Object.values(selectedTickets).reduce((acc, ticket) => acc + ticket.quantity, 0);
@@ -99,6 +101,8 @@ export default function Ticket() {
         getEventData(concertId, selectedScheduleId).then((data) => {
             setScheduleMeta(data);
             setSaleStartTime(new Date(data.saleStartTime));
+            setIsSaleStarted(new Date() >= new Date(data.saleStartTime));
+            setNotConcertStarted(new Date() < new Date(data.start_time));
         });
         getConcertScheduleClassByConcertIdAndScheduleId(concertId, selectedScheduleId).then((scheduleClassData) => {
             getConcertClassByConcertId(concertId).then((classData) => {
@@ -109,7 +113,6 @@ export default function Ticket() {
                     }
                     return classItem;
                 });
-                console.log(updatedClassData)
                 setRemainingTotalCapacity(scheduleClassData.reduce((acc, detail) => acc + detail.availableSeats, 0));
                 setTicketOptions(updatedClassData);
             });
@@ -123,9 +126,6 @@ export default function Ticket() {
             setDisableBuy(true);
         }
     }, [totalSelectedTickets]);
-
-
-    const isSaleStarted = saleStartTime && new Date() >= saleStartTime;
 
     return (
         <Container sx={{ pt: 4, pb: 10 }}>
@@ -174,16 +174,23 @@ export default function Ticket() {
             />
             <AppBar position="fixed" color="primary" sx={{ 
                 background: 'linear-gradient(90deg, #9b59b6, #4fa1d9)', top: 'auto', bottom: 0 }}>
-                <Toolbar>
+                <Toolbar>                    
                     {isSaleStarted ? (
-                        <>                        
-                            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                            {totalSelectedTickets<=0 ?``:`Total Tickets: ${totalSelectedTickets} | Total Price: USD${totalPrice.toFixed(2)}`}
-                            </Typography>
-                            <Button disabled={disableBuy} variant="contained" color="secondary" onClick={handleBuyClick}>
-                                Buy
-                            </Button>
-                        </>                        
+                        notConcertStarted ? (
+                            <>                        
+                                <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                                {totalSelectedTickets<=0 ?``:`Total Tickets: ${totalSelectedTickets} | Total Price: USD${totalPrice.toFixed(2)}`}
+                                </Typography>
+                                <Button disabled={disableBuy} variant="contained" color="secondary" onClick={handleBuyClick}>
+                                    Buy
+                                </Button>
+                            </>
+                        ):(
+                            <>                            
+                                <Typography sx={{flexGrow:1}}></Typography>
+                                <Typography> Concert started</Typography>
+                            </>
+                        )
                     ) : (
                         <>
                             <Typography sx={{flexGrow:1}}></Typography>
