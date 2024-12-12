@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {AppBar, Box, Chip, Container, Toolbar, Typography} from '@mui/material';
 import UserCharityList from './UserCharityList';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import {getUserCurrentPoints, getUserEventParticipation} from "../../api/charityEvent";
 import "./Carousel.css"
 
@@ -55,7 +56,14 @@ const UserCharityWrapper = ({width}) => {
                     />
                 </Toolbar>
             </AppBar>
-            {userCharityEvents.length > 0 && (
+            {userCharityEvents.length === 0 ? (
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 4 }}>
+                    <Typography variant="h6" sx={{ marginBottom: 2 }}>
+                        <span style={{ padding: '0 20px' }}>Earning heartbeats by joining our charity events</span>
+                    </Typography>
+                    <FavoriteIcon sx={{ fontSize: 100, color: '#e8628d' }} />
+                </Box>
+            ) : (
                 <Container>
                     <UserCharityList userCharityEvents={userCharityEvents} setUserCharityEvents={setUserCharityEvents}/>
                 </Container>
