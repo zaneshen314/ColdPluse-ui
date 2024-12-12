@@ -12,7 +12,7 @@ export default function TicketOptions({ ticketOptions, selectedTickets, handleTi
                 <Box key={detail.id} flex sx={{flexBasis: 'calc(33.33% -5px)'}}>
                     <Card>
                         <CardContent>
-                        <Typography gutterBottom sx={{ backgroundColor: detail.className=='VIP'? '#D85A54':'#67B253', width:'100%', height:'1rem'}}>
+                        <Typography gutterBottom sx={{ backgroundColor: detail.className==='VIP'? '#D85A54':'#67B253', width:'100%', height:'1rem'}}>
                         </Typography>
                             <Typography variant="h6" align="center" sx={{ fontWeight: 'bold' }}>
                                 {detail.className}
