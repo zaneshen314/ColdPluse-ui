@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Container, Typography, Box, Grid } from '@mui/material';
 import ETicket from './ETicket';
 import Carousel from '../Charity/Carousel';
