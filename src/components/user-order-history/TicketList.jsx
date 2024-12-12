@@ -19,7 +19,7 @@ const TicketList = ({ tickets }) => {
             <Grid container spacing={2}>
                 {tickets.map((ticket, index) => {
                     const eticket = {
-                        ticketId: ticket.id,
+                        id: ticket.id,
                         idCardNum: ticket.idCardNum,
                         viewerName: ticket.viewerName
                     };

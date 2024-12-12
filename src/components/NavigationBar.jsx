@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { AppBar, Box, Button, FormGroup, IconButton, Menu, MenuItem, Toolbar } from "@mui/material";
+import {AppBar, Box, Button, Chip, FormGroup, IconButton, Menu, MenuItem, Toolbar} from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { useNavigate } from "react-router-dom";
 import Login from './Login/Login';
 import Signup from './Login/Signup';
-import Swal from "sweetalert2"; // Import the Signup component
+import { message } from 'antd'
 
 
 export default function NavigationBar() {
     const navigate = useNavigate();
     const [auth, setAuth] = useState(!!localStorage.getItem('token'));
+    const name = localStorage.getItem('name');
     const [anchorEl, setAnchorEl] = useState(null);
     const [isLoginModalVisible, setLoginModalVisible] = useState(false);
     const [isSignupModalVisible, setSignupModalVisible] = useState(false); // State for signup modal
@@ -39,15 +40,9 @@ export default function NavigationBar() {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('name');
         setAuth(!!localStorage.getItem('token'));
-        Swal.fire({
-            icon: 'success',
-            title: 'Logged out successfully!',
-            showConfirmButton: false,
-            timer: 600
-        }).then(() => {
-            navigate('/');
-        });
+        message.success('Logged out successfully!').then(r => navigate('/'));
     };
 
     return (
@@ -68,6 +63,20 @@ export default function NavigationBar() {
                     <Button color="inherit" onClick={() => navigate("/show-all-concerts")}>
                         Concerts
                     </Button>
+                    {
+                        auth && name && (
+                            <Chip
+                                label={`Hi, ${name}`}
+                                sx={{
+                                    marginLeft: 1,
+                                    backgroundColor: "#1976d2",
+                                    color: "white",
+                                    fontWeight: 'bold',
+                                    fontSize: "0.9em"
+                                }}
+                            />
+                        )
+                    }
                     {auth ? (
                         <div>
                             <IconButton

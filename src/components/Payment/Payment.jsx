@@ -73,13 +73,7 @@ const Payment = () => {
     const totalCost = numberOfTickets * pricePerTicket;
     const dataComplete = guests.every(guest => guest.idCardNum.trim() && guest.name.trim());
 
-    const onPayButtonClick = () => {
-        setIsLoading(true);
-        const trimmedGuests = guests.map(guest => ({
-            idCardNum: guest.idCardNum.trim(),
-            name: guest.name.trim()
-        }));
-
+    function makePayment(trimmedGuests, byHeartbeats) {
         placeOrder(concertClassId, scheduleId, trimmedGuests)
             .then(response => {
                 setPaymentResult({
@@ -95,17 +89,33 @@ const Payment = () => {
             })
             .catch(error => {
                 const response = error.response.data;
+                console.log(response)
                 if (response.code === 200004) {
                     alert("You have already purchased 3 tickets for this concert");
                 } else if (response.code === 200005) {
                     alert("Not enough tickets available");
+                } else if (response.code === 200003) {
+                    alert("Concert is in progress")
                 } else {
                     alert("An error occurred while placing the order");
+                }
+                if (byHeartbeats) {
+                    putCumulatedPoint(-(totalCost / 10).toFixed(0));
                 }
             })
             .finally(() => {
                 setIsLoading(false);
             });
+    }
+
+    const onPayButtonClick = () => {
+        setIsLoading(true);
+        const trimmedGuests = guests.map(guest => ({
+            idCardNum: guest.idCardNum.trim(),
+            name: guest.name.trim()
+        }));
+
+        makePayment(trimmedGuests, false);
     };
 
     const onPayByHeartbeats = () => {
@@ -122,33 +132,7 @@ const Payment = () => {
 
         putCumulatedPoint((totalCost / 10).toFixed(0))
             .then(() => {
-                placeOrder(concertClassId, scheduleId, trimmedGuests)
-                    .then(response => {
-                        setPaymentResult({
-                            concertDetails: {
-                                name: response.concertName,
-                                time: response.startTime,
-                                venue: response.venue,
-                                ticketClass: response.concertClassName,
-                            },
-                            purchasedTime: response.transactionTime,
-                            tickets: response.ticketVos
-                        });
-                    })
-                    .catch(error => {
-                        const response = error.response.data;
-                        if (response.code === 200004) {
-                            alert("You have already purchased 3 tickets for this concert");
-                        } else if (response.code === 200005) {
-                            alert("Not enough tickets available");
-                        } else {
-                            alert("An error occurred while placing the order");
-                        }
-                        putCumulatedPoint(-1);
-                    })
-                    .finally(() => {
-                        setIsLoading(false);
-                    });
+                makePayment(trimmedGuests, false);
             })
             .catch(() => {
                 alert("You don't have enough heartbeats to pay for the tickets");
@@ -310,10 +294,10 @@ const Payment = () => {
                     <Typography id="confirm-modal-title" variant="h6" component="h2">
                         Confirm Transaction
                     </Typography>
-                    <Typography id="confirm-modal-description" sx={{ mt: 2 }}>
+                    <Typography id="confirm-modal-description" sx={{mt: 2}}>
                         This transaction will consume {(totalCost / 10).toFixed(0)} heartbeats. Do you want to proceed?
                     </Typography>
-                    <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
+                    <Box sx={{mt: 2, display: 'flex', justifyContent: 'space-between'}}>
                         <Button variant="contained" color="primary" onClick={handleConfirm}>
                             Yes
                         </Button>
