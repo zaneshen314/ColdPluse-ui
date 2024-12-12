@@ -13,6 +13,9 @@ const BottomBanner = () => {
                 <p className="bottom-banner-subtitle">
                     Join us in making a difference. Explore our charity events and contribute to the cause.
                 </p>
+                <p className="bottom-banner-subtitle">
+                    You can also earn heartbeats by attending our charity events and hopefully exchange concert tickets.
+                </p>
                 <button className="bottom-banner-button" onClick={handleCharityClick}>
                     Learn More →
                 </button>

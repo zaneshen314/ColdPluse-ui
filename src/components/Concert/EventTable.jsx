@@ -11,7 +11,10 @@ const EventTable = () => {
             try {
                 const eventData = await getAllEvents();
                 if (eventData) {
-                    const sortedEvents = eventData.sort((a, b) => new Date(b.start_time) - new Date(a.start_time)).slice(0, 3);
+                    const sortedEvents = eventData
+                        .filter(event => new Date(event.start_time).toDateString() !== new Date().toDateString() && new Date(event.start_time) > new Date())
+                        .sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
+                        .slice(0, 3);
                     setEvents(sortedEvents);
                 } else {
                     console.error("No event data found");
