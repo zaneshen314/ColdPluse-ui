@@ -200,7 +200,9 @@ export default function Ticket() {
                 </Toolbar>
             </AppBar>
             <Dialog open={loginOpen} onClose={() => setLoginOpen(false)}>
-                <Login isVisible={loginOpen} onClose={() => setLoginOpen(false)} />
+        <Login isVisible={loginOpen} onClose={() => {
+            setLoginOpen(false);
+            window.location.reload();}} />
             </Dialog>
         </Container>
     );
