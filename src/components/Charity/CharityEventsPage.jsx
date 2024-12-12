@@ -120,10 +120,10 @@ const CharityEventsPage = () => {
                         <CloseIcon />
                     </IconButton>
                     <Typography id="modal-title" variant="h6" component="h2">
-                        Claim Points
+                        Claim Heartbeats
                     </Typography>
                     <Typography id="modal-description" sx={{ mt: 2 }}>
-                        Do you want to claim points for this event?
+                        Do you want to claim heartbeats for this event?
                     </Typography>
                     <Box>
                         <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>

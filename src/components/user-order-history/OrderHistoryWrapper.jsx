@@ -24,7 +24,7 @@ const OrderHistoryWrapper = ({width}) => {
             <Typography variant="h4" sx={{fontWeight: 'bold', marginBottom: 3.5, marginLeft: "35px"}}>
                 Order History
             </Typography>
-            {transactionWithTickets.length > 0 && (
+            {transactionWithTickets && transactionWithTickets.length > 0 && (
                 <OrderRecordsList orders={transactionWithTickets}/>
             )}
         </Box>

@@ -25,6 +25,7 @@ export default function Ticket() {
     const [scheduleList, setScheduleList] = useState([]);
     const [initializedScheduleList, setInitializedScheduleList] = useState(false);
     const [saleStartTime, setSaleStartTime] = useState(null);
+    const [remainingTotalCapacity, setRemainingTotalCapacity] = useState(0);
 
     const totalPrice = Object.values(selectedTickets).reduce((acc, ticket) => acc + (ticket.price * ticket.quantity), 0);
     const totalSelectedTickets = Object.values(selectedTickets).reduce((acc, ticket) => acc + ticket.quantity, 0);
@@ -93,6 +94,7 @@ export default function Ticket() {
         });
         getConcertScheduleClassByConcertIdAndScheduleId(concertId, selectedScheduleId).then((data) => {
             setTicketOptions(data);
+            setRemainingTotalCapacity(data.reduce((acc, detail) => acc + detail.availableSeats, 0));
         });
     }, [selectedScheduleId, concertId]);
 
@@ -103,6 +105,7 @@ export default function Ticket() {
             setDisableBuy(true);
         }
     }, [totalSelectedTickets]);
+
 
     const isSaleStarted = saleStartTime && new Date() >= saleStartTime;
 
@@ -127,7 +130,7 @@ export default function Ticket() {
                         </Select>
                     </FormControl>
                 )}
-                <ScheduleMeta scheduleMeta={scheduleMeta} />
+                <ScheduleMeta scheduleMeta={scheduleMeta} remainingCapacity={remainingTotalCapacity}/>
             </Paper>
             <Divider style={{ margin: '20px 0'}} />
             <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>Ticket Option</Typography>
@@ -148,24 +151,20 @@ export default function Ticket() {
             />
             <AppBar position="fixed" color="primary" sx={{ 
                 background: 'linear-gradient(90deg, #9b59b6, #4fa1d9)', top: 'auto', bottom: 0 }}>
-                <Toolbar>          
-  
+                <Toolbar>
                     {isSaleStarted ? (
-                        console.log("sale started"),
-                        <>
-                    <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                                Total Tickets: {totalSelectedTickets} | Total Price: USD{totalPrice.toFixed(2)}
+                        <>                        
+                            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                            {totalSelectedTickets<=0 ?``:`Total Tickets: ${totalSelectedTickets} | Total Price: USD${totalPrice.toFixed(2)}`}
                             </Typography>
                             <Button disabled={disableBuy} variant="contained" color="secondary" onClick={handleBuyClick}>
                                 Buy
                             </Button>
-                        </>
-                        
+                        </>                        
                     ) : (
                         <>
-                        <Typography sx={{flexGrow:1}}></Typography>
-                        <CountdownTimer targetDate={saleStartTime}/>
-
+                            <Typography sx={{flexGrow:1}}></Typography>
+                            <CountdownTimer targetDate={saleStartTime}/>
                         </>
                     )}
                 </Toolbar>
