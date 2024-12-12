@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import Signup from './Signup';
-import { login } from "../../api/login";
+import {getUserInfo, login} from "../../api/login";
 import { message } from 'antd'
 
 const Login = ({ isVisible, onClose }) => {
@@ -13,6 +13,8 @@ const Login = ({ isVisible, onClose }) => {
         try {
             const data = await login(email, password);
             localStorage.setItem('token', data.data);
+            const userinfo = await getUserInfo();
+            localStorage.setItem('name', userinfo.data.name);
             message.success('Login Success');
             // 延迟半秒
             setTimeout(() => {

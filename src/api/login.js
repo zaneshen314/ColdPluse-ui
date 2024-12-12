@@ -16,3 +16,8 @@ export const signup = async (email, name, password) => {
     });
     return response.data;
 };
+
+export const getUserInfo = async () => {
+    const response = await instance.get('/userinfo');
+    return response.data;
+};
