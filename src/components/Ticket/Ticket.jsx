@@ -33,6 +33,30 @@ export default function Ticket() {
     const totalPrice = Object.values(selectedTickets).reduce((acc, ticket) => acc + (ticket.price * ticket.quantity), 0);
     const totalSelectedTickets = Object.values(selectedTickets).reduce((acc, ticket) => acc + ticket.quantity, 0);
 
+    const buyButtonStyle = {
+        backgroundImage: disableBuy?'':'linear-gradient(120deg, #0250c5 0%, #d43f8d 100%)',
+        color: 'white',
+        '&:hover': {
+            backgroundColor: 'darkpurple',
+        },
+    }
+
+    const selectStyle = {
+        color: "white",
+        '.MuiOutlinedInput-notchedOutline': {
+          borderColor: 'rgba(228, 219, 233, 0.25)',
+        },
+        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+          borderColor: 'rgba(228, 219, 233, 0.25)',
+        },
+        '&:hover .MuiOutlinedInput-notchedOutline': {
+          borderColor: 'rgba(228, 219, 233, 0.25)',
+        },
+        '.MuiSvgIcon-root ': {
+          fill: "white !important",
+        }
+      }
+
     const handleTicketChange = (id, className, price, value) => {
         const newTotalSelectedTickets = totalSelectedTickets + value - (selectedTickets[id]?.quantity || 0);
         const selectedOption = ticketOptions.find(option => option.id === id);
@@ -129,7 +153,7 @@ export default function Ticket() {
 
     return (
         <Container sx={{ pt: 4, pb: 10 }}>
-            <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
+            <Paper elevation={3} sx={{ p: 3, mb: 4, backgroundColor:'rgba(29, 29, 29, 0.3)', color: 'white'}}>
                 <Typography variant="h3" sx={{ mb: 2, fontWeight: 'bold' }}>{concertName}</Typography>
                 {initializedScheduleList && (
                     <FormControl fullWidth sx={{ mb: 2 }}>
@@ -139,6 +163,7 @@ export default function Ticket() {
                             value={selectedScheduleId}
                             label="Select Schedule"
                             onChange={handleScheduleChange}
+                            sx={selectStyle}
                         >
                             {scheduleList.map((schedule) => (
                                 <MenuItem key={schedule.scheduleId} value={schedule.scheduleId}>
@@ -150,7 +175,7 @@ export default function Ticket() {
                 )}
                 <ScheduleMeta scheduleMeta={scheduleMeta} remainingCapacity={remainingTotalCapacity}/>
             </Paper>
-            <Divider style={{ margin: '20px 0'}} />
+            <Divider style={{ margin: '20px 0', backgroundColor: 'white' }} />
             <Typography variant="h5" sx={{ mb: 2, fontWeight: 'bold' }}>Ticket Option</Typography>
             {showWarning && (
                 <Alert severity="warning" sx={{ mb: 2 }}>
@@ -172,16 +197,21 @@ export default function Ticket() {
                 selectedTickets={selectedTickets} 
                 handleTicketChange={handleTicketChange} 
             />
-            <AppBar position="fixed" color="primary" sx={{ 
-                background: 'linear-gradient(90deg, #9b59b6, #4fa1d9)', top: 'auto', bottom: 0 }}>
+            <AppBar position="fixed" color="primary" sx={{ background: 'linear-gradient(90deg, #9b59b6, #4fa1d9)', top: 'auto', bottom: 0 }}>
                 <Toolbar>                    
                     {isSaleStarted ? (
                         notConcertStarted ? (
                             <>                        
-                                <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                                {totalSelectedTickets<=0 ?``:`Total Tickets: ${totalSelectedTickets} | Total Price: USD${totalPrice.toFixed(2)}`}
+                                <Typography variant="body1" sx={{ flexGrow: 1 }}>
+                                    {totalSelectedTickets<=0 ?``:
+                                        <>
+                                            Total Tickets: ${totalSelectedTickets} 
+                                            <span style={{ marginLeft: '1em', marginRight: '1em' }}>|</span>
+                                            Total Price: USD${totalPrice.toFixed(2)}
+                                        </>
+                                    }
                                 </Typography>
-                                <Button disabled={disableBuy} variant="contained" color="secondary" onClick={handleBuyClick}>
+                                <Button disabled={disableBuy} variant="contained" onClick={handleBuyClick} sx={buyButtonStyle}>
                                     Buy
                                 </Button>
                             </>
@@ -194,16 +224,17 @@ export default function Ticket() {
                     ) : (
                         <>
                             <Typography sx={{flexGrow:1}}></Typography>
-                            <CountdownTimer targetDate={saleStartTime}/>
+                            <CountdownTimer targetDate={saleStartTime}/>                    
                         </>
                     )}
                 </Toolbar>
             </AppBar>
             <Dialog open={loginOpen} onClose={() => setLoginOpen(false)}>
-        <Login isVisible={loginOpen} onClose={() => {
-            setLoginOpen(false);
-            window.location.reload();}} />
+                <Login isVisible={loginOpen} onClose={() => {
+                    setLoginOpen(false);
+                    window.location.reload();}} />
             </Dialog>
         </Container>
     );
 }
+

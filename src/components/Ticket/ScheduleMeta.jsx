@@ -34,7 +34,7 @@ export default function ScheduleMeta({ scheduleMeta, remainingCapacity }) {
                     <AttachMoneyIcon sx={iconStyle} />
                     Price Range: ${scheduleMeta.minPrice} - ${scheduleMeta.maxPrice}
                 </Typography>                
-                <Divider sx={{ my: 2 }} />
+                <Divider sx={{ my: 2, backgroundColor: 'white'}} />
                 <Typography variant="body1" sx={typographyStyle}>
                     <CalendarTodayIcon sx={iconStyle} />
                     Ticket Sale Start Time: {new Date(scheduleMeta.saleStartTime).toLocaleString()}
