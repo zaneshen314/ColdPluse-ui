@@ -69,7 +69,7 @@ export default function NavigationBar() {
                                 label={`Hi, ${name}`}
                                 sx={{
                                     marginLeft: 1,
-                                    backgroundColor: "#1976d2",
+                                    backgroundImage: "linear-gradient(45deg, #fab2ff, #1904e5)",
                                     color: "white",
                                     fontWeight: 'bold',
                                     fontSize: "0.9em"

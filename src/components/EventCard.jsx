@@ -56,7 +56,7 @@ const EventCard = ({ event, buttonProps }) => {
                 sx={{
                     width: "100%", // Full width by default
                     maxWidth: "40rem", // Responsive max width for desktop
-                    background:'rgba(29, 29, 29, 0.8)',
+                    background:'rgba(205, 250, 255, 0.2)',
                     color: "#fff",
                     boxShadow: "0 0.5rem 1rem rgba(0, 0, 0, 0.4)",
                     borderRadius: "1rem",
