@@ -205,7 +205,7 @@ export default function Ticket() {
                                 <Typography variant="body1" sx={{ flexGrow: 1 }}>
                                     {totalSelectedTickets<=0 ?``:
                                     <>
-                                        Total Tickets: ${totalSelectedTickets} 
+                                        Total Tickets: {totalSelectedTickets} 
                                         <span style={{ marginLeft: '1em', marginRight: '1em' }}>|</span>
                                         Total Price: USD${totalPrice.toFixed(2)}
                                     </>}

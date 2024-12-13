@@ -57,11 +57,11 @@ export default function NavigationBar() {
                     <Button color="inherit" onClick={() => navigate("/")}>
                         Home
                     </Button>
-                    <Button color="inherit" onClick={() => navigate("/events")}>
-                        Charity Events
-                    </Button>
                     <Button color="inherit" onClick={() => navigate("/show-all-concerts")}>
                         Concerts
+                    </Button>
+                    <Button color="inherit" onClick={() => navigate("/events")}>
+                        Charity Events
                     </Button>
                     {
                         auth && name && (
