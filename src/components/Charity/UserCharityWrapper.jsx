@@ -44,7 +44,7 @@ const UserCharityWrapper = ({width}) => {
                         variant="outlined"
                         sx={{
                             backgroundImage: currentPoint === 0 ? 'linear-gradient(to right, #62cff4 0%, #2c67f2 100%)' : 
-                            'linear-gradient(to right, #fe5f75 0%, #ED7D8D 100%)',
+                            'linear-gradient(to right, #dd2476 0%, #ffc371 100%)',
                             color: currentPoint === 0 ? '#ffff' : '#fdf1f5',
                             fontWeight: "bold",
                             fontSize: '1.1rem',

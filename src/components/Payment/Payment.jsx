@@ -210,13 +210,12 @@ const Payment = () => {
                     />
                 ) : (
                     <Box>
-                        {/* background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%); */}
-                        <Card elevation={3} sx={{ backgroundColor: 'rgba(29, 29, 29, 0.3)', color: 'white' }}>
+                        <Card elevation={3} sx={{ backgroundColor: 'rgba(205, 250, 255, 0.2)', color: 'white' }}>
                             <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-                                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center' }}>
-                                    <Typography variant="h4" gutterBottom sx={{ ...typographyStyle, fontWeight: 'bold' }}>
+                                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center', margin:'1rem 2rem 0 2rem' }}>
+                                    <Typography variant="h4" gutterBottom sx={{ ...typographyStyle, fontWeight: 'bold'}}>
                                             Payment Details
-                                        </Typography>
+                                    </Typography>
                                     {currentPoint > 0 && (
                                         <Chip
                                             label={

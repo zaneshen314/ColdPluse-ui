@@ -11,7 +11,7 @@ const ETicket = ( { ticket, large } ) => {
       <Typography variant={"h6"} sx={typographyStyle}>Guest ID: {idCardNum}</Typography>
       <Typography variant={"h6"} sx={typographyStyle}>Guest Name: {viewerName}</Typography>
       <Box mt={2} />
-      <QRCode value={id} size={large ? 192 : 128} />
+      <QRCode value={id} size={large ? 192 : 128} bgColor={"transparent"} fgColor={"#ffffff"}/>
     </Box>
   );
 };

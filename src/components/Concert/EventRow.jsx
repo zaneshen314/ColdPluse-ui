@@ -1,4 +1,5 @@
 import React from "react";
+import {Button} from "@mui/material";
 
 const EventRow = ({ event }) => {
     const handleBuyClick = () => {
@@ -21,19 +22,19 @@ const EventRow = ({ event }) => {
                 {event.venue}
             </td>
             <td style={{ padding: "10px", textAlign: "center" }}>
-                <button
+                <Button
                     onClick={handleBuyClick}
-                    style={{
-                        backgroundColor: "#00d8ff",
-                        color: "#001f3f",
-                        border: "none",
-                        padding: "10px 15px",
-                        borderRadius: "5px",
-                        cursor: "pointer",
+                    sx = {{
+                        backgroundImage: 'linear-gradient(120deg, #4158d0, #c850c0 )',
+                        color: 'white',
+                        '&:hover': {
+                            backgroundColor: 'darkpurple',
+                        },
+                        fontWeight: 'bold',
                     }}
                 >
                     Buy
-                </button>
+                </Button>
             </td>
         </tr>
     );
